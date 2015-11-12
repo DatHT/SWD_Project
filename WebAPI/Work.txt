@@ -1,0 +1,11 @@
+﻿Công việc cần thực hiện:
+---Mobile: layout + restclient
+---Web API: có 4 bảng chính: Food; Material; Category; User 
+---Web App: layout + restclient
+Web app có 2 phần chính: cho user và cho admin
+---Database crawler (Hiển: gần xong)
+Tối nay xong Database (12/11/2015)
+
+
+Step tiếp theo: làm Web API (Mỗi người 1 bảng): 5 ngày
+Mobile: Đạt
