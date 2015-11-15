@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="backgroundGray">#F0F0F0</color>
+    <color name="backgroundGrayDark">#cecece</color>
+    <color name="yellowNormal">#e5b304</color>
+    <color name="yellowBlack">#6e5f28</color>
+    <color name="yellowLight">#f4d257</color>
+    <color name="greenLight">#57ba81</color>
+    <color name="greenNormal">#36905c</color>
+    <color name="dotedWhite">#99FFFFFF</color>
+    <color name="darkButton">#3D3417</color>
+    <color name="blueViolet">#1e36d4</color>
+    <color name="textColor">@android:color/secondary_text_light</color>
+    <color name="textDecrypted">@android:color/tertiary_text_light</color>
+    <color name="textPrice">@android:color/holo_red_dark</color>
+    <color name="roseDark">#dd144b</color>
+    <color name="orangeDark">#ff753f</color>
+</resources>
