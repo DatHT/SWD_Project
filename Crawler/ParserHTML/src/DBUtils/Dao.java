@@ -21,14 +21,20 @@ public class Dao implements Serializable {
         Connection con = DBUtils.makeConnection();
         PreparedStatement stm = null;
         if (con != null) {
-            String sql = "INSERT INTO `nauan`.`tbl_food` (`FoodName`, `Recipe`, `CategoryID`, `LinkImage`, `ListMaterial`) VALUES (?, ?, ?, ?, ?);";
+            String sql = "INSERT INTO `nauan`.`tbl_food` "
+                    + "(`FoodName`, `Tutorial`, `CategoryID`, `LinkImage`, `MaterialInfo`, `ListMaterial`, `VisitNum`, `User`, `Content`) "
+                    + "VALUES (?,?,?,?,?,?,?,?,?);";
             try {
                 stm = con.prepareStatement(sql);
                 stm.setString(1, food.getFoodName());
-                stm.setString(2, food.getRecipe());
+                stm.setString(2, food.getTutorial());
                 stm.setInt(3, food.getCategoryID());
                 stm.setString(4, food.getLinkImage());
-                stm.setString(5, food.getListMaterial());
+                stm.setString(5, food.getListMaterialInfo());
+                stm.setString(6, food.getListMaterial());
+                stm.setInt(7, food.getVisitNum());
+                stm.setString(8, food.getUser());
+                stm.setString(9, food.getContent());
                 int row = stm.executeUpdate();
                 if (row > 0) {
                     return true;
@@ -57,11 +63,10 @@ public class Dao implements Serializable {
         Connection con = DBUtils.makeConnection();
         PreparedStatement stm = null;
         if (con != null) {
-            String sql = "INSERT INTO `nauan`.`tbl_material` (`MateialName`, `ListFood`) VALUES (?, ?);";
+            String sql = "INSERT INTO `nauan`.`tbl_material` (`MateialName`) VALUES (?);";
             try {
                 stm = con.prepareStatement(sql);
                 stm.setString(1, material.getMaterialName());
-                stm.setString(2, material.getListID());
                 int row = stm.executeUpdate();
                 if (row > 0) {
                     return true;
@@ -328,38 +333,38 @@ public class Dao implements Serializable {
         return true;
     }
 
-    public boolean updateMaterial(Material material) {
-        Connection con = DBUtils.makeConnection();
-        PreparedStatement stm = null;
-        if (con != null) {
-            String sql = "UPDATE `nauan`.`tbl_material` SET `ListFood`=? WHERE `MaterialID`=?;";
-            try {
-                stm = con.prepareStatement(sql);
-                stm.setString(1, material.getListID());
-                stm.setInt(2, getMaterialID(material.getMaterialName()));
-                int row = stm.executeUpdate();
-                if (row > 0) {
-                    return true;
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    if (stm != null) {
-                        stm.close();
-                    }
-                    if (con != null) {
-                        con.close();
-                    }
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-
-            }
-
-        }
-        return false;
-    }
+//    public boolean updateMaterial(Material material) {
+//        Connection con = DBUtils.makeConnection();
+//        PreparedStatement stm = null;
+//        if (con != null) {
+//            String sql = "UPDATE `nauan`.`tbl_material` SET `ListFood`=? WHERE `MaterialID`=?;";
+//            try {
+//                stm = con.prepareStatement(sql);
+//                stm.setString(1, material.getListID());
+//                stm.setInt(2, getMaterialID(material.getMaterialName()));
+//                int row = stm.executeUpdate();
+//                if (row > 0) {
+//                    return true;
+//                }
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            } finally {
+//                try {
+//                    if (stm != null) {
+//                        stm.close();
+//                    }
+//                    if (con != null) {
+//                        con.close();
+//                    }
+//                } catch (SQLException ex) {
+//                    ex.printStackTrace();
+//                }
+//
+//            }
+//
+//        }
+//        return false;
+//    }
     
     public String getListIDFromMaterial(int materialID){
         Connection con = DBUtils.makeConnection();
