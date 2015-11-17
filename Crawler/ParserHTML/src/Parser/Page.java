@@ -52,54 +52,64 @@ public class Page extends PageParser {
 
     @Override
     public void parseFood(String page, String category) {
-        String recipe = "";
+        String Tutorial = "";
         String FoodName = "";
         String linkImage = "";
         String Listmateral_Quantity = "";
+        String List_Material = "";
+        String Content = "";
         List<String> ListMaterial, ListQuantity;
         ListMaterial = new ArrayList<String>();
         ListQuantity = new ArrayList<String>();
         try {
             Document doc = Jsoup.connect(page).get();
             //Get FoodName
-            Elements Foodname = doc.select("h2.entry-title>a[title]");
-            for (Element element : Foodname) {
+            Elements Foodname_html = doc.select("h2.entry-title>a[title]");
+            for (Element element : Foodname_html) {
                 FoodName = element.text();
             }
             //Get LinkImage
-            Elements Image = doc.select("a[rel=prettyPhoto[slides]]");
-            for (Element element : Image) {
+            Elements LinkImage_html = doc.select("a[rel=prettyPhoto[slides]]");
+            for (Element element : LinkImage_html) {
                 linkImage = element.attr("href");
             }
-            // Get Recipe
-            Elements cachlam = doc.select("div[class=instructions]>*");
-            for (Element element : cachlam) {
-                recipe = recipe + "\n" + element.text();
+            // Get Tutorial
+            Elements Tutorial_html = doc.select("div[class=instructions]>*");
+            for (Element element : Tutorial_html) {
+                Tutorial = Tutorial + "\n" + element.text();
             }
             // Get Material and Quantity
-            Elements material = doc.select("ul.ingredients>li");
-            for (Element element : material) {
+            Elements Material_html = doc.select("ul.ingredients>li");
+            for (Element element : Material_html) {
                 ListMaterial.add(element.select("a[href]").text().trim());
                 ListQuantity.add(element.select("span").text().trim());
             }
+            // Get String material info, and String material ID
             for (int i = 0; i <= ListMaterial.size() - 1; i++) {
                 Listmateral_Quantity = Listmateral_Quantity + ListMaterial.get(i) + "-" + ListQuantity.get(i) + ';';
+                List_Material = List_Material + ListMaterial.get(i) + ";";
             }
+            // Get Content 
+            Elements Content_html = doc.select("div.pf-content");
+            for (Element element : Content_html) {
+                Content = element.text();
+                break;
+            }
+            // Create Dao to access to DB
             Dao dao = new Dao();
-            int categoryID = dao.getCategoryID(category);
-            FoodDTO food = new FoodDTO(FoodName, recipe, categoryID, linkImage,Listmateral_Quantity);
+
+            // Get category
+            int CategoryID = dao.getCategoryID(category);
+
+            //  Create Food
+            FoodDTO food = new FoodDTO(FoodName, Tutorial, CategoryID, linkImage, List_Material, Content, Listmateral_Quantity);
             dao.AddFood(food);
-            for (int i = 0; i <= ListMaterial.size()-1;i++){
-                if (dao.getMaterialID(ListMaterial.get(i))== -1){
-                    String listID ="";
-                    listID = listID + Integer.toString(dao.getFoodID(FoodName))+";";
-                    Material materialDTO = new Material(ListMaterial.get(i),listID);
+
+            // Add Material
+            for (int i = 0; i <= ListMaterial.size() - 1; i++) {
+                if (dao.getMaterialID(ListMaterial.get(i)) == -1) {
+                    Material materialDTO = new Material(ListMaterial.get(i));
                     dao.AddMaterial(materialDTO);
-                } else {
-                    String listID = dao.getListIDFromMaterial(dao.getMaterialID(ListMaterial.get(i)));
-                    listID = listID + Integer.toString(dao.getFoodID(FoodName))+";";
-                    Material materialDTO = new Material(ListMaterial.get(i), listID);
-                    dao.updateMaterial(materialDTO);
                 }
             }
         } catch (IOException ex) {
@@ -107,14 +117,13 @@ public class Page extends PageParser {
         }
     }
 
-    
     public int pagenumber(String category) {
         String pagenumber = "";
         int number = 0;
         try {
             Document doc = Jsoup.connect(category).get();
             Elements listpage = doc.select("section#content>div>a[href]");
-            Element page = listpage.get(listpage.size()-1);
+            Element page = listpage.get(listpage.size() - 1);
             pagenumber = page.attr("href");
             int beginIndex = pagenumber.indexOf("page") + 5;
             int lastIndex = pagenumber.length() - 1;

@@ -12,19 +12,9 @@ package DBUtils;
 public class Material {
 
     private String materialName;
-    private String ListID;
 
-    public Material(String materialName, String ListID) {
+    public Material(String materialName) {
         this.materialName = materialName;
-        this.ListID = ListID;
-    }
-
-    public String getListID() {
-        return ListID;
-    }
-
-    public void setListID(String ListID) {
-        this.ListID = ListID;
     }
 
     public String getMaterialName() {
