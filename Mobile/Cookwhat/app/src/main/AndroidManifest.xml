@@ -23,6 +23,7 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".SearchResultActivity"
+            android:theme="@style/MyTheme"
              />
     </application>
 
