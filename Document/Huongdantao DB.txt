@@ -1,0 +1,2 @@
+create DB nauan trong mysql 
+Import data trong folder
