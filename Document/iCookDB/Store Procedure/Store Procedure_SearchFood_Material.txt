@@ -1,0 +1,35 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SearchFood_Material`(in Stringsearch varchar(2000),in member int,in ignorenumber int)
+
+BEGIN
+	
+declare search varchar(2000) default Stringsearch;
+    
+declare pointerFirst int(11) default 1;
+    
+declare pointerLast int (11) default 0;
+    
+declare maxlength int(11) default 0;
+    
+declare FinalSearch varchar(2000) default '%';
+    
+declare tmp varchar(255) default '%';
+    
+set maxlength = length(search);
+    
+processsearch: while ( pointerLast <> length(search)) do
+    
+set pointerLast = LOCATE(';',search);
+    
+set tmp = SUBSTRING(search FROM pointerFirst FOR pointerLast-1);
+    
+if tmp = '' then LEAVE processsearch; end if;
+    
+set FinalSearch = concat(FinalSearch,tmp,'%');
+    
+set search = SUBSTRING(search FROM pointerLast+1 FOR length(search));
+    
+end while processsearch;
+    
+select FoodName, Description from iCookDB.tbl_food where  ListMaterial like FinalSearch order by VisitNum DESC limit member offset ignorenumber; 
+
+END

@@ -1,0 +1,7 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetFood_ID`(in Idsearch int)
+
+BEGIN
+    
+select FoodName, Tutorial, LinkImage, MaterialInfo, Description from iCookDB.tbl_food where  FoodID = Idsearch; 
+
+END
