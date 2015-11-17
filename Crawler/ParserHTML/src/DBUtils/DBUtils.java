@@ -21,7 +21,7 @@ public class DBUtils implements Serializable{
     public static Connection makeConnection(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            String url = "jdbc:mysql://localhost/nauan?user=root&password=lengochien";
+            String url = "jdbc:mysql://localhost/iCookDB?user=root&password=lengochien";
             Connection con = DriverManager.getConnection(url);
             return con;        
         } catch (ClassNotFoundException ex) {

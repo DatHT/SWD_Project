@@ -21,8 +21,8 @@ public class Dao implements Serializable {
         Connection con = DBUtils.makeConnection();
         PreparedStatement stm = null;
         if (con != null) {
-            String sql = "INSERT INTO `nauan`.`tbl_food` "
-                    + "(`FoodName`, `Tutorial`, `CategoryID`, `LinkImage`, `MaterialInfo`, `ListMaterial`, `VisitNum`, `User`, `Content`) "
+            String sql = "INSERT INTO `iCookDB`.`tbl_food` "
+                    + "(`FoodName`, `Tutorial`, `CategoryID`, `LinkImage`, `MaterialInfo`, `ListMaterial`, `VisitNum`, `User`, `Description`) "
                     + "VALUES (?,?,?,?,?,?,?,?,?);";
             try {
                 stm = con.prepareStatement(sql);
@@ -34,7 +34,7 @@ public class Dao implements Serializable {
                 stm.setString(6, food.getListMaterial());
                 stm.setInt(7, food.getVisitNum());
                 stm.setString(8, food.getUser());
-                stm.setString(9, food.getContent());
+                stm.setString(9, food.getDescription());
                 int row = stm.executeUpdate();
                 if (row > 0) {
                     return true;
@@ -63,7 +63,7 @@ public class Dao implements Serializable {
         Connection con = DBUtils.makeConnection();
         PreparedStatement stm = null;
         if (con != null) {
-            String sql = "INSERT INTO `nauan`.`tbl_material` (`MateialName`) VALUES (?);";
+            String sql = "INSERT INTO `iCookDB`.`tbl_material` (`MateialName`) VALUES (?);";
             try {
                 stm = con.prepareStatement(sql);
                 stm.setString(1, material.getMaterialName());
@@ -161,7 +161,8 @@ public class Dao implements Serializable {
         }
         return -1;
     }
-     public int getFoodID(String Foodname) {
+
+    public int getFoodID(String Foodname) {
         Connection con = DBUtils.makeConnection();
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -195,6 +196,7 @@ public class Dao implements Serializable {
         }
         return -1;
     }
+
     public int getCategoryID(String categoryName) {
         Connection con = DBUtils.makeConnection();
         PreparedStatement stm = null;
@@ -270,7 +272,7 @@ public class Dao implements Serializable {
         Connection con = DBUtils.makeConnection();
         PreparedStatement stm = null;
         if (con != null) {
-            String sql = "INSERT INTO `nauan`.`tbl_category` (`CategoryName`) VALUES (?);";
+            String sql = "INSERT INTO `iCookDB`.`tbl_category` (`CategoryName`) VALUES (?);";
             try {
                 stm = con.prepareStatement(sql);
                 stm.setString(1, category.getCategoryName());
@@ -365,8 +367,7 @@ public class Dao implements Serializable {
 //        }
 //        return false;
 //    }
-    
-    public String getListIDFromMaterial(int materialID){
+    public String getListIDFromMaterial(int materialID) {
         Connection con = DBUtils.makeConnection();
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -399,5 +400,39 @@ public class Dao implements Serializable {
             }
         }
         return null;
+    }
+
+    public boolean AddFoodHtml(Food_HTML_DTO foodhtml){
+        Connection con = DBUtils.makeConnection();
+        PreparedStatement stm = null;
+        if (con != null) {
+            String sql = "INSERT INTO `icookdb`.`tbl_foodhtml` (`FoodID`, `Material_Html`, `Tutorial_Html`) VALUES (?, ?, ?);";
+            try {
+                stm = con.prepareStatement(sql);
+                stm.setInt(1, foodhtml.getID());
+                stm.setString(2, foodhtml.getMaterialHTML());
+                stm.setString(3, foodhtml.getFoodHTML());
+                int row = stm.executeUpdate();
+                if (row > 0) {
+                    return true;
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (stm != null) {
+                        stm.close();
+                    }
+                    if (con != null) {
+                        con.close();
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+
+            }
+
+        }
+        return false;
     }
 }

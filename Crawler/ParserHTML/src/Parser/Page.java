@@ -8,6 +8,7 @@ package Parser;
 import DBUtils.CategoryDTO;
 import DBUtils.Dao;
 import DBUtils.FoodDTO;
+import DBUtils.Food_HTML_DTO;
 import DBUtils.Material;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -57,7 +58,9 @@ public class Page extends PageParser {
         String linkImage = "";
         String Listmateral_Quantity = "";
         String List_Material = "";
-        String Content = "";
+        String Description = "";
+        Dao dao = new Dao();
+        Food_HTML_DTO food_html = new Food_HTML_DTO();
         List<String> ListMaterial, ListQuantity;
         ListMaterial = new ArrayList<String>();
         ListQuantity = new ArrayList<String>();
@@ -68,50 +71,56 @@ public class Page extends PageParser {
             for (Element element : Foodname_html) {
                 FoodName = element.text();
             }
-            //Get LinkImage
-            Elements LinkImage_html = doc.select("a[rel=prettyPhoto[slides]]");
-            for (Element element : LinkImage_html) {
-                linkImage = element.attr("href");
-            }
-            // Get Tutorial
-            Elements Tutorial_html = doc.select("div[class=instructions]>*");
-            for (Element element : Tutorial_html) {
-                Tutorial = Tutorial + "\n" + element.text();
-            }
-            // Get Material and Quantity
-            Elements Material_html = doc.select("ul.ingredients>li");
-            for (Element element : Material_html) {
-                ListMaterial.add(element.select("a[href]").text().trim());
-                ListQuantity.add(element.select("span").text().trim());
-            }
-            // Get String material info, and String material ID
-            for (int i = 0; i <= ListMaterial.size() - 1; i++) {
-                Listmateral_Quantity = Listmateral_Quantity + ListMaterial.get(i) + "-" + ListQuantity.get(i) + ';';
-                List_Material = List_Material + ListMaterial.get(i) + ";";
-            }
-            // Get Content 
-            Elements Content_html = doc.select("div.pf-content");
-            for (Element element : Content_html) {
-                Content = element.text();
-                break;
-            }
+
+            if (dao.getfoodID(FoodName) == -1) {
+                //Get LinkImage
+                Elements LinkImage_html = doc.select("a[rel=prettyPhoto[slides]]");
+                for (Element element : LinkImage_html) {
+                    linkImage = element.attr("href");
+                }
+                // Get Tutorial
+                Elements Tutorial_html = doc.select("div[class=instructions]>*");
+                for (Element element : Tutorial_html) {
+                    Tutorial = Tutorial + "\n" + element.text();
+                }
+                food_html.setFoodHTML(doc.select("div.instructions").html());
+                // Get Material and Quantity
+                Elements Material_html = doc.select("ul.ingredients>li");
+                for (Element element : Material_html) {
+                    ListMaterial.add(element.select("a[href]").text().trim());
+                    ListQuantity.add(element.select("span").text().trim());
+                }
+                food_html.setMaterialHTML(doc.select("ul.ingredients").html());
+                // Get String material info, and String material ID
+                for (int i = 0; i <= ListMaterial.size() - 1; i++) {
+                    Listmateral_Quantity = Listmateral_Quantity + ListMaterial.get(i) + "-" + ListQuantity.get(i) + ';';
+                    List_Material = List_Material + ListMaterial.get(i) + ";";
+                }
+                // Get Description 
+                Elements Description_html = doc.select("div.pf-content");
+                for (Element element : Description_html) {
+                    Description = element.text();
+                    break;
+                }
             // Create Dao to access to DB
-            Dao dao = new Dao();
 
-            // Get category
-            int CategoryID = dao.getCategoryID(category);
+                // Get category
+                int CategoryID = dao.getCategoryID(category);
 
-            //  Create Food
-            FoodDTO food = new FoodDTO(FoodName, Tutorial, CategoryID, linkImage, List_Material, Content, Listmateral_Quantity);
-            dao.AddFood(food);
-
-            // Add Material
-            for (int i = 0; i <= ListMaterial.size() - 1; i++) {
-                if (dao.getMaterialID(ListMaterial.get(i)) == -1) {
-                    Material materialDTO = new Material(ListMaterial.get(i));
-                    dao.AddMaterial(materialDTO);
+                //  Create Food
+                FoodDTO food = new FoodDTO(FoodName, Tutorial, CategoryID, linkImage, List_Material, Description, Listmateral_Quantity);
+                dao.AddFood(food);
+                food_html.setID(dao.getFoodID(food.getFoodName()));
+                dao.AddFoodHtml(food_html);
+                // Add Material
+                for (int i = 0; i <= ListMaterial.size() - 1; i++) {
+                    if (dao.getMaterialID(ListMaterial.get(i)) == -1) {
+                        Material materialDTO = new Material(ListMaterial.get(i));
+                        dao.AddMaterial(materialDTO);
+                    }
                 }
             }
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
