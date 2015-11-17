@@ -10,14 +10,15 @@
         android:id="@+id/activity_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/transparent"
-        app:popupTheme="@style/AppTheme.Transparent" />
+        android:background="#FBCED5"
+        app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     <ListView
         android:id="@+id/search_result_lv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/transparent"
+        android:padding="@dimen/activity_margin"
         android:divider="@null"
         android:dividerHeight="10dp" />
 </android.support.design.widget.CoordinatorLayout>

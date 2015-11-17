@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -15,6 +17,7 @@ import vn.fpt.se0866.model.Food;
  * Created by DatHT on 11/15/2015.
  */
 public class ResultAdapter extends BaseAdapter {
+    public static final int LAYOUT_RESOURCES_ID = R.id.search_result_lv;
 
     List<Food> list;
     Context context;
@@ -45,11 +48,15 @@ public class ResultAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder = new ViewHolder();
-        View rowView = inflater.inflate(R.layout.activity_main, null);
+        View rowView = inflater.inflate(R.layout.item_search_result, null);
+        viewHolder.ivThumb = (ImageView) rowView.findViewById(R.id.item_search_thumb_iv);
+        viewHolder.tvName = (TextView) rowView.findViewById(R.id.item_search_name_tv);
+        viewHolder.tvDetails = (TextView) rowView.findViewById(R.id.item_search_material_tv);
         return rowView;
     }
 
     public class ViewHolder{
-
+        ImageView ivThumb;
+        TextView tvName, tvDetails;
     }
 }
