@@ -1,5 +1,6 @@
 package vn.fpt.se0866.activity;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -75,6 +76,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void searchFood(View view) {
         Intent intent = new Intent(MainActivity.this, SearchResultActivity.class);
+//        Bundle bndlanimation =
+//                ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.pull_in_right, R.anim.pull_in_left).toBundle();
+        //startActivity(intent, bndlanimation);
         startActivity(intent);
+        overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
     }
 }

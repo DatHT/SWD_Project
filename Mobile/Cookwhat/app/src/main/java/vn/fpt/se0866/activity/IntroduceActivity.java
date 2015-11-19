@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
@@ -20,22 +21,66 @@ public class IntroduceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_introduce);
         tvIntro = (TextView) findViewById(R.id.introduce_tv);
         handler = new Handler();
-        tvIntro.setText("Hôm nay nấu gì nhỉ?");
-        tvIntro.startAnimation(AnimationUtils.loadAnimation(IntroduceActivity.this, android.R.anim.slide_in_left));
-        handler.postDelayed(new Runnable() {
+        final Animation animationSlideInLeft = AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left);
+        final Animation animationSlideOutRight = AnimationUtils.loadAnimation(this, android.R.anim.slide_out_right);
+        animationSlideInLeft.setDuration(2000);
+        animationSlideOutRight.setDuration(2000);
+        animationSlideInLeft.setAnimationListener(new Animation.AnimationListener() {
             @Override
-            public void run() {
-                tvIntro.setText("Bạn đã chuẩn bị những nguyên liệu?");
-                tvIntro.startAnimation(AnimationUtils.loadAnimation(IntroduceActivity.this, R.anim.right_left));
+            public void onAnimationStart(Animation animation) {
+
             }
-        }, 3000);
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        tvIntro.startAnimation(animationSlideOutRight);
+                    }
+                }, 2000);
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        animationSlideOutRight.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                tvIntro.setText("Icook sẽ giúp bạn chọn món ăn phù hợp.......");
+                tvIntro.startAnimation(animationSlideInLeft);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        tvIntro.setText("Nấu gì bây giờ nhỉ?");
+        tvIntro.startAnimation(animationSlideInLeft);
 
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 Intent intent = new Intent(IntroduceActivity.this, MainActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
             }
-        }, 3000);
+        }, 12000);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        tvIntro.clearAnimation();
     }
 }
