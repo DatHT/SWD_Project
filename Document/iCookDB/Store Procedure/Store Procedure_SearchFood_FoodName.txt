@@ -1,0 +1,11 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SearchFood_FoodName`(in FoodNameSearch varchar(500))
+
+BEGIN
+	
+declare FinalSearch varchar(500) default '';
+    
+set FinalSearch = CONCAT('%',FoodNameSearch,'%');
+    
+select FoodName,Description from iCookDB.tbl_food where  FoodName like FinalSearch; 
+
+END

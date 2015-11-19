@@ -16,18 +16,18 @@ public class FoodDTO {
     private int categoryID;
     private String linkImage;
     private String ListMaterial;
-    private String Content;
+    private String Description;
     private String ListMaterialInfo;
     private String User;
     private int VisitNum;
 
-    public FoodDTO(String foodName, String tutorial, int categoryID, String linkImage, String ListMaterial, String Content, String ListMaterialInfo) {
+    public FoodDTO(String foodName, String tutorial, int categoryID, String linkImage, String ListMaterial, String Description, String ListMaterialInfo) {
         this.foodName = foodName;
         this.tutorial = tutorial;
         this.categoryID = categoryID;
         this.linkImage = linkImage;
         this.ListMaterial = ListMaterial;
-        this.Content = Content;
+        this.Description = Description;
         this.ListMaterialInfo = ListMaterialInfo;
         this.User = "Admin";
         this.VisitNum = 0;
@@ -75,14 +75,15 @@ public class FoodDTO {
         this.ListMaterial = ListMaterial;
     }
 
-    public String getContent() {
-        return Content;
+    public String getDescription() {
+        return Description;
     }
 
-    public void setContent(String Content) {
-        this.Content = Content;
+    public void setDescription(String Description) {
+        this.Description = Description;
     }
 
+ 
     public String getListMaterialInfo() {
         return ListMaterialInfo;
     }

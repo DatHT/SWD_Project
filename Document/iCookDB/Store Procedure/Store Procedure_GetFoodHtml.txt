@@ -1,0 +1,7 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetFoodHtml`(in ID int)
+
+BEGIN
+	
+SELECT * FROM icookdb.tbl_foodhtml where FoodID=ID;
+
+END
