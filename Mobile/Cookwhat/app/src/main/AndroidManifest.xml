@@ -25,6 +25,10 @@
             android:name=".SearchResultActivity"
             android:theme="@style/MyTheme"
              />
+        <activity
+            android:name=".IntroduceActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
     </application>
 
 </manifest>

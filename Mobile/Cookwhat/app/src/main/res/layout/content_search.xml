@@ -51,20 +51,19 @@
 
     <com.andexert.library.RippleView
         android:id="@+id/more"
-        android:layout_width="?android:actionBarSize"
-        android:layout_height="?android:actionBarSize"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_toLeftOf="@+id/more2"
         android:layout_margin="5dp"
         rv_centered="true">
 
         <ImageView
             android:id="@+id/search_btn"
-            android:layout_width="?android:actionBarSize"
-            android:layout_height="?android:actionBarSize"
-            android:src="@android:drawable/ic_menu_search"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_search"
             android:layout_centerInParent="true"
             android:padding="10dp"
-            android:background="@color/colorAccent"
             android:onClick="searchFood"
             />
 
