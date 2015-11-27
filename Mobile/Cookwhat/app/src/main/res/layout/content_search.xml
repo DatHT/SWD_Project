@@ -64,7 +64,6 @@
             android:src="@drawable/ic_search"
             android:layout_centerInParent="true"
             android:padding="10dp"
-            android:onClick="searchFood"
             />
 
     </com.andexert.library.RippleView>
