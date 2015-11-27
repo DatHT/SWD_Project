@@ -66,6 +66,20 @@
 			<version>${hibernate.version}</version>
 		</dependency>
 
+		<!-- Database connection pool -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-dbcp2</artifactId>
+			<version>2.0.1</version>
+			<exclusions>
+				<!-- Exclude Commons Logging in favor of SLF4j -->
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
 		<!--MYSQL Connector -->
 		<dependency>
 			<groupId>mysql</groupId>
