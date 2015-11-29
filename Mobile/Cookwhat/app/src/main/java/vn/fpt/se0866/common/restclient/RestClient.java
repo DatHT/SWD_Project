@@ -50,6 +50,11 @@ public class RestClient {
         headers = new ArrayList<NameValuePair>();
     }
 
+    public RestClient addRoute(String route) {
+        this.url += "/" + route;
+        return this;
+    }
+
     public void addParam(String name, String value) {
         params.add(new BasicNameValuePair(name, value));
     }

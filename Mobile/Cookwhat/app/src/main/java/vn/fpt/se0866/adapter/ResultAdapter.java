@@ -1,12 +1,18 @@
 package vn.fpt.se0866.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -23,11 +29,13 @@ public class ResultAdapter extends BaseAdapter {
     Context context;
     private static LayoutInflater inflater = null;
 
+
     public ResultAdapter(Context context, List<Food> foods) {
         this.list = foods;
         this.context = context;
-        inflater = ( LayoutInflater )context.
+        inflater = (LayoutInflater) context.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
     }
 
     @Override
@@ -47,16 +55,35 @@ public class ResultAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder viewHolder = new ViewHolder();
-        View rowView = inflater.inflate(R.layout.item_search_result, null);
-        viewHolder.ivThumb = (ImageView) rowView.findViewById(R.id.item_search_thumb_iv);
-        viewHolder.tvName = (TextView) rowView.findViewById(R.id.item_search_name_tv);
-        viewHolder.tvDetails = (TextView) rowView.findViewById(R.id.item_search_material_tv);
-        return rowView;
+        ViewHolder viewHolder = null;
+        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.item_search_result, null);
+            viewHolder = new ViewHolder(convertView);
+            convertView.setTag(viewHolder);
+
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
+        Food food = (Food) getItem(position);
+        Picasso.with(context).load(food.getAvatarLink())
+                .placeholder(R.drawable.ic_loading)
+                .error(R.drawable.ic_error)
+                .into(viewHolder.ivThumb);
+        viewHolder.tvName.setText(food.getFoodName());
+        String detail = food.getDescription().substring(0, 100) + "...";
+        viewHolder.tvDetails.setText(detail);
+        return convertView;
     }
 
-    public class ViewHolder{
+    public class ViewHolder {
         ImageView ivThumb;
         TextView tvName, tvDetails;
+
+        public ViewHolder(View v) {
+            ivThumb = (ImageView) v.findViewById(R.id.item_search_thumb_iv);
+            tvName = (TextView) v.findViewById(R.id.item_search_name_tv);
+            tvDetails = (TextView) v.findViewById(R.id.item_search_material_tv);
+        }
     }
+
 }
