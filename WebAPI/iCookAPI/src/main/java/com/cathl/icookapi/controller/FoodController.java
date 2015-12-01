@@ -1,7 +1,5 @@
 package com.cathl.icookapi.controller;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,15 +33,7 @@ public class FoodController {
 	public List<FoodDTO> searchByMaterial(@PathVariable("materials") String materials,
 			@PathVariable("start") int start, @PathVariable("limit") int limit) {
 		List<Food> listFood;
-		System.out.println("Before decode: " + materials);
-		String searchStr = materials;
-		try {
-			searchStr = URLDecoder.decode(materials, "UTF-8");
-			System.out.println("After decode: " + searchStr);
-		} catch (UnsupportedEncodingException e) {
-			System.out.println(e.getMessage());
-		}
-		listFood = foodService.searchByMaterial(searchStr, start, limit);
+		listFood = foodService.searchByMaterial(materials, start, limit);
 		List<FoodDTO> listFoodDTO = new ArrayList<FoodDTO>();
 		for (Food food : listFood) {
 			listFoodDTO.add(new FoodDTO(food));

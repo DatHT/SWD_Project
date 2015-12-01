@@ -1,20 +1,23 @@
 package vn.fpt.se0866.model;
 
+import java.io.Serializable;
+
 /**
  * Created by DatHT on 11/15/2015.
  */
-public class Food {
-    private String thumbUrl;
+public class Food implements Serializable {
+    private int foodId;
     private String foodName;
-    private String detailMaterial;
+    private String description;
+    private String avatarLink;
 
 
-    public String getThumbUrl() {
-        return thumbUrl;
+    public int getFoodId() {
+        return foodId;
     }
 
-    public void setThumbUrl(String thumbUrl) {
-        this.thumbUrl = thumbUrl;
+    public void setFoodId(int foodId) {
+        this.foodId = foodId;
     }
 
     public String getFoodName() {
@@ -25,11 +28,19 @@ public class Food {
         this.foodName = foodName;
     }
 
-    public String getDetailMaterial() {
-        return detailMaterial;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDetailMaterial(String detailMaterial) {
-        this.detailMaterial = detailMaterial;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getAvatarLink() {
+        return avatarLink;
+    }
+
+    public void setAvatarLink(String avatarLink) {
+        this.avatarLink = avatarLink;
     }
 }

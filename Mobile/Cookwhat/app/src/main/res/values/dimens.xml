@@ -42,4 +42,5 @@
     <dimen name="item_store_text_size">22sp</dimen>
 
     <dimen name="text_size_large">21dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 </resources>
