@@ -11,24 +11,44 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import vn.fpt.se0866.adapter.ResultAdapter;
 import vn.fpt.se0866.common.core.AsyncLoader;
+import vn.fpt.se0866.common.core.IOnTaskCompleted;
+import vn.fpt.se0866.fragment.TabSearch;
 import vn.fpt.se0866.model.Food;
 
 /**
  * Created by DatHT on 11/15/2015.
  */
-public class SearchResultActivity extends AppCompatActivity {
+public class SearchResultActivity extends AppCompatActivity{
     public static final String DATA_EXCHANGE_OBJECT = "food";
     ListView listView;
     ResultAdapter adapter;
     private List<Food> foods;
+    private String textSearch;
+    private int pageCount;
+    private IOnTaskCompleted complete;
 
-    private int pageCount = 0;
+    public SearchResultActivity() {
+        pageCount = 0;
+        complete = new IOnTaskCompleted() {
+            @Override
+            public void onTaskCompleted(List<?> list) {
+                if (adapter == null) {
+                    foods = (List<Food>) list;
+                    adapter = new ResultAdapter(getBaseContext(), foods);
+                    adapter.notifyDataSetChanged();
+                    listView.setAdapter(adapter);
+                }else {
+                    foods.addAll((Collection<? extends Food>) list);
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        };
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,15 +57,13 @@ public class SearchResultActivity extends AppCompatActivity {
         //Toolbar toolbar = (Toolbar) findViewById(R.id.activity_toolbar);
         //setSupportActionBar(toolbar);
         setTitle("");
-        foods = executeData("bo", String.valueOf(0));
+        Intent intent = getIntent();
+        textSearch = intent.getStringExtra(TabSearch.TEXT_SEARCH_EXTRA);
+        executeData(textSearch, String.valueOf(0));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         listView = (ListView) findViewById(ResultAdapter.LAYOUT_RESOURCES_ID);
-        adapter = new ResultAdapter(getBaseContext(), foods);
-        adapter.notifyDataSetChanged();
-        listView.setAdapter(adapter);
-
         listView.setOnScrollListener(onScrollListener());
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -79,20 +97,11 @@ public class SearchResultActivity extends AppCompatActivity {
     }
 
 
-    private List<Food> executeData(String key, String start) {
-    String[] params = {key, start, "5"};
-    List<Food> tempFoods = null;
-        AsyncLoader asy = new AsyncLoader(this);
+    private void executeData(String key, String start) {
+        String[] params = {key, start, "10"};
+        AsyncLoader asy = new AsyncLoader(this, complete);
         asy.execute(params);
-        try {
-            tempFoods = asy.get();
-            pageCount++;
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        return  tempFoods;
+        pageCount++;
     }
 
     private AbsListView.OnScrollListener onScrollListener() {
@@ -101,12 +110,10 @@ public class SearchResultActivity extends AppCompatActivity {
             public void onScrollStateChanged(AbsListView view, int scrollState) {
                 int threshold = 1;
                 int count = listView.getCount();
+
                 if (scrollState == SCROLL_STATE_IDLE) {
-                    if (listView.getLastVisiblePosition() >= count -threshold && pageCount < getPageCount() + 2) {
-                        List<Food> temps = executeData("bo", String.valueOf(count));
-                        for(Food item: temps) {
-                            foods.add(item);
-                        }
+                    if (listView.getLastVisiblePosition() >= count -threshold && pageCount < pageCount + 2) {
+                        executeData(textSearch, String.valueOf(count + 1));
                         adapter.notifyDataSetChanged();
 
                     }
@@ -126,15 +133,4 @@ public class SearchResultActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
     }
 
-    public void setPageCount(int pageCount) {
-        this.pageCount = pageCount;
-    }
-
-    public int getPageCount() {
-        return pageCount;
-    }
-
-    public void setFoods(List<Food> foods) {
-        this.foods = foods;
-    }
 }

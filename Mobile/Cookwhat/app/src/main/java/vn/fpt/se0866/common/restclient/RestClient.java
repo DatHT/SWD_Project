@@ -1,5 +1,7 @@
 package vn.fpt.se0866.common.restclient;
 
+import android.net.Uri;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -17,6 +19,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
@@ -51,7 +57,7 @@ public class RestClient {
     }
 
     public RestClient addRoute(String route) {
-        this.url += "/" + route;
+        this.url += "/" + Uri.encode(route);
         return this;
     }
 
@@ -139,5 +145,13 @@ public class RestClient {
             }
         }
         return sb.toString();
+    }
+
+    private String encodeUrl(String url) throws MalformedURLException, URISyntaxException {
+        URL newUrl = new URL(url);
+        URI uri = new URI(newUrl.getProtocol(), newUrl.getUserInfo(), newUrl.getHost(), newUrl.getPort(),
+                newUrl.getPath(), newUrl.getQuery(), newUrl.getRef());
+
+        return uri.toASCIIString();
     }
 }

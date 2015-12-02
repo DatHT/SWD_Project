@@ -1,6 +1,7 @@
 package vn.fpt.se0866.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.balysv.materialripple.MaterialRippleLayout;
 
 /**
  * Created by DatHT on 11/17/2015.
@@ -23,6 +26,8 @@ public class IntroduceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_introduce);
         tvIntro = (TextView) findViewById(R.id.introduce_tv);
         btnStart = (Button) findViewById(R.id.introduce_start_btn);
+        MaterialRippleLayout.on(btnStart).rippleColor(Color.BLACK).create();
+
         handler = new Handler();
         final Animation animationSlideInLeft = AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left);
         final Animation animationSlideOutRight = AnimationUtils.loadAnimation(this, android.R.anim.slide_out_right);

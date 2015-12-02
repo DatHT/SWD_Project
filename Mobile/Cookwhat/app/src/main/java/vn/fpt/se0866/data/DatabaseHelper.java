@@ -21,7 +21,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final String DATABASE_NAME = "Food.sqlite";
     private static final int DATABASE_VERSION = 1;
 
-    private Dao<Food, Integer> foodDao = null;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -32,13 +31,24 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         try {
             TableUtils.createTable(connectionSource, Food.class);
         } catch (SQLException e) {
-            Log.e("can't create table", e.getMessage());
-            e.printStackTrace();
+            Log.e(TAG, "can't create table", e);
         }
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource, int i, int i1) {
+        try {
+            TableUtils.dropTable(connectionSource, Food.class, true);
+        } catch (SQLException e) {
+            Log.e(TAG, "can't not drop table", e);
+        }
+    }
 
+    public void clearDatabase() {
+        try {
+            TableUtils.clearTable(connectionSource, Food.class);
+        } catch (SQLException e) {
+            Log.e(TAG, "can't clear database", e);
+        }
     }
 }
