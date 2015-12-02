@@ -1,5 +1,6 @@
 package com.cathl.icook.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,8 @@ public class FoodDAOImpl implements FoodDAO {
 	private HibernateUtil hibernateUtil;
 	
 	@Override
-	public List<Food> getFood() {
-		return hibernateUtil.fetchAll(Food.class);
+	public List<TblFood> getFood() {
+		return hibernateUtil.fetchAll(TblFood.class);
 	}
 
 	@Override
@@ -40,6 +41,12 @@ public class FoodDAOImpl implements FoodDAO {
 	public void deleteFood(int ID) {
 		// TODO Auto-generated method stub
 		hibernateUtil.delete(ID, TblFood.class);
+	}
+
+	@Override
+	public Serializable createFood(TblFood newFood) {
+		// TODO Auto-generated method stub
+		return hibernateUtil.create(newFood);
 	}
 
 }

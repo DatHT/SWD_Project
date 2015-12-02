@@ -29,19 +29,19 @@
 								<thead>
 									<tr>
 										<th>ID</th>
-										<th>Tiêu đề</th>
-										<th>Người Đăng</th>
-										<th>Ngày đăng</th>
+										<th>Mòn ăn</th>
+										<th>Ảnh đại diện</th>
+										<th>Lượt xem</th>
 										<th>Action</th>
 										<th>Select</th>
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach items="${foodPost }" var="item">
-										<tr">
+										<tr>
 											<td>${item.foodId }</td>
 											<td><a href="#">${item.foodName }</a></td>
-											<td><a href="${item.avatarLink }">${item.avatarLink }</a></td>
+											<td><a href="${item.linkImage }">${item.linkImage }</a></td>
 											<td>${item.visitNum }</td>
 											<td width="80px">
 												<div class="btn-group1">
@@ -137,7 +137,7 @@
 						</tr>
 						<tr>
 							<td width="70px"><b>Thông tin Nguyên liệu: </b></td>
-							<td><textarea id="txtInfo" cols="105" rows="5"></textarea></td>
+							<td><textarea id="txtInfo" class="cleditor"></textarea></td>
 						</tr>
 						<br />
 						<tr>

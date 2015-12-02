@@ -24,23 +24,22 @@
                     <!-- Content goes here -->
                     <form class="form-horizontal" role="form">
                         <div class="form-group">
-                              <label class="col-lg-2 control-label">Tiêu đề:</label>
+                              <label class="col-lg-2 control-label">Tên món ăn:</label>
                               <div class="col-lg-5">
-                                <input type="text" class="form-control" placeholder="Input title Here">
+                                <input type="text" class="form-control" placeholder="Input title Here" id="txtFoodName">
                               </div>
                         </div>
                         <div class="form-group">
                                   <label class="col-lg-2 control-label">Chủ đề:</label>
                                   <div class="col-lg-2">
                                     <select class="form-control" id="cbbCategory">
-                                    
                                     </select>
                                   </div>
                                 </div>    
                          <div class="form-group">
                                   <label class="col-lg-2 control-label">Ảnh đại diện:</label>
                                   <div class="col-lg-5">
-                                    <input type="text" class="form-control imagelink" placeholder="Image Link">
+                                    <input type="text" class="form-control imagelink" placeholder="Image Link" id="txtImageLink">
                                   </div>
                           </div>
                           <div class="form-group">
@@ -52,7 +51,19 @@
                         <div class="form-group">
                               <label class="col-lg-2 control-label">Mô tả:</label>
                               <div class="col-lg-6">
-                                <textarea class="cleditor" id="txtDescription" cols="80" rows="100"></textarea>
+                                <textarea  id="txtDescription" cols="100" rows="25" style="resize:none"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                              <label class="col-lg-2 control-label">Nguyên liệu cần thiết:</label>
+                              <div class="col-lg-6">
+                                <textarea  id="txtMaterialLst" cols="100" rows="8" style="resize:none"></textarea>
+                            </div>
+                        </div>
+                         <div class="form-group">
+                              <label class="col-lg-2 control-label">Chi tiết nguyên liệu:</label>
+                              <div class="col-lg-6">
+                                <textarea  id="txtMaterialDetail" class="cleditor"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
@@ -61,6 +72,12 @@
                                 <textarea class="cleditor" id="txtContent"></textarea>
                             </div>
                          </div>
+                          <div class="form-group">
+                                  <label class="col-lg-2 control-label">Nguồn:</label>
+                                  <div class="col-lg-5">
+                                    <input type="text" class="form-control imagelink" placeholder="Image Link" id="txtSource">
+                                  </div>
+                          </div>
                         <div class="form-group">
                            <div class="col-lg-offset-2 col-lg-6">
                             <button id="btnSubmit" type="button" class="btn btn-sm btn-default">Submit</button>

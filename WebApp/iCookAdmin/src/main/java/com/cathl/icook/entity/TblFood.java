@@ -29,7 +29,6 @@ public class TblFood implements java.io.Serializable {
 	@Column(name = "CategoryID")
 	private int categoryId;
 	private String foodName;
-	private String tutorial;
 	private String description;
 	private String linkImage;
 	private String listMaterial;
@@ -41,39 +40,24 @@ public class TblFood implements java.io.Serializable {
 		this.categoryId = categoryId;
 	}
 
-	private String materialInfo;
-	private String user;
+	
 	private Integer visitNum;
 	
 
 	public TblFood() {
 	}
 
-	public TblFood(TblCategory tblCategory, String foodName, String tutorial, String description, String linkImage,
-			String listMaterial, String materialInfo, String user) {
-		
+	public TblFood(int categoryId, String foodName, String description, String linkImage,
+			String listMaterial,Integer visitNum) {
+		this.categoryId=categoryId;
 		this.foodName = foodName;
-		this.tutorial = tutorial;
 		this.description = description;
 		this.linkImage = linkImage;
 		this.listMaterial = listMaterial;
-		this.materialInfo = materialInfo;
-		this.user = user;
+
 	}
 
-	public TblFood(TblCategory tblCategory, String foodName, String tutorial, String description, String linkImage,
-			String listMaterial, String materialInfo, String user, Integer visitNum) {
-		
-		this.foodName = foodName;
-		this.tutorial = tutorial;
-		this.description = description;
-		this.linkImage = linkImage;
-		this.listMaterial = listMaterial;
-		this.materialInfo = materialInfo;
-		this.user = user;
-		this.visitNum = visitNum;
-		
-	}
+
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -98,14 +82,8 @@ public class TblFood implements java.io.Serializable {
 		this.foodName = foodName;
 	}
 
-	@Column(name = "Tutorial", nullable = false, length = 8000)
-	public String getTutorial() {
-		return this.tutorial;
-	}
 
-	public void setTutorial(String tutorial) {
-		this.tutorial = tutorial;
-	}
+
 
 	@Column(name = "Description", nullable = false, length = 8000)
 	public String getDescription() {
@@ -116,7 +94,7 @@ public class TblFood implements java.io.Serializable {
 		this.description = description;
 	}
 
-	@Column(name = "LinkImage", nullable = false)
+	@Column(name = "AvatarLink", nullable = false)
 	public String getLinkImage() {
 		return this.linkImage;
 	}
@@ -134,23 +112,8 @@ public class TblFood implements java.io.Serializable {
 		this.listMaterial = listMaterial;
 	}
 
-	@Column(name = "MaterialInfo", nullable = false, length = 3000)
-	public String getMaterialInfo() {
-		return this.materialInfo;
-	}
 
-	public void setMaterialInfo(String materialInfo) {
-		this.materialInfo = materialInfo;
-	}
-
-	@Column(name = "User", nullable = false, length = 55)
-	public String getUser() {
-		return this.user;
-	}
-
-	public void setUser(String user) {
-		this.user = user;
-	}
+	
 
 	@Column(name = "VisitNum")
 	public Integer getVisitNum() {

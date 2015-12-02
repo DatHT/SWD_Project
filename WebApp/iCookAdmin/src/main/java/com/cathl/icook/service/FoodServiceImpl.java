@@ -1,5 +1,6 @@
 package com.cathl.icook.service;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -23,7 +24,7 @@ public class FoodServiceImpl implements FoodService {
 	private FoodDAO foodDAO;
 	
 	@Override
-	public List<Food> getFood() {
+	public List<TblFood> getFood() {
 		return foodDAO.getFood();
 	}
 
@@ -43,6 +44,12 @@ public class FoodServiceImpl implements FoodService {
 	public void deleteFood(int ID) {
 		// TODO Auto-generated method stub
 		foodDAO.deleteFood(ID);
+	}
+
+	@Override
+	public Serializable createFood(TblFood newFood) {
+		// TODO Auto-generated method stub
+		return foodDAO.createFood(newFood);
 	}
 
 }

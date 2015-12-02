@@ -1,5 +1,48 @@
 
 $(document).ready(function() {
+	$("#btnSubmit").click(function(){
+		var foodDetail =  JSON.stringify({
+			"materialDetail": $("#txtMaterialDetail").val(),
+			"tutorial": $("#txtContent").val(),
+			"source": $("#txtSource").val(),
+			"user":"ADMIN"
+		});
+		var food =  JSON.stringify({
+			"categoryId": $("#cbbCategory").val(),
+			"foodName": $("#txtFoodName").val(),
+			"description": $("#txtDescription").val(),
+			"linkImage":$("#txtImageLink").val(),
+			"listMaterial":$("#txtMaterialLst").val()
+		});
+    	$.ajax({
+			url:"/iCook/createFood",
+			type: 'POST', 
+			 dataType: 'json',
+			 data: (food), 
+			 beforeSend: function(xhr) {
+		            xhr.setRequestHeader("Accept", "application/json");
+		            xhr.setRequestHeader("Content-Type", "application/json");
+		        },
+		        success: function(foodNew) {
+		    		$.ajax({
+		    			url:"/iCook/createFoodDetail",
+		    			type: 'POST', 
+		    			 dataType: 'json',
+		    			 data: (foodDetail), 
+		    			 beforeSend: function(xhr) {
+		    		            xhr.setRequestHeader("Accept", "application/json");
+		    		            xhr.setRequestHeader("Content-Type", "application/json");
+		    		        },
+		    		        success: function(foodDetail) {
+		    		        	alert("success");
+		    		        }
+		    		});
+		        	
+		        }
+		});
+
+		
+	});
 	$(window).load(function() {
 		// Animate loader off screen
 		$(".se-pre-con").fadeOut("slow");;
@@ -39,18 +82,27 @@ $(document).ready(function() {
 	        type: "GET",
 	        success: function(category) {
 	        	$("#txtID").val(category.foodId);
-	        	$("#txtUser").val(category.user);
+//	   
 	        	$("#txtView").val(category.visitNum);
 	        	$("#cbbCategory").val(category.categoryId);
 	        	$('.imagelink').val(category.linkImage);
 	        	$('#imageFood').attr("src",category.linkImage);
 	        	$("#myModal .modal-title").html('<b>'+category.foodName+'</b>');
 	        	$("#myModal .modal-body .foodName").val(category.foodName);
-	        	$("#myModal .modal-body #txtContent").html(category.tutorial);
-	        	$("#myModal .modal-body #txtInfo").html(category.materialInfo);
+	        	
 	        	$("#myModal .modal-body #txtDescription").html(category.description);
-	        	$("#myModal .modal-body #txtMaterial").html(category.materialInfo);
-	        	   $("#myModal").modal();
+	        	$("#myModal .modal-body #txtMaterial").html(category.listMaterial);
+	        	$.ajax({
+	    	        url: "/iCook/getFoodDetail?txtFoodID="+foodID,
+	    	        type: "GET",
+	    	        success: function(foodDetail) {
+	    	        	$("#myModal .modal-body #txtContent").html(foodDetail.tutorial);
+	    	        	$("#myModal .modal-body #txtInfo").html(foodDetail.materialDetail);
+	    	        	$("#txtUser").val(foodDetail.user);
+	    	        	$("#myModal").modal();
+	    	        }
+	    	    });
+	        	   
 	        	   
 	        }
 	    });

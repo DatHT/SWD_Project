@@ -21,8 +21,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cathl.icook.entity.Food;
 import com.cathl.icook.entity.TblCategory;
 import com.cathl.icook.entity.TblFood;
+import com.cathl.icook.entity.TblFoodDetail;
 import com.cathl.icook.service.CategoryService;
 import com.cathl.icook.service.CategoryServiceImpl;
+import com.cathl.icook.service.FoodDetailSevices;
 import com.cathl.icook.service.FoodService;
 
 
@@ -39,9 +41,16 @@ public class HomeController {
 	private CategoryService cstegoryService;
 	@Autowired
 	private FoodService foodService;
-	
-
+	@Autowired
+	private FoodDetailSevices foodDetailService;
+	private Integer foodID;
 	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String login(Locale locale, Model model) {
+
+		
+		return "login";
+	}
+	@RequestMapping(value = "/Admin", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 
 		model.addAttribute("pageheader", "Admin");
@@ -59,7 +68,7 @@ public class HomeController {
 
 	@RequestMapping(value = "/ManagePost", method = RequestMethod.GET)
 	public String managePost(Model model) {
-		List<Food> result = new ArrayList<Food>();
+		List<TblFood> result = new ArrayList<TblFood>();
 		result = foodService.getFood();
 		model.addAttribute("foodPost", result);
 		model.addAttribute("pageheader", "Quản lý bài đăng");
@@ -80,8 +89,8 @@ public class HomeController {
 
 	@RequestMapping(value = "/getFood", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Food> getFood() {
-		List<Food> result = new ArrayList<Food>();
+	public List<TblFood> getFood() {
+		List<TblFood> result = new ArrayList<TblFood>();
 		result = foodService.getFood();
 		return result;
 	}
@@ -123,7 +132,7 @@ public class HomeController {
 		return null;
 	}
 	@RequestMapping(value="deleteFood",method = RequestMethod.GET)
-	public int deleteFood(@RequestParam("txtFoodID") String foodID) {
+	public void deleteFood(@RequestParam("txtFoodID") String foodID) {
 		Integer foodIDInt = null;
 		System.out.println(foodID);
 		try {
@@ -132,8 +141,46 @@ public class HomeController {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		
+		foodDetailService.deleteFoodDetail(foodIDInt);
 		foodService.deleteFood(foodIDInt);
-		return 200;
+		
+	}
+	@RequestMapping(value="/getFoodDetail", method =RequestMethod.GET)
+	@ResponseBody
+	public TblFoodDetail getFoodDetailID(@RequestParam("txtFoodID") String foodID) {
+		Integer foodIDInt = null;
+		System.out.println(foodID);
+		try {
+			foodIDInt = Integer.parseInt(foodID);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		TblFoodDetail foodDetail =foodDetailService.getFoodDetailID(foodIDInt);
+		return foodDetail;
+	}
+	@RequestMapping (value="/createFoodDetail",method=RequestMethod.POST)
+	@ResponseBody
+	public TblFoodDetail createFoodDetail(@RequestBody TblFoodDetail newFoodDetail) {
+		Serializable result;
+		TblFoodDetail foodDetail = new TblFoodDetail(foodID,newFoodDetail.getMaterialDetail(),newFoodDetail.getTutorial(),
+				newFoodDetail.getSource(),newFoodDetail.getUser());
+		foodDetail.setFoodID(foodID);
+		result=foodDetailService.createFoodDetail(foodDetail);
+		
+		System.out.println(result);
+		return foodDetail;
+	}
+	@RequestMapping (value="/createFood",method=RequestMethod.POST)
+	@ResponseBody
+	public TblFood createFood(@RequestBody TblFood newFood) {
+		Serializable result;
+		TblFood food = new TblFood(newFood.getCategoryId(),newFood.getFoodName(),newFood.getDescription(),
+				newFood.getLinkImage(),newFood.getListMaterial(),0);
+	
+		result=foodService.createFood(food);
+		foodID = food.getFoodId();
+		System.out.println(foodID);
+		return food;
 	}
 }
