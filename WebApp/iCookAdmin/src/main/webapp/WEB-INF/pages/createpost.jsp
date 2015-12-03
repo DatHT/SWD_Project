@@ -8,6 +8,7 @@
 <title>Create post</title>
 </head>
 <body>
+	<div class="row">
             <div class="col-md-12">
 
               <div class="widget">
@@ -93,5 +94,6 @@
               </div>  
               
             </div>
+           </div>
 </body>
 </html>

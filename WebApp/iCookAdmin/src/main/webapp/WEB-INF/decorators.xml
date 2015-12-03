@@ -4,5 +4,6 @@
 	<decorator name="main" page="layout.jsp">
 		<pattern>/*</pattern>
 	</decorator>
-	<decorator name="no" page="/WEB-INF/pages/login.jsp"></decorator>
+	<decorator name="login" page="/WEB-INF/pages/login.jsp"></decorator>
+	<decorator name="no" page="/WEB-INF/pages/index.jsp"></decorator>
 </decorators>

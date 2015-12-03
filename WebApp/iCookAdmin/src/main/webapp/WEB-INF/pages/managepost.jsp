@@ -8,6 +8,7 @@
 <title>Manage post</title>
 </head>
 <body>
+<div class="row">
 	<div class="col-md-12">
 
 		<div class="widget">
@@ -37,9 +38,9 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${foodPost }" var="item">
+									<c:forEach items="${foodPost }" var="item" varStatus="counter">
 										<tr>
-											<td>${item.foodId }</td>
+											<td>${counter.count }</td>
 											<td><a href="#">${item.foodName }</a></td>
 											<td><a href="${item.linkImage }">${item.linkImage }</a></td>
 											<td>${item.visitNum }</td>
@@ -190,6 +191,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 </body>
 </html>

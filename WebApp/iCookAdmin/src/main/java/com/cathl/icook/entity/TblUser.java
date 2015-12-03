@@ -17,7 +17,7 @@ public class TblUser implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 4320615272577209139L;
-	private String userId;
+
 	private String userName;
 	private String password;
 	private String role;
@@ -25,25 +25,15 @@ public class TblUser implements java.io.Serializable {
 	public TblUser() {
 	}
 
-	public TblUser(String userId, String userName, String password, String role) {
-		this.userId = userId;
+	public TblUser(String userName, String password, String role) {
+
 		this.userName = userName;
 		this.password = password;
 		this.role = role;
 	}
 
 	@Id
-
-	@Column(name = "UserID", unique = true, nullable = false)
-	public String getUserId() {
-		return this.userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
-	@Column(name = "UserName", nullable = false)
+	@Column(name = "UserName", unique = true, nullable = false)
 	public String getUserName() {
 		return this.userName;
 	}

@@ -7,25 +7,31 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.hibernate.mapping.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.cathl.icook.entity.Food;
 import com.cathl.icook.entity.TblCategory;
 import com.cathl.icook.entity.TblFood;
 import com.cathl.icook.entity.TblFoodDetail;
+import com.cathl.icook.entity.TblUser;
 import com.cathl.icook.service.CategoryService;
 import com.cathl.icook.service.CategoryServiceImpl;
 import com.cathl.icook.service.FoodDetailSevices;
 import com.cathl.icook.service.FoodService;
+import com.cathl.icook.service.UserService;
 
 
 /**
@@ -43,19 +49,29 @@ public class HomeController {
 	private FoodService foodService;
 	@Autowired
 	private FoodDetailSevices foodDetailService;
+	@Autowired
+	private UserService userService;
 	private Integer foodID;
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String login(Locale locale, Model model) {
-
-		
-		return "login";
+	public ModelAndView userPage() {
+		return new ModelAndView("index");
 	}
-	@RequestMapping(value = "/Admin", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
 
-		model.addAttribute("pageheader", "Admin");
-		model.addAttribute("activeTab", "Dashboard");
-		return "dashboard";
+	@RequestMapping(value = "/Admin", method = RequestMethod.GET)
+	public ModelAndView login(Model model, HttpSession session) {
+		return new ModelAndView("login", "user", new TblUser());
+	}
+	@RequestMapping(value = "/Admin", method = RequestMethod.POST)
+	public String home(@ModelAttribute("user")TblUser user,Locale locale, Model model,
+			HttpSession session) {
+		TblUser checkUser=userService.checkLogin(user);
+		if (checkUser!=null) {
+			session.setAttribute("username", checkUser.getUserName());
+			model.addAttribute("pageheader", "Admin");
+			model.addAttribute("activeTab", "Dashboard");
+			return "dashboard";
+		}
+		return "login";
 	}
 
 	@RequestMapping(value = "/CreatePost", method = RequestMethod.GET)
