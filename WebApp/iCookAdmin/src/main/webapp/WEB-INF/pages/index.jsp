@@ -48,9 +48,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav navbar-right">
-              <li class="active"><a href="#home">Trang Chủ</a></li>
-              <li><a href="#">Giới Thiệu</a></li>
-              <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+              <li class="active"><a href="#home">Đầu Trang</a></li>
               <li><a href="/iCook/Admin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
@@ -81,7 +79,7 @@
                   </div>
                   <div id="search-button-container" class="form-button col-md-2 col-md-offset-1">
                     <a id="search-button" data-scroll class="animated " href="#search-result-container">
-                      <img src="<c:url value="/resources/user_page/images/search.png"></c:url>" class="img-responsive" alt="Image" width="60px">
+                      <img src="<c:url value="/resources/user_page/images/search.png"></c:url>" class="img-responsive" alt="Image" width="80px">
                     </a>
                   </div>
                 </div>

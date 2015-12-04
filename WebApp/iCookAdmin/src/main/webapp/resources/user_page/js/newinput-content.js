@@ -26,7 +26,7 @@ function ajax_loading(item){
         
     $.ajax({
         type: "GET",
-        url: "http://54.169.133.254:8080/iCookAPI/search/"+searchStr+"/"+item+"/12",
+        url: "/iCook/search/"+searchStr+"/"+item+"/12",
         data: "{}",
         contentType: "application/json; charset=utf-8",
         dataType:"jsonp", 
@@ -85,7 +85,7 @@ $(document).scroll(function()
 {
     if(($(window).scrollTop() == $(document).height() - $(window).height())&& $("#check-search").val() == "off")
     {
-        $('#loading').html("<img src='images/loading.gif'/>").fadeIn('fast');
+        $('#loading').html("<img src='resources/user_page/images/loading.gif'/>").fadeIn('fast');
         item=item+13;
         ajax_loading(item);
     }
