@@ -9,4 +9,5 @@ public interface IDataDao<Model, Id> {
     Model getById(Id id);
     List<Model> getAll();
     boolean deleteById(Id id);
+    void insert(Model model);
 }

@@ -9,7 +9,7 @@ import vn.fpt.se0866.model.Food;
 /**
  * Created by DatHT on 12/2/2015.
  */
-public class FoodDao extends DataDao<Food, Intent> {
+public class FoodDao extends DataDao<Food, Integer> {
     public FoodDao(Context context) {
         super(context, Food.class);
     }

@@ -62,4 +62,13 @@ public abstract class DataDao<Model, Id> implements IDataDao<Model, Id> {
             return  false;
         }
     }
+
+    @Override
+    public void insert(Model model) {
+        try {
+            dao.create(model);
+        } catch (SQLException e) {
+            Log.e(getClass().getName(), "Insert failed " + e.getMessage());
+        }
+    }
 }
