@@ -84,7 +84,11 @@
                             <button id="btnSubmit" type="button" class="btn btn-sm btn-default">Submit</button>
                             <button id="btnReset" type="button" class="btn btn-sm btn-primary">Cancel</button>
                             </div>
-                        </div>                                                      
+                        </div>
+                        <div class="form-group">
+                           <div class="col-lg-offset-2 col-lg-6" id="createSuccess">
+                           </div>
+                          </div>                                                      
                     </form>
                   </div>
                   <div class="widget-foot">

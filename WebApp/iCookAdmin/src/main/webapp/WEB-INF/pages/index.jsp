@@ -51,7 +51,7 @@
               <li class="active"><a href="#home">Trang Chủ</a></li>
               <li><a href="#">Giới Thiệu</a></li>
               <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-              <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+              <li><a href="/iCook/Admin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div>

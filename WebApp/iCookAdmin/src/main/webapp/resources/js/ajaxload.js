@@ -1,5 +1,24 @@
 
 $(document).ready(function() {
+
+	$("#btnDelete").click(function(){
+		$('input:checkBox[type=checkbox]:checked').each(function () {
+			   var sThisVal = $(this).val() ;
+			   $.ajax({
+					url: "/iCook/deleteFood?txtFoodID="+sThisVal,
+					type: "GET",
+					success: function(food) {
+						$("#data-table-1").closest("table").find("tbody > tr")
+						.each(function(){
+							var id_tr = this.id;
+							if(id_tr == sThisVal){
+								$(this).remove();
+							}
+						});
+					}
+				});
+			 });
+	});
 	$("#btnSubmit").click(function(){
 		var foodDetail =  JSON.stringify({
 			"materialDetail": $("#txtMaterialDetail").val(),
@@ -24,6 +43,7 @@ $(document).ready(function() {
 		            xhr.setRequestHeader("Content-Type", "application/json");
 		        },
 		        success: function(foodNew) {
+		        	var foodname=foodNew.foodName;
 		    		$.ajax({
 		    			url:"/iCook/createFoodDetail",
 		    			type: 'POST', 
@@ -34,7 +54,9 @@ $(document).ready(function() {
 		    		            xhr.setRequestHeader("Content-Type", "application/json");
 		    		        },
 		    		        success: function(foodDetail) {
-		    		        	alert("success");
+		    		        	$("#createSuccess").html("<div class=\"alert alert-success\">" +
+		    		        			+foodname+" đã thêm vào cơ sở dữ liệu."+
+		    		        			"</div>");
 		    		        }
 		    		});
 		        	
@@ -49,11 +71,13 @@ $(document).ready(function() {
 	});
 	$('.imagelink').focusout(function(){
 		$('#imageFood').attr("src",$('#txtImage').val());
+		$('#imageFood').attr("src",$('#txtImageLink').val());
 	});
 	$('.imagelink').keyup(function(e){
 	    if(e.keyCode == 13)
 	    {
 	    	$('#imageFood').attr("src",$('#txtImage').val());
+	    	$('#imageFood').attr("src",$('#txtImageLink').val());
 	    }
 	});
 	$('.imagelink').focus(function() {
@@ -169,6 +193,11 @@ $(document).ready(function() {
 			 success: function(catelog) { 
 				 if(catelog!= null){
 			 		alert(catelog.categoryName + " updated đã cập nhật vào cơ sở dữ liệu." );
+			 		$('#cbbCategory').append($("<option/>", {
+		                value: catelog.categoryId,
+		                text: catelog.categoryName
+		            }));
+			 		
 				 }
 				
 			  },
@@ -179,4 +208,5 @@ $(document).ready(function() {
 		});
  	});
 	    loadCatalog();
+
 	});

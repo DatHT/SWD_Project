@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Manage post</title>
 </head>
-<body>
+<body onload="getFood()">
 <div class="row">
 	<div class="col-md-12">
 
@@ -26,7 +26,7 @@
 						<!-- Table -->
 						<div class="table-responsive">
 							<table cellpadding="0" cellspacing="0" border="0"
-								id="data-table-1" width="100%" id="tblPost">
+								id="data-table-1" width="100%" >
 								<thead>
 									<tr>
 										<th>ID</th>
@@ -39,7 +39,7 @@
 								</thead>
 								<tbody>
 									<c:forEach items="${foodPost }" var="item" varStatus="counter">
-										<tr>
+										<tr id="${item.foodId}" class="thisrow">
 											<td>${counter.count }</td>
 											<td><a href="#">${item.foodName }</a></td>
 											<td><a href="${item.linkImage }">${item.linkImage }</a></td>
@@ -55,7 +55,7 @@
 													</button>
 												</div>
 											</td>
-											<td><input type="checkbox" id="inlineCheckbox1"
+											<td><input type="checkbox" id="selectedFood" class="checkBox"
 												value="${item.foodId }"></td>
 										</tr>
 									</c:forEach>
@@ -68,7 +68,7 @@
 										<th>Ngày đăng</th>
 										<th>Action</th>
 										<th>
-											<button type="button" class="btn btn-sm btn-danger">Delete</button>
+											<button type="button" class="btn btn-sm btn-success" id="btnDelete">Delete</button>
 										</th>
 									</tr>
 								</tfoot>
