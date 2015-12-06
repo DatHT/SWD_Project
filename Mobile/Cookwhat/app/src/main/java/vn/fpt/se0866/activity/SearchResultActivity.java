@@ -16,7 +16,7 @@ import java.util.Collection;
 import java.util.List;
 
 import vn.fpt.se0866.adapter.ResultAdapter;
-import vn.fpt.se0866.common.dataloader.AsyncLoader;
+import vn.fpt.se0866.dataloader.FoodsAsyncLoader;
 import vn.fpt.se0866.common.core.IOnTaskCompleted;
 import vn.fpt.se0866.fragment.TabSearch;
 import vn.fpt.se0866.model.Food;
@@ -102,7 +102,7 @@ public class SearchResultActivity extends AppCompatActivity{
 
     private void executeData(String key, String start) {
         String[] params = {key, start, "10"};
-        AsyncLoader asy = new AsyncLoader(this, complete);
+        FoodsAsyncLoader asy = new FoodsAsyncLoader(this, complete);
         asy.execute(params);
         pageCount++;
     }

@@ -11,9 +11,12 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -32,6 +35,8 @@ import java.util.ArrayList;
 public class RestClient {
     ArrayList<NameValuePair> params;
     ArrayList<NameValuePair> headers;
+    private JSONObject object;
+    private String jsonMessage = "";
     private String url;
     private int responseCode;
     private String message;
@@ -54,6 +59,7 @@ public class RestClient {
         this.url = url;
         params = new ArrayList<NameValuePair>();
         headers = new ArrayList<NameValuePair>();
+        object = new JSONObject();
     }
 
     public RestClient addRoute(String route) {
@@ -61,8 +67,23 @@ public class RestClient {
         return this;
     }
 
-    public void addParam(String name, String value) {
+    public RestClient addRawJson(String key, String value) {
+        try {
+            object.put(key, value);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return this;
+    }
+
+    public RestClient addParam(String name, String value) {
         params.add(new BasicNameValuePair(name, value));
+        return this;
+    }
+
+    public RestClient addHeader(String name, String value) {
+        headers.add(new BasicNameValuePair(name, value));
+        return this;
     }
 
     public void execute(RequestMethod method) throws Exception {
@@ -97,6 +118,11 @@ public class RestClient {
                 }
                 if (!params.isEmpty()) {
                     request.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
+                }
+
+                if (object != null) {
+                    jsonMessage = object.toString();
+                    request.setEntity(new StringEntity(jsonMessage, HTTP.UTF_8));
                 }
                 executeRequest(request, url);
                 break;

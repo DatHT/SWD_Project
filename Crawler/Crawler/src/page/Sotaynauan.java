@@ -37,67 +37,72 @@ public class Sotaynauan implements parser {
             parseCategory(doc);
             for (int j = linkCategory.size() - 1; j >= 0; j--) {
                 // Page category at page 1
-                Document docCategory = Jsoup.connect(linkCategory.get(j)).get();
-                // Get number page of category
-                int number = pagenumber(linkCategory.get(j), docCategory);
-                for (int i = 1; i <= number; i++) {
-                    String link = "";
-                    if (i == 1) {
-                        link = linkCategory.get(j);
-                    } else {
-                        link = linkCategory.get(j) + "page/" + Integer.toString(i) + "/";
-                    }
-                    // Local Page (Example page 1 of category A)
-                    Document docCategoryPage = Jsoup.connect(link).get();
-                    Elements listLinkFood = docCategoryPage.select("article>a[href]");
-                    for (Element element : listLinkFood) {
-                        String linkFood = element.attr("href");
-                        Document docFood = Jsoup.connect(linkFood).get();
-                        // set data to food
-                        DAO dao = new DAO();
-                        FoodDTO food = new FoodDTO();
-                        food.setFoodName(parseFoodName(docFood));
-                        food.setDescription(parseDescription(docFood));
-                        food.setAvatarLink(parseAvatarLink(docFood));
-                        food.setListMaterial(parseListMaterial(docFood));
-                        food.setCategoryID(dao.getCategoryID(categoryName.get(j)));
-                        food.setVisitNum(0);
-                        if (dao.getfoodID(food.getFoodName()) == -1) {
-                            dao.AddFood(food);
-                            FoodDetailDTO foodDetail = new FoodDetailDTO();
-                            foodDetail.setFoodID(dao.getfoodID(food.getFoodName()));
-                            foodDetail.setMaterialDetail(parseMaterialHTML(docFood));
-                            foodDetail.setTutorial(parseTutorialHTML(docFood));
-                            foodDetail.setSource(page);
-                            foodDetail.setUserID("ADMIN");
-                            if (dao.getfoodDetailID(foodDetail.getFoodID())== -1){
-                                dao.AddFoodDetail(foodDetail);
-                            } else {
-                                dao.UpdateFoodDetail(foodDetail);
-                            }
-                        
+                try {
+                    Document docCategory = Jsoup.connect(linkCategory.get(j)).get();
+                    // Get number page of category
+                    int number = pagenumber(linkCategory.get(j), docCategory);
+                    for (int i = 1; i <= number; i++) {
+                        String link = "";
+                        if (i == 1) {
+                            link = linkCategory.get(j);
                         } else {
-                            int foodID = dao.getfoodID(food.getFoodName());
-                            dao.UpdateFood(food, foodID);
-                            FoodDetailDTO foodDetail = new FoodDetailDTO();
-                            foodDetail.setFoodID(foodID);
-                            foodDetail.setMaterialDetail(parseMaterialHTML(docFood));
-                            foodDetail.setTutorial(parseTutorialHTML(docFood));
-                            foodDetail.setSource(page);
-                            foodDetail.setUserID("ADMIN");
-                            if (dao.getfoodDetailID(foodDetail.getFoodID())== -1){
-                                dao.AddFoodDetail(foodDetail);
+                            link = linkCategory.get(j) + "page/" + Integer.toString(i) + "/";
+                        }
+                        // Local Page (Example page 1 of category A)
+                        Document docCategoryPage = Jsoup.connect(link).get();
+                        Elements listLinkFood = docCategoryPage.select("article>a[href]");
+                        for (Element element : listLinkFood) {
+                            String linkFood = element.attr("href");
+                            Document docFood = Jsoup.connect(linkFood).get();
+                            // set data to food
+                            DAO dao = new DAO();
+                            FoodDTO food = new FoodDTO();
+                            food.setFoodName(parseFoodName(docFood));
+                            food.setDescription(parseDescription(docFood));
+                            food.setAvatarLink(parseAvatarLink(docFood));
+                            food.setListMaterial(parseListMaterial(docFood));
+                            food.setCategoryID(dao.getCategoryID(categoryName.get(j)));
+                            food.setVisitNum(0);
+                            if (dao.getfoodID(food.getFoodName()) == -1) {
+                                dao.AddFood(food);
+                                FoodDetailDTO foodDetail = new FoodDetailDTO();
+                                foodDetail.setFoodID(dao.getfoodID(food.getFoodName()));
+                                foodDetail.setMaterialDetail(parseMaterialHTML(docFood));
+                                foodDetail.setTutorial(parseTutorialHTML(docFood));
+                                foodDetail.setSource(page);
+                                foodDetail.setUserID("ADMIN");
+                                if (dao.getfoodDetailID(foodDetail.getFoodID()) == -1) {
+                                    dao.AddFoodDetail(foodDetail);
+                                } else {
+                                    dao.UpdateFoodDetail(foodDetail);
+                                }
+
                             } else {
-                                dao.UpdateFoodDetail(foodDetail);
+                                int foodID = dao.getfoodID(food.getFoodName());
+                                dao.UpdateFood(food, foodID);
+                                FoodDetailDTO foodDetail = new FoodDetailDTO();
+                                foodDetail.setFoodID(foodID);
+                                foodDetail.setMaterialDetail(parseMaterialHTML(docFood));
+                                foodDetail.setTutorial(parseTutorialHTML(docFood));
+                                foodDetail.setSource(page);
+                                foodDetail.setUserID("ADMIN");
+                                if (dao.getfoodDetailID(foodDetail.getFoodID()) == -1) {
+                                    dao.AddFoodDetail(foodDetail);
+                                } else {
+                                    dao.UpdateFoodDetail(foodDetail);
+                                }
                             }
                         }
-
                     }
+                } catch (Exception e) {
+                    System.out.println(linkCategory.get(j));
                 }
+
             }
 
         } catch (IOException ex) {
             System.out.println("ERROR: Connection To Page Fail--------");
+            System.out.println(page);
         }
     }
 
@@ -178,7 +183,18 @@ public class Sotaynauan implements parser {
     @Override
     public String parseMaterialHTML(Document doc) {
         String materialHTML = "";
-        materialHTML = doc.select("ul.ingredients").outerHtml();
+        if (doc.select("ul.ingredients").size() > 0) {
+            doc.select("ul.ingredients>li>*").unwrap();
+            materialHTML = doc.select("ul.ingredients").outerHtml();
+
+        }
+
+//        Elements material_tmp = doc.select("ul.ingredients>li");
+//        for (Element element : material_tmp) {
+//            element.remove();
+//            System.out.println(element.outerHtml());
+//        }
+//        
         return materialHTML;
     }
 
