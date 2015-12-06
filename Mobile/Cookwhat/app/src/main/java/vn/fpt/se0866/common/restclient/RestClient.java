@@ -113,6 +113,7 @@ public class RestClient {
             {
                 HttpPost request = new HttpPost(url);
                 //add header
+                request.setHeader("Content-Type", "application/json; charset=UTF-8");
                 for (NameValuePair p : headers) {
                     request.addHeader(p.getName(), p.getValue());
                 }
