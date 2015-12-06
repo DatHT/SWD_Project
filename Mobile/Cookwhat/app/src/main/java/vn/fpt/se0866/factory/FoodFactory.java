@@ -18,14 +18,19 @@ public class FoodFactory extends AbstractFactory {
 
 
 
-    public List<Food> getFoods(String keys, String start, String limit) throws Exception {
-        restClient.addRoute("search").addRoute(keys).addRoute(start).addRoute(limit);
+    public List<Food> getFoods(String keys, String start, String limit, String token) throws Exception {
+        restClient.addRoute("search").addRoute(keys)
+                .addRoute(start)
+                .addRoute(limit)
+        .addParam("access_token", token);
         restClient.execute(RequestMethod.GET);
         return responseList(restClient, Food.class);
     }
 
-    public Food getFoodById(String id) throws Exception {
-        restClient.addRoute("food").addRoute(id);
+    public Food getFoodById(String id, String token) throws Exception {
+        restClient.addRoute("food")
+                .addRoute(id)
+                .addParam("access_token", token);
         restClient.execute(RequestMethod.GET);
         return response(restClient, Food.class);
     }

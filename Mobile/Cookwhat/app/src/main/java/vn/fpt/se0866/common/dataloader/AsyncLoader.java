@@ -1,11 +1,14 @@
-package vn.fpt.se0866.common.core;
+package vn.fpt.se0866.common.dataloader;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.util.List;
 
+import vn.fpt.se0866.common.core.IOnTaskCompleted;
+import vn.fpt.se0866.factory.AuthorizationFactory;
 import vn.fpt.se0866.factory.FoodFactory;
 import vn.fpt.se0866.model.Food;
 
@@ -16,6 +19,7 @@ public class AsyncLoader extends AsyncTask<String, Integer, List<Food>> {
     private Activity activity;
     private ProgressDialog dialog;
     private FoodFactory factory;
+    private AuthorizationFactory authFactory;
     private IOnTaskCompleted listener;
 
     public AsyncLoader(Activity activity, IOnTaskCompleted listener) {
@@ -23,6 +27,7 @@ public class AsyncLoader extends AsyncTask<String, Integer, List<Food>> {
         this.activity = activity;
         this.listener = listener;
         factory = new FoodFactory(activity);
+        authFactory = new AuthorizationFactory(activity);
     }
 
     @Override
@@ -41,9 +46,11 @@ public class AsyncLoader extends AsyncTask<String, Integer, List<Food>> {
         String start = params[1];
         String end = params[2];
         try {
-            return factory.getFoods(keys, start, end);
+            String token = authFactory.getAccessToken().getValue();
+            return factory.getFoods(keys, start, end, token);
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(getClass().getName(), "Create Dao fail " + e.getMessage());
+
         }
         return null;
     }
