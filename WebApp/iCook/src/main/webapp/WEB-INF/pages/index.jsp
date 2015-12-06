@@ -10,7 +10,7 @@
     
 	<meta name="decorator" content="no" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Nấu Gì?</title>
+    <title>iCook</title>
 
     <!-- Bootstrap -->
     <link href='<c:url value="/resources/user_page/css/bootstrap.min.css"></c:url>' rel="stylesheet">
@@ -88,17 +88,6 @@
             </div> 
           </div>
         </div>
-        <!-- <div class="item" style="height: 677px; background-image: url(images/backgroud.png)">
-          <div class="caption">
-            <h1 class="animated fadeInLeftBig">We are <span>Creative</span></h1>
-            <a data-scroll class="btn btn-start animated fadeInUpBig" href="#services">Start now</a>
-          </div>
-        </div> -->
-      </div>
-      <!-- <a class="left-control" href="#home-slider" data-slide="prev"><i class="fa fa-angle-left"></i></a>
-      <a class="right-control" href="#home-slider" data-slide="next"><i class="fa fa-angle-right"></i></a>
-      
-      <a id="tohash" href="#services"><i class="fa fa-angle-down"></i></a> -->
       </div>
     </div><!--/#home-slider--> 
   </header><!--/#home-->

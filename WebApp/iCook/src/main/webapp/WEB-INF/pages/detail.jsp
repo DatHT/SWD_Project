@@ -10,13 +10,13 @@
     
 	  <meta name="decorator" content="detail" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title></title>
+    <title>${food.foodName }</title>
 
     <!-- Bootstrap -->
     <link href='<c:url value="/resources/user_page/css/bootstrap.min.css"></c:url>' rel="stylesheet">
     <link href='<c:url value="/resources/user_page/css/bootstrap-theme.min.css"></c:url>' rel="stylesheet">
     <link href="<c:url value="/resources/user_page/css/font-awesome.min.css"></c:url>" rel="stylesheet">
-    <link type="text/css" href="<c:url value="/resources/user_page/css/style.css"></c:url>" rel="stylesheet" >
+    <link type="text/css" href="<c:url value="/resources/user_page/css/detailstyle.css"></c:url>" rel="stylesheet" >
     <link type="text/css" href="<c:url value="/resources/user_page/css/initload.css"></c:url>" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -53,26 +53,35 @@
         </div><!-- /.navbar-collapse -->
       </div>
     </nav>  
-    <div id="backgroud" class="pattern" style="background:#fff url('<c:url value="${food.linkImage }"></c:url>') cover no-repeat;">
-      <div class="container">
-        <div class="col-md-3">
-          <a href="#" class="thumbnail">
-            <img data-src="#" alt="">
-          </a>
-        </div>
-        <div class="col-md-9">
-          <h2>${food.foodName }</h2>
-          <p>
-            ${foodDetail.tutorial }
-          </p>
-        </div>
-      </div>
+    <div class="background" style="background:url('<c:url value="/resources/user_page/images/searchbg.jpg"></c:url>');">
+	    <div class="pattrn" >
+	      <div class="container">
+	        <div class="col-md-4 scroll">
+	        	<div class ="style-thumbnail">
+	        	  	<h2>${food.foodName }</h2>
+		          	<a href="#" class="thumbnail">
+		            	<img src="${food.linkImage}" alt="">
+		          	</a>
+	        	</div>
+	        	<div class ="style-material">
+	        	  	<p>${food.listMaterial }</p>
+	        	</div>
+	        </div>
+	        <div class="col-md-7 col-md-offset-1 tutorial">
+	          <h3>Cách làm</h3>
+	          <p>
+	            ${foodDetail.tutorial }
+	          </p>
+	        </div>
+	      </div>
+	    </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="<c:url value="/resources/user_page/js/bootstrap.js"></c:url>"></script>
     <script src="<c:url value="/resources/user_page/js/newinput-content.js"></c:url>"></script>
+    <script src="<c:url value="/resources/user_page/js/detailscroll.js"></c:url>"></script>
     <script src="<c:url value="/resources/user_page/js/initload.js"></c:url>"></script>
   </body>
 </html>
