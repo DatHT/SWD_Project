@@ -53,7 +53,7 @@
         </div><!-- /.navbar-collapse -->
       </div>
     </nav>  
-    <div id="backgroud" class="pattern" style="background:#fff url('<c:url value="/resources/user_page/images/bg_main_background.jpg"></c:url>') cover no-repeat;">
+    <div id="backgroud" class="pattern" style="background:#fff url('<c:url value="${food.linkImage }"></c:url>') cover no-repeat;">
       <div class="container">
         <div class="col-md-3">
           <a href="#" class="thumbnail">
@@ -61,13 +61,18 @@
           </a>
         </div>
         <div class="col-md-9">
-          <h2></h2>
+          <h2>${food.foodName }</h2>
           <p>
-            
+            ${foodDetail.tutorial }
           </p>
         </div>
       </div>
     </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="<c:url value="/resources/user_page/js/bootstrap.js"></c:url>"></script>
+    <script src="<c:url value="/resources/user_page/js/newinput-content.js"></c:url>"></script>
     <script src="<c:url value="/resources/user_page/js/initload.js"></c:url>"></script>
   </body>
 </html>

@@ -187,7 +187,7 @@ public class HomeController {
 
 	@RequestMapping(value = "/getFoodDetail", method = RequestMethod.GET)
 	@ResponseBody
-	public TblFoodDetail getFoodDetailID(@RequestParam("txtFoodID") String foodID, HttpSession session) {
+	public TblFoodDetail getFoodDetailIDJson(@RequestParam("txtFoodID") String foodID, HttpSession session) {
 		if (session.getAttribute("username") != null) {
 		Integer foodIDInt = null;
 		System.out.println(foodID);
@@ -201,6 +201,24 @@ public class HomeController {
 		return foodDetail;
 		}
 		return null;
+	}
+	@RequestMapping(value = "/getFoodDetailUser", method = RequestMethod.GET)
+	public String getFoodDetailID(@RequestParam("txtFoodID") String foodID, Model model) {
+	
+		Integer foodIDInt = null;
+		System.out.println(foodID);
+		try {
+			foodIDInt = Integer.parseInt(foodID);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		TblFoodDetail foodDetail = foodDetailService.getFoodDetailID(foodIDInt);
+		TblFood food =foodService.getFoodID(foodIDInt);
+		model.addAttribute("foodDetail", foodDetail);
+		model.addAttribute("food", food);
+		return "detail";
+		
 	}
 
 	@RequestMapping(value = "/createFoodDetail", method = RequestMethod.POST)
