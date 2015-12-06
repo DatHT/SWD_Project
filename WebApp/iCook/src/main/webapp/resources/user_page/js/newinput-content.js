@@ -26,16 +26,15 @@ function ajax_loading(item){
         
     $.ajax({
         type: "GET",
-        url: "/iCook/search/"+searchStr+"/"+item+"/12",
-        data: "{}",
-        contentType: "application/json; charset=utf-8",
-        dataType:"jsonp", 
+        url: "search",
+        //data: "{}",
+        //contentType: "application/json; charset=utf-8",
+        dataType:"json", 
         success: function(result) {
-        	alert("Success!");
-            var json = $.parseJSON(result);
-        	/*alert(result);
-        	var resultObj = JSON.parse(result);
-        	alert(resultObj.length);
+        	//alert("Success!");
+//        	alert(result);
+        	var resultObj = result;
+//        	alert(result.length);
             $('#loading').fadeOut('fast');
             var html="";
             $.each (resultObj, function (key, item){
@@ -54,7 +53,7 @@ function ajax_loading(item){
                       		html +=  '<div class="search-detail-btn">';
                         		html +=  '<span class="search-detail-box description-container">';
                           			html +=  '<a href="#" class="">';
-                            			html +=  '<h3>Cách làm sữa lắc với máy xay sinh tố thơm ngon bổ dưỡng</h3>';
+                            			html +=  '<h3>Linh dep trai/h3>';
                             			html +=  '<p><span>12312412412312 31241241231231 241241231212 3213123 123123123</span></p>';
                           			html +=  '</a><!-- /.facebook-btn -->';
                         		html +=  '</span><!-- /.search-detail-box -->';
@@ -63,7 +62,7 @@ function ajax_loading(item){
                   	html +=  '</div><!-- /.food-item -->';
                 html +=  '</div><!-- /.col-md-3 -->';
             });
-            $('#search-result').html(html);*/
+            $('#search-result').html(html);
         },
         error: function(jqXHR, textStatus, ex) {
             alert(textStatus + "," + ex + "," + jqXHR.responseText);
