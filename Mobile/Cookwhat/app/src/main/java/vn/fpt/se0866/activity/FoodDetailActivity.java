@@ -1,25 +1,19 @@
 package vn.fpt.se0866.activity;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 
-import vn.fpt.se0866.common.core.UrlImageParser;
 import vn.fpt.se0866.manager.FoodManager;
 import vn.fpt.se0866.model.Food;
 
@@ -88,7 +82,8 @@ public class FoodDetailActivity extends AppCompatActivity {
         //tvDetail.setText(food.getDescription());
         WebView wvDetail = (WebView) findViewById(R.id.food_detail_wv);
         wvDetail.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        wvDetail.loadDataWithBaseURL(null, htmlDummy, "text/html", "utf-8", null);
+
+        wvDetail.loadDataWithBaseURL(null, "<style>img{display: inline;height: auto;max-width: 100%;}</style>" + htmlDummy, "text/html", "UTF-8", null);
         wvDetail.getSettings().setLoadWithOverviewMode(true);
         wvDetail.getSettings().setUseWideViewPort(true);
         ImageView cover = (ImageView) findViewById(R.id.food_detail_cover_iv);

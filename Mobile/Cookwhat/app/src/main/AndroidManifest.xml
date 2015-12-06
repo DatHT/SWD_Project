@@ -31,7 +31,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".FoodDetailActivity"
-             >
+             />
+        <activity
+            android:name=".BookmarkFoodDetailActivity"
+            >
         </activity>
     </application>
 

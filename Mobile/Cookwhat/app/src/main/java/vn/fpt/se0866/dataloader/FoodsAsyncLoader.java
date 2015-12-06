@@ -1,4 +1,4 @@
-package vn.fpt.se0866.common.dataloader;
+package vn.fpt.se0866.dataloader;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -15,14 +15,14 @@ import vn.fpt.se0866.model.Food;
 /**
  * Created by DatHT on 11/28/2015.
  */
-public class AsyncLoader extends AsyncTask<String, Integer, List<Food>> {
+public class FoodsAsyncLoader extends AsyncTask<String, Integer, List<Food>> {
     private Activity activity;
     private ProgressDialog dialog;
     private FoodFactory factory;
     private AuthorizationFactory authFactory;
     private IOnTaskCompleted listener;
 
-    public AsyncLoader(Activity activity, IOnTaskCompleted listener) {
+    public FoodsAsyncLoader(Activity activity, IOnTaskCompleted listener) {
         super();
         this.activity = activity;
         this.listener = listener;
