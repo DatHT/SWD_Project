@@ -11,11 +11,12 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import vn.fpt.se0866.adapter.ResultAdapter;
-import vn.fpt.se0866.common.core.AsyncLoader;
+import vn.fpt.se0866.common.dataloader.AsyncLoader;
 import vn.fpt.se0866.common.core.IOnTaskCompleted;
 import vn.fpt.se0866.fragment.TabSearch;
 import vn.fpt.se0866.model.Food;
@@ -38,7 +39,9 @@ public class SearchResultActivity extends AppCompatActivity{
             @Override
             public void onTaskCompleted(List<?> list) {
                 if (adapter == null) {
-                    foods = (List<Food>) list;
+                    if (list != null)
+                        foods = (List<Food>) list;
+                    else foods = new ArrayList<>();
                     adapter = new ResultAdapter(getBaseContext(), foods);
                     adapter.notifyDataSetChanged();
                     listView.setAdapter(adapter);
