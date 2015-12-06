@@ -70,8 +70,11 @@ public class ResultAdapter extends BaseAdapter {
                 .error(R.drawable.ic_error)
                 .into(viewHolder.ivThumb);
         viewHolder.tvName.setText(food.getFoodName());
-        String detail = food.getDescription().substring(0, 100) + "...";
-        viewHolder.tvDetails.setText(detail);
+        if (food.getDescription().length() > 50) {
+            String detail = food.getDescription().substring(0, 50) + "...";
+            viewHolder.tvDetails.setText(detail);
+        }
+
         return convertView;
     }
 

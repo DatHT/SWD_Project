@@ -8,11 +8,17 @@
     tools:context="vn.fpt.se0866.activity.FoodDetailActivity"
     tools:showIn="@layout/activity_fool_detail">
 
-    <TextView
+    <!--<TextView
         android:id="@+id/food_detail_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"
-        android:text="@string/large_text" />
+        android:text="@string/large_text" />-->
+    <WebView
+        android:id="@+id/food_detail_wv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp"
+        ></WebView>
 
 </android.support.v4.widget.NestedScrollView>
