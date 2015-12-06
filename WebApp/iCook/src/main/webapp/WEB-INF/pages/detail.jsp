@@ -56,18 +56,15 @@
     <div class="background" style="background:url('<c:url value="/resources/user_page/images/searchbg.jpg"></c:url>');">
 	    <div class="pattrn" >
 	      <div class="container">
-	        <div class="col-md-4 scroll">
-	        	<div class ="style-thumbnail">
+	        <div class="col-md-4 scroll style-thumbnail line-shadow">
+	        	<div class ="">
 	        	  	<h2>${food.foodName }</h2>
 		          	<a href="#" class="thumbnail">
 		            	<img src="${food.linkImage}" alt="">
 		          	</a>
 	        	</div>
-	        	<div class ="style-material">
-	        	  	<p>${food.listMaterial }</p>
-	        	</div>
 	        </div>
-	        <div class="col-md-7 col-md-offset-1 tutorial">
+	        <div class="col-md-7 col-md-offset-1 tutorial line-shadow">
 	          <h3>Cách làm</h3>
 	          <p>
 	            ${foodDetail.tutorial }

@@ -2,19 +2,20 @@
 	margin-top: 120px;
 	border-radius: 45px;
 	background-color: #dab183;
-    -webkit-box-shadow: 1px 4px 10px #888;
-	padding-bottom: 10px;
-    box-shadow: 1px 4px 10px #888;
-    -moz-box-shadow: 1px 4px 10px #888;
-    -webkit-box-shadow: 1px 4px 10px #888;
-    -o-box-shadow: 1px 4px 10px #888;
-    -ms-box-shadow: 1px 4px 10px #888;
+	padding-top: 15px;
+    margin-bottom: 50px;
 }
 .style-thumbnail a img{
 	height: 270px;
 	width: auto;
 }
-
+ .line-shadow{
+ 	box-shadow: 1px 4px 10px #888;
+    -moz-box-shadow: 1px 4px 10px #888;
+    -webkit-box-shadow: 1px 4px 10px #888;
+    -o-box-shadow: 1px 4px 10px #888;
+    -ms-box-shadow: 1px 4px 10px #888;
+ }
     
 .style-thumbnail h2{
 	color: #f4880c;
@@ -28,18 +29,15 @@
 	border-radius: 45px;
 	margin-top:50px;
 	background-color: #f4f4f4;
-    -webkit-box-shadow: 1px 4px 10px #888;
 	padding-bottom: 50px;
 	box-sizing: border-box;    
 	font-size: 14px;
     line-height: 1.42857143;
     color: #333;
-    box-shadow: 1px 4px 10px #888;
-    -moz-box-shadow: 1px 4px 10px #888;
-    -webkit-box-shadow: 1px 4px 10px #888;
-    -o-box-shadow: 1px 4px 10px #888;
-    -ms-box-shadow: 1px 4px 10px #888;
 }
 .tutorial{
 	text-align: -webkit-match-parent;
+}
+.tutorial img{
+	max-width: 635px;
 }
