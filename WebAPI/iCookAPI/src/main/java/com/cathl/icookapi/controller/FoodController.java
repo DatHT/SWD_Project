@@ -44,7 +44,7 @@ public class FoodController {
 		}
 		return listFoodDTO;
 	}
-//	
+	
 //	@RequestMapping("search/detail/{id}")
 //	public FoodDetailDTO getFoodDetail(@PathVariable("id") int id) {
 //		FoodDetail foodDetail = foodDetailService.getFood(id);
