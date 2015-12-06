@@ -17,6 +17,7 @@
     <link href='<c:url value="/resources/user_page/css/bootstrap-theme.min.css"></c:url>' rel="stylesheet">
     <link href="<c:url value="/resources/user_page/css/font-awesome.min.css"></c:url>" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/user_page/css/style.css"></c:url>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/user_page/css/initload.css"></c:url>">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -135,13 +136,6 @@
               </div><!-- /.row -->
           </div> 
           <div class="col-md-offset-6">
-            <!-- <ul class="pagination pagination-lg">
-              <li><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">5</a></li>
-            </ul> -->
             <div id="loading"></div>
           </div>
         </div>
@@ -152,7 +146,8 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="<c:url value="/resources/user_page/js/bootstrap.js"></c:url>"></script>
     <script src="<c:url value="/resources/user_page/js/newinput-content.js"></c:url>"></script>
-    <script src="<c:url value="/resources/user_page/js/load.js"></c:url>"></script>
+    <script src="<c:url value="/resources/user_page/js/scroll.js"></c:url>"></script>
+    <script src="<c:url value="/resources/user_page/js/initload.js"></c:url>"></script>
     
   </body>
 </html>
