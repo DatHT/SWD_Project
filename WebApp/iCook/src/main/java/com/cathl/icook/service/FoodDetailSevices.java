@@ -8,4 +8,5 @@ public interface FoodDetailSevices {
 	public Serializable createFoodDetail(TblFoodDetail newFoodDetail);
 	public TblFoodDetail getFoodDetailID(int ID);
 	public void deleteFoodDetail(int ID);
+	public TblFoodDetail updateFoodDetail(TblFoodDetail newfoodDetail);
 }

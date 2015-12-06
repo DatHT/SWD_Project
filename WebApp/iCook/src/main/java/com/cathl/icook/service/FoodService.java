@@ -12,4 +12,5 @@ public interface FoodService {
 	public TblFood getFoodID(int ID);
 	public TblFood updateFood(TblFood newfood);
 	public void deleteFood(int ID);
+	
 }

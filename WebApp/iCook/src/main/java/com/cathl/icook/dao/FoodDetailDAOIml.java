@@ -27,5 +27,10 @@ public class FoodDetailDAOIml implements FoodDetailDAO{
 		// TODO Auto-generated method stub
 		return hibernateUltil.create(newFoodDetail);
 	}
+	@Override
+	public TblFoodDetail updateFoodDetail(TblFoodDetail newfoodDetail) {
+		// TODO Auto-generated method stub
+		return hibernateUltil.update(newfoodDetail);
+	}
 
 }

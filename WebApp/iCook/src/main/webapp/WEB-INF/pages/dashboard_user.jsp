@@ -1,18 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"%>
- <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
- <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
-	prefix="decorator"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <!-- Title and other stuffs -->
-  <title><decorator:title /></title>
+  <title></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="keywords" content="">
   <meta name="author" content="">
-
+	<meta name="decorator" content="user" />
 
   <!-- Stylesheets -->
   <link  href="<c:url value="/resources/css/bootstrap.min.css" ></c:url>"  rel="stylesheet">
@@ -147,7 +147,7 @@
             <ul class="dropdown-menu">
               <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
               <li><a href="#"><i class="fa fa-cogs"></i> Settings</a></li>
-              <li><a href="/iCook/signOut"><i class="fa fa-sign-out"></i> Logout</a></li>
+              <li><a href="login.html"><i class="fa fa-sign-out"></i> Logout</a></li>
             </ul>
           </li>
           
@@ -356,44 +356,7 @@
         <ul id="nav">
           <!-- Main menu with font awesome icon -->
           <li <c:if test="${activeTab eq 'Dashboard'}">class="open"</c:if> ><a href="/iCook"><i class="fa fa-home"></i> Dashboard</a>
-            <!-- Sub menu markup 
-            <ul>
-              <li><a href="#">Submenu #1</a></li>
-              <li><a href="#">Submenu #2</a></li>
-              <li><a href="#">Submenu #3</a></li>
-            </ul>-->
           </li>
-          <li <c:if test="${activeTab eq 'CreatePost'}">class="open"</c:if>><a href="/iCook/CreatePost" id="postCreate"><i class="fa fa-list-alt"></i>Tạo bài viết <span class="pull-right"><i class="fa fa-chevron-right"></i></span></a>
-          </li>  
-          <li <c:if test="${activeTab eq 'ManagePost'}">class="open"</c:if>><a href="/iCook/ManagePost" id="postManage"><i class="fa fa-file-o"></i>Quản lý bài viết <span class="pull-right"><i class="fa fa-chevron-right"></i></span></a>
-<!--             <ul>
-              <li><a href="post.html">Post</a></li>
-              <li><a href="login.html">Login</a></li>
-              <li><a href="register.html">Register</a></li>
-              <li><a href="support.html">Support</a></li>
-              <li><a href="invoice.html">Invoice</a></li>
-              <li><a href="gallery.html">Gallery</a></li>
-            </ul> -->
-          </li> 
-<!--           <li class="has_sub"><a href="#"><i class="fa fa-file-o"></i> Pages #2  <span class="pull-right"><i class="fa fa-chevron-right"></i></span></a> -->
-<!--             <ul> -->
-<!--               <li><a href="media.html">Media</a></li> -->
-<!--               <li><a href="statement.html">Statement</a></li> -->
-<!--               <li><a href="error.html">Error</a></li> -->
-<!--               <li><a href="error-log.html">Error Log</a></li> -->
-<!--               <li><a href="calendar.html">Calendar</a></li> -->
-<!--               <li><a href="grid.html">Grid</a></li> -->
-<!--             </ul> -->
-<!--           </li>       -->
-<!-- 		  <li class="has_sub"><a href="#"><i class="fa fa-table"></i> Tables  <span class="pull-right"><i class="fa fa-chevron-right"></i></span></a> -->
-<!--             <ul> -->
-<!--               <li><a href="tables.html">Tables</a></li> -->
-<!--               <li><a href="dynamic-tables.html">Dynamic Tables</a></li> -->
-<!--             </ul> -->
-<!--           </li>  -->
-<!--           <li><a href="charts.html"><i class="fa fa-bar-chart-o"></i> Charts</a></li>  -->
-<!--           <li><a href="forms.html"><i class="fa fa-tasks"></i> Forms</a></li> -->
-<!--           <li><a href="ui.html"><i class="fa fa-magic"></i> User Interface</a></li> -->
         </ul>
     </div>
 
@@ -425,9 +388,100 @@
 	    <div class="matter">
         <div class="container">
           
-                <!-- Body -->
-                <decorator:body/>
-         
+             <div class="row">
+					<div class="col-md-12">
+						<div class="alert alert-success">
+							Welcome ${sessionScope.username}. Let start!
+						</div>
+					
+			<div class="widget">
+
+	               <div class="widget-head">
+	                  <div class="pull-left">New Post</div>
+	                  <div class="widget-icons pull-right">
+	                    <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a> 
+	                    <a href="#" class="wclose"><i class="fa fa-times"></i></a>
+	                  </div>  
+	                  <div class="clearfix"></div>
+	               </div>
+				<div class="widget-content">
+                  <div class="padd">
+                    <!-- Content goes here -->
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                              <label class="col-lg-2 control-label">Tên món ăn:</label>
+                              <div class="col-lg-5">
+                                <input type="text" class="form-control" placeholder="Input title Here" id="txtFoodName">
+                              </div>
+                        </div>
+                        <div class="form-group">
+                                  <label class="col-lg-2 control-label">Chủ đề:</label>
+                                  <div class="col-lg-2">
+                                    <select class="form-control" id="cbbCategory">
+                                    </select>
+                                  </div>
+                                </div>    
+                         <div class="form-group">
+                                  <label class="col-lg-2 control-label">Ảnh đại diện:</label>
+                                  <div class="col-lg-5">
+                                    <input type="text" class="form-control imagelink" placeholder="Image Link" id="txtImageLink">
+                                  </div>
+                          </div>
+                          <div class="form-group">
+                                  <label class="col-lg-2 control-label">Xem trước:</label>
+                                  <div class="col-lg-5">
+                                    <img id="imageFood" src="" alt="Smiley face" height="240" width="480" >
+                                  </div>
+                          </div>   
+                        <div class="form-group">
+                              <label class="col-lg-2 control-label">Mô tả:</label>
+                              <div class="col-lg-6">
+                                <textarea  id="txtDescription" cols="100" rows="25" style="resize:none"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                              <label class="col-lg-2 control-label">Nguyên liệu cần thiết:</label>
+                              <div class="col-lg-6">
+                                <textarea  id="txtMaterialLst" cols="100" rows="8" style="resize:none"></textarea>
+                            </div>
+                        </div>
+                         <div class="form-group">
+                              <label class="col-lg-2 control-label">Chi tiết nguyên liệu:</label>
+                              <div class="col-lg-6">
+                                <textarea  id="txtMaterialDetail" class="cleditor"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Hướng dẫn:</label>
+                            <div class="col-lg-6">
+                                <textarea class="cleditor" id="txtContent"></textarea>
+                            </div>
+                         </div>
+                          <div class="form-group">
+                                  <label class="col-lg-2 control-label">Nguồn:</label>
+                                  <div class="col-lg-5">
+                                    <input type="text" class="form-control imagelink" placeholder="Image Link" id="txtSource">
+                                  </div>
+                          </div>
+                        <div class="form-group">
+                           <div class="col-lg-offset-2 col-lg-6">
+                            <button id="btnSubmit" type="button" class="btn btn-sm btn-default">Submit</button>
+                            <button id="btnReset" type="button" class="btn btn-sm btn-primary">Cancel</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                           <div class="col-lg-offset-2 col-lg-6" id="createSuccess">
+                           </div>
+                          </div>                                                      
+                    </form>
+                  </div>
+                  <div class="widget-foot">
+                    <!-- Footer goes here -->
+                  </div>
+                </div>
+					</div>
+					</div>
+			</div>
         </div>
 		  </div>
 
@@ -493,4 +547,4 @@
 <script src="<c:url value="/resources/js/charts.js" ></c:url>"></script> <!-- Charts & Graphs -->
 <script type="text/javascript" src='<c:url value="/resources/js/ajaxload.js"></c:url>'></script>  <!-- load database -->
 </body>
-</html>
+	</html>

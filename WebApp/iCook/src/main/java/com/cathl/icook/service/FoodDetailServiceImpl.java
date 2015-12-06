@@ -30,5 +30,10 @@ public class FoodDetailServiceImpl implements FoodDetailSevices{
 		// TODO Auto-generated method stub
 		return foodDetailDAO.createFoodDetail(newFoodDetail);
 	}
+	@Override
+	public TblFoodDetail updateFoodDetail(TblFoodDetail newfoodDetail) {
+		// TODO Auto-generated method stub
+		return foodDetailDAO.updateFoodDetail(newfoodDetail);
+	}
 
 }
