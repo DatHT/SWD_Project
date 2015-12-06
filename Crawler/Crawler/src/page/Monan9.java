@@ -140,7 +140,7 @@ public class Monan9 implements parser {
         String listMaterial = "";
         Elements material_html = doc.select("div.entry-content>ol");
         for (Element element : material_html) {
-            if ((!element.className().equals("comment-list")) && (element.select("li>*").size()==0)) {
+            if ((!element.className().equals("comment-list")) && (element.select("li>*").size() == 0)) {
                 for (Element element1 : element.select("li")) {
                     listMaterial = listMaterial + element1.text() + ";";
                 }
@@ -150,12 +150,12 @@ public class Monan9 implements parser {
         if (listMaterial.equals("")) {
             material_html = doc.select("div.entry-content>ul");
             for (Element element : material_html) {
-                if ((!element.className().equals("comment-list")) && (element.select("li>*").size()==0)) {
+                if ((!element.className().equals("comment-list")) && (element.select("li>*").size() == 0)) {
                     for (Element element1 : element.select("li")) {
                         listMaterial = listMaterial + element1.text() + ";";
                     }
                     break;
-                } 
+                }
             }
 
         }
@@ -193,82 +193,81 @@ public class Monan9 implements parser {
         String materialHTML = "";
         Elements material_html = doc.select("div.entry-content>ol");
         for (Element element : material_html) {
-            if ((!element.className().equals("comment-list")) && (element.select("li>*").size()==0)) {
-                for (Element element1 : element.select("li")) {
-                    materialHTML = materialHTML + element1.outerHtml();
-                }
+            if ((!element.className().equals("comment-list")) && (element.select("li>*").size() == 0)) {
+                materialHTML = materialHTML + element.outerHtml();
                 break;
             }
         }
         if (materialHTML.equals("")) {
             material_html = doc.select("div.entry-content>ul");
             for (Element element : material_html) {
-                if ((!element.className().equals("comment-list")) && (element.select("li>*").size()==0)) {
-                    for (Element element1 : element.select("li")) {
-                        materialHTML = materialHTML + element1.outerHtml();
-                    }
-                    break;
-                } 
-            }
-        }
-        if (materialHTML.equals("")) {
-            Elements material_html_type2 = doc.select("div.entry-content>*");
-            int breakpoint = 0;
-            for (Element element : material_html_type2) {
-                if (breakpoint == 2) {
-                    break;
-                }
-                if (breakpoint == 1) {
-                    materialHTML = materialHTML + element.outerHtml();
-                }
-                if (element.tagName().equals("h3")) {
-                    breakpoint++;
-                }
-            }
-        }
-        if (materialHTML.length() > 5000) {
-            materialHTML = "";
-        }
-        return materialHTML;
-    }
-
-    @Override
-    public String parseTutorialHTML(Document doc) {
-        int count = 0;
-        String tutorialHTML = "";
-        Elements tutorial_html = doc.select("div.entry-content>*");
-        if (tutorial_html.size() > 0) {
-            for (Element element : tutorial_html) {
-                if (count >= 2) {
-                    if (element.select("strong>em>u").size() == 0) {
-                        tutorialHTML = tutorialHTML + element.outerHtml();
-                    } else {
+                if ((!element.className().equals("comment-list")) && (element.select("li>*").size() == 0)) {
+                        materialHTML = materialHTML + element.outerHtml();
                         break;
                     }
                 }
-                if (element.tagName().equals("h3")) {
-                    count++;
+            }
+            if (materialHTML.equals("")) {
+                Elements material_html_type2 = doc.select("div.entry-content>*");
+                int breakpoint = 0;
+                for (Element element : material_html_type2) {
+                    if (breakpoint == 2) {
+                        break;
+                    }
+                    if (breakpoint == 1) {
+                        materialHTML = materialHTML + element.outerHtml();
+                    }
+                    if (element.tagName().equals("h3")) {
+                        breakpoint++;
+                    }
                 }
             }
+            if (materialHTML.length() > 5000) {
+                materialHTML = "";
+            }
+            return materialHTML;
         }
-        if (tutorialHTML.equals("")) {
-            tutorial_html = doc.select("div.entry-content>*");
+
+        @Override
+        public String parseTutorialHTML
+        (Document doc
+        
+            ) {
+        int count = 0;
+            String tutorialHTML = "";
+            Elements tutorial_html = doc.select("div.entry-content>*");
             if (tutorial_html.size() > 0) {
                 for (Element element : tutorial_html) {
-                    if (count >= 1) {
+                    if (count >= 2) {
                         if (element.select("strong>em>u").size() == 0) {
                             tutorialHTML = tutorialHTML + element.outerHtml();
                         } else {
                             break;
                         }
                     }
-                    if (element.tagName().equals("ul") || element.tagName().equals("ol")) {
+                    if (element.tagName().equals("h3")) {
                         count++;
                     }
                 }
             }
+            if (tutorialHTML.equals("")) {
+                tutorial_html = doc.select("div.entry-content>*");
+                if (tutorial_html.size() > 0) {
+                    for (Element element : tutorial_html) {
+                        if (count >= 1) {
+                            if (element.select("strong>em>u").size() == 0) {
+                                tutorialHTML = tutorialHTML + element.outerHtml();
+                            } else {
+                                break;
+                            }
+                        }
+                        if (element.tagName().equals("ul") || element.tagName().equals("ol")) {
+                            count++;
+                        }
+                    }
+                }
+            }
+            return tutorialHTML;
         }
-        return tutorialHTML;
-    }
 
-}
+    }

@@ -19,8 +19,8 @@ public class Crawler {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-//        Sotaynauan sotaynauan = new Sotaynauan();
-//        sotaynauan.scanning("http://sotaynauan.com/");
+        Sotaynauan sotaynauan = new Sotaynauan();
+        sotaynauan.scanning("http://sotaynauan.com/");
         Monan9 monan9 = new Monan9();
         monan9.scanning("http://monan9.com/");
     }
