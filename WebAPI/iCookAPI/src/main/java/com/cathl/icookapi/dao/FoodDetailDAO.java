@@ -4,6 +4,6 @@ import com.cathl.icookapi.entity.FoodDetail;
 
 public interface FoodDetailDAO {
 	
-//	public FoodDetail getFood(int id);
+	public FoodDetail getFood(int id);
 	
 }
