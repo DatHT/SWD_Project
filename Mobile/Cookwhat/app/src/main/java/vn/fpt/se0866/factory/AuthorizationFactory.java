@@ -9,9 +9,10 @@ import vn.fpt.se0866.model.TokenObject;
  * Created by DatHT on 12/6/2015.
  */
 public class AuthorizationFactory extends AbstractFactory {
+    public static final String AUTH_TYPE = "Bearer";
 
     public AuthorizationFactory(Context context) {
-        super(context, "/iCookAPI/oauth/token?grant_type=password&client_id=restapp&client_secret=restapp&username=linhvh&password=linhvh%40cathl");
+        super(context, "/iCookAPI/oauth/token?grant_type=password&client_id=mobileapp&client_secret=mobileapp&username=datht&password=datht@cathl");
     }
 
     public TokenObject getAccessToken() throws Exception  {
