@@ -22,14 +22,11 @@ public class Food implements Serializable {
 	
 	@Column(name = "FoodName")
 	private String foodName;
-	
-	@Column(name = "Tutorial")
-	private String tutorial;
-	
+
 	@Column(name = "Description")
 	private String description;
 	
-	@Column(name = "LinkImage")
+	@Column(name = "AvatarLink")
 	private String avatarLink;
 	
 	@Column(name = "ListMaterial")
@@ -55,14 +52,6 @@ public class Food implements Serializable {
 
 	public void setFoodName(String foodName) {
 		this.foodName = foodName;
-	}
-
-	public String getTutorial() {
-		return tutorial;
-	}
-
-	public void setTutorial(String tutorial) {
-		this.tutorial = tutorial;
 	}
 
 	public String getDescription() {

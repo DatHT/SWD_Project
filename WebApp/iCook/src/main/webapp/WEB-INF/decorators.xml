@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<decorators defaultdir="/WEB-INF/decorators">
+	<decorator name="main" page="layout.jsp">
+		<pattern>/*</pattern>
+	</decorator>
+	<decorator name="login" page="/WEB-INF/pages/login.jsp"></decorator>
+	<decorator name="no" page="/WEB-INF/pages/index.jsp"></decorator>
+	<decorator name="detail" page="/WEB-INF/pages/detail.jsp"></decorator>
+</decorators>
