@@ -4,5 +4,5 @@ import com.cathl.icookapi.entity.FoodDetail;
 
 public interface FoodDetailService {
 
-//	public FoodDetail getFood(int id);
+	public FoodDetail getFood(int id);
 }
