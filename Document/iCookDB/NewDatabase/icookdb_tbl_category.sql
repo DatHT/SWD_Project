@@ -26,7 +26,7 @@ CREATE TABLE `tbl_category` (
   `CategoryID` int(11) NOT NULL AUTO_INCREMENT,
   `CategoryName` varchar(500) NOT NULL,
   PRIMARY KEY (`CategoryID`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,7 +35,7 @@ CREATE TABLE `tbl_category` (
 
 LOCK TABLES `tbl_category` WRITE;
 /*!40000 ALTER TABLE `tbl_category` DISABLE KEYS */;
-INSERT INTO `tbl_category` VALUES (2,'Món ngon mỗi ngày'),(3,'Món ăn chay'),(4,'Món ăn Tết'),(5,'Món ăn miền Bắc'),(6,'Món ăn miền Nam'),(7,'Món ăn miền Trung'),(8,'Món vỉa hè'),(9,'Món nhậu');
+INSERT INTO `tbl_category` VALUES (2,'Món ngon mỗi ngày'),(3,'Món ăn chay'),(4,'Món ăn Tết'),(5,'Món ăn miền Bắc'),(6,'Món ăn miền Nam'),(7,'Món ăn miền Trung'),(8,'Món vỉa hè'),(9,'Món nhậu'),(18,'Món xào'),(19,'Món chiên'),(20,'Món canh'),(21,'Món kho'),(22,'Món nộm'),(23,'Món nướng');
 /*!40000 ALTER TABLE `tbl_category` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -48,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-12-01 21:41:55
+-- Dump completed on 2015-12-06 13:37:28
