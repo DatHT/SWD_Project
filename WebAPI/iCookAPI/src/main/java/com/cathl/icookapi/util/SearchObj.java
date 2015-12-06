@@ -10,6 +10,7 @@ public class SearchObj {
 	}
 
 	public SearchObj(String materials, int start, int limit) {
+		super();
 		this.materials = materials;
 		this.start = start;
 		this.limit = limit;
