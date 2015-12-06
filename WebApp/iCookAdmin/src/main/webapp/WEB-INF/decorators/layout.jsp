@@ -140,7 +140,7 @@
         <ul class="nav navbar-nav pull-right">
           <li class="dropdown pull-right">            
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-              <i class="fa fa-user"></i> Admin <b class="caret"></b>              
+              <i class="fa fa-user"></i> ${sessionScope.username } <b class="caret"></b>              
             </a>
             
             <!-- Dropdown menu -->
@@ -424,10 +424,10 @@
 
 	    <div class="matter">
         <div class="container">
-          <div class="row">
+          
                 <!-- Body -->
                 <decorator:body/>
-          </div>
+         
         </div>
 		  </div>
 

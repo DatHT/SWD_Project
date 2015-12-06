@@ -16,14 +16,17 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
+import vn.fpt.se0866.manager.FoodManager;
 import vn.fpt.se0866.model.Food;
 
 public class FoodDetailActivity extends AppCompatActivity {
+    private FoodManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_detail);
+        manager = new FoodManager(this);
         setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -31,8 +34,9 @@ public class FoodDetailActivity extends AppCompatActivity {
 
         //get data
         Intent intent = getIntent();
-        Food food = (Food) intent.getSerializableExtra(SearchResultActivity.DATA_EXCHANGE_OBJECT);
+        final Food food = (Food) intent.getSerializableExtra(SearchResultActivity.DATA_EXCHANGE_OBJECT);
 
+        //load view
         CollapsingToolbarLayout toolBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         toolBarLayout.setTitle(food.getFoodName());
         TextView tvDetail = (TextView) findViewById(R.id.food_detail_tv);
@@ -42,8 +46,13 @@ public class FoodDetailActivity extends AppCompatActivity {
                 .error(R.drawable.ic_error)
                 .into(cover);
 
+        //set bookmark
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setTag(R.drawable.ic_star);
+        if (checkBookmarked(food)){
+            fab.setTag(R.drawable.ic_star_yellow);
+            fab.setImageResource(R.drawable.ic_star_yellow);
+        }
+        else fab.setTag(R.drawable.ic_star);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,9 +60,11 @@ public class FoodDetailActivity extends AppCompatActivity {
                 if (fabResourceId == R.drawable.ic_star) {
                     fab.setImageResource(R.drawable.ic_star_yellow);
                     fab.setTag(R.drawable.ic_star_yellow);
+                    manager.insert(food);
                 }else {
                     fab.setImageResource(R.drawable.ic_star);
                     fab.setTag(R.drawable.ic_star);
+                    manager.deleteById(food.getFoodId());
                 }
 
 
@@ -84,5 +95,11 @@ public class FoodDetailActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
 
+    }
+
+    private boolean checkBookmarked(Food f) {
+        Food temp = manager.getById(f.getFoodId());
+
+        return (temp != null) ? true : false;
     }
 }

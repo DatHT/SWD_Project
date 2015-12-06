@@ -25,11 +25,14 @@ function ajax_loading(item){
 
         
     $.ajax({
-        //type: "GET",
+        type: "GET",
         url: "http://54.169.133.254:8080/iCookAPI/search/"+searchStr+"/"+item+"/12",
-        //dataType:"jsonp",
+        data: "{}",
+        contentType: "application/json; charset=utf-8",
+        dataType:"jsonp", 
         success: function(result) {
         	alert("Success!");
+            var json = $.parseJSON(result);
         	/*alert(result);
         	var resultObj = JSON.parse(result);
         	alert(resultObj.length);
@@ -61,9 +64,13 @@ function ajax_loading(item){
                 html +=  '</div><!-- /.col-md-3 -->';
             });
             $('#search-result').html(html);*/
+        },
+        error: function(jqXHR, textStatus, ex) {
+            alert(textStatus + "," + ex + "," + jqXHR.responseText);
         }
     });
 }
+
 //-----------End Ajax load result--------------
 
 //---------Ajax load result when click---------

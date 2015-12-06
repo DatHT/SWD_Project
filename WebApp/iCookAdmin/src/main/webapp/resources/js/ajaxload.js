@@ -1,16 +1,83 @@
 
 $(document).ready(function() {
+
+	$("#btnDelete").click(function(){
+		$('input:checkBox[type=checkbox]:checked').each(function () {
+			   var sThisVal = $(this).val() ;
+			   $.ajax({
+					url: "/iCook/deleteFood?txtFoodID="+sThisVal,
+					type: "GET",
+					success: function(food) {
+						$("#data-table-1").closest("table").find("tbody > tr")
+						.each(function(){
+							var id_tr = this.id;
+							if(id_tr == sThisVal){
+								$(this).remove();
+							}
+						});
+					}
+				});
+			 });
+	});
+	$("#btnSubmit").click(function(){
+		var foodDetail =  JSON.stringify({
+			"materialDetail": $("#txtMaterialDetail").val(),
+			"tutorial": $("#txtContent").val(),
+			"source": $("#txtSource").val(),
+			"user":"ADMIN"
+		});
+		var food =  JSON.stringify({
+			"categoryId": $("#cbbCategory").val(),
+			"foodName": $("#txtFoodName").val(),
+			"description": $("#txtDescription").val(),
+			"linkImage":$("#txtImageLink").val(),
+			"listMaterial":$("#txtMaterialLst").val()
+		});
+    	$.ajax({
+			url:"/iCook/createFood",
+			type: 'POST', 
+			 dataType: 'json',
+			 data: (food), 
+			 beforeSend: function(xhr) {
+		            xhr.setRequestHeader("Accept", "application/json");
+		            xhr.setRequestHeader("Content-Type", "application/json");
+		        },
+		        success: function(foodNew) {
+		        	var foodname=foodNew.foodName;
+		    		$.ajax({
+		    			url:"/iCook/createFoodDetail",
+		    			type: 'POST', 
+		    			 dataType: 'json',
+		    			 data: (foodDetail), 
+		    			 beforeSend: function(xhr) {
+		    		            xhr.setRequestHeader("Accept", "application/json");
+		    		            xhr.setRequestHeader("Content-Type", "application/json");
+		    		        },
+		    		        success: function(foodDetail) {
+		    		        	$("#createSuccess").html("<div class=\"alert alert-success\">" +
+		    		        			+foodname+" đã thêm vào cơ sở dữ liệu."+
+		    		        			"</div>");
+		    		        }
+		    		});
+		        	
+		        }
+		});
+
+		
+	});
 	$(window).load(function() {
 		// Animate loader off screen
 		$(".se-pre-con").fadeOut("slow");;
 	});
 	$('.imagelink').focusout(function(){
 		$('#imageFood').attr("src",$('#txtImage').val());
+		$('#imageFood').attr("src",$('#txtImageLink').val());
 	});
 	$('.imagelink').keyup(function(e){
 	    if(e.keyCode == 13)
 	    {
 	    	$('#imageFood').attr("src",$('#txtImage').val());
+	    	$('#imageFood').attr("src",$('#txtImageLink').val());
 	    }
 	});
 	$('.imagelink').focus(function() {
@@ -39,18 +106,27 @@ $(document).ready(function() {
 	        type: "GET",
 	        success: function(category) {
 	        	$("#txtID").val(category.foodId);
-	        	$("#txtUser").val(category.user);
+//	   
 	        	$("#txtView").val(category.visitNum);
 	        	$("#cbbCategory").val(category.categoryId);
 	        	$('.imagelink').val(category.linkImage);
 	        	$('#imageFood').attr("src",category.linkImage);
 	        	$("#myModal .modal-title").html('<b>'+category.foodName+'</b>');
 	        	$("#myModal .modal-body .foodName").val(category.foodName);
-	        	$("#myModal .modal-body #txtContent").html(category.tutorial);
-	        	$("#myModal .modal-body #txtInfo").html(category.materialInfo);
+	        	
 	        	$("#myModal .modal-body #txtDescription").html(category.description);
-	        	$("#myModal .modal-body #txtMaterial").html(category.materialInfo);
-	        	   $("#myModal").modal();
+	        	$("#myModal .modal-body #txtMaterial").html(category.listMaterial);
+	        	$.ajax({
+	    	        url: "/iCook/getFoodDetail?txtFoodID="+foodID,
+	    	        type: "GET",
+	    	        success: function(foodDetail) {
+	    	        	$("#myModal .modal-body #txtContent").html(foodDetail.tutorial);
+	    	        	$("#myModal .modal-body #txtInfo").html(foodDetail.materialDetail);
+	    	        	$("#txtUser").val(foodDetail.user);
+	    	        	$("#myModal").modal();
+	    	        }
+	    	    });
+	        	   
 	        	   
 	        }
 	    });
@@ -117,6 +193,11 @@ $(document).ready(function() {
 			 success: function(catelog) { 
 				 if(catelog!= null){
 			 		alert(catelog.categoryName + " updated đã cập nhật vào cơ sở dữ liệu." );
+			 		$('#cbbCategory').append($("<option/>", {
+		                value: catelog.categoryId,
+		                text: catelog.categoryName
+		            }));
+			 		
 				 }
 				
 			  },
@@ -127,4 +208,5 @@ $(document).ready(function() {
 		});
  	});
 	    loadCatalog();
+
 	});

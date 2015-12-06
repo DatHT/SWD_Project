@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 
 import java.util.List;
 
-import vn.fpt.se0866.activity.SearchResultActivity;
 import vn.fpt.se0866.factory.FoodFactory;
 import vn.fpt.se0866.model.Food;
 
@@ -17,10 +16,12 @@ public class AsyncLoader extends AsyncTask<String, Integer, List<Food>> {
     private Activity activity;
     private ProgressDialog dialog;
     private FoodFactory factory;
+    private IOnTaskCompleted listener;
 
-    public AsyncLoader(Activity activity) {
+    public AsyncLoader(Activity activity, IOnTaskCompleted listener) {
         super();
         this.activity = activity;
+        this.listener = listener;
         factory = new FoodFactory(activity);
     }
 
@@ -50,9 +51,8 @@ public class AsyncLoader extends AsyncTask<String, Integer, List<Food>> {
     @Override
     protected void onPostExecute(List<Food> result) {
         super.onPostExecute(result);
-//        int pageCount = ((SearchResultActivity) activity).getPageCount();
-//        ((SearchResultActivity) activity).setPageCount(pageCount + 1);
-//        ((SearchResultActivity) activity).setFoods(result);
+        listener.onTaskCompleted(result);
         dialog.dismiss();
+
     }
 }

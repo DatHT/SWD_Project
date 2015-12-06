@@ -7,7 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Manage post</title>
 </head>
-<body>
+<body onload="getFood()">
+<div class="row">
 	<div class="col-md-12">
 
 		<div class="widget">
@@ -25,23 +26,23 @@
 						<!-- Table -->
 						<div class="table-responsive">
 							<table cellpadding="0" cellspacing="0" border="0"
-								id="data-table-1" width="100%" id="tblPost">
+								id="data-table-1" width="100%" >
 								<thead>
 									<tr>
 										<th>ID</th>
-										<th>Tiêu đề</th>
-										<th>Người Đăng</th>
-										<th>Ngày đăng</th>
+										<th>Mòn ăn</th>
+										<th>Ảnh đại diện</th>
+										<th>Lượt xem</th>
 										<th>Action</th>
 										<th>Select</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${foodPost }" var="item">
-										<tr">
-											<td>${item.foodId }</td>
+									<c:forEach items="${foodPost }" var="item" varStatus="counter">
+										<tr id="${item.foodId}" class="thisrow">
+											<td>${counter.count }</td>
 											<td><a href="#">${item.foodName }</a></td>
-											<td><a href="${item.avatarLink }">${item.avatarLink }</a></td>
+											<td><a href="${item.linkImage }">${item.linkImage }</a></td>
 											<td>${item.visitNum }</td>
 											<td width="80px">
 												<div class="btn-group1">
@@ -54,7 +55,7 @@
 													</button>
 												</div>
 											</td>
-											<td><input type="checkbox" id="inlineCheckbox1"
+											<td><input type="checkbox" id="selectedFood" class="checkBox"
 												value="${item.foodId }"></td>
 										</tr>
 									</c:forEach>
@@ -67,7 +68,7 @@
 										<th>Ngày đăng</th>
 										<th>Action</th>
 										<th>
-											<button type="button" class="btn btn-sm btn-danger">Delete</button>
+											<button type="button" class="btn btn-sm btn-success" id="btnDelete">Delete</button>
 										</th>
 									</tr>
 								</tfoot>
@@ -137,7 +138,7 @@
 						</tr>
 						<tr>
 							<td width="70px"><b>Thông tin Nguyên liệu: </b></td>
-							<td><textarea id="txtInfo" cols="105" rows="5"></textarea></td>
+							<td><textarea id="txtInfo" class="cleditor"></textarea></td>
 						</tr>
 						<br />
 						<tr>
@@ -190,6 +191,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 </body>
 </html>

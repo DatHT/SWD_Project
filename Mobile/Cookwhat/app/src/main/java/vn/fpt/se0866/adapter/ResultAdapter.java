@@ -66,7 +66,7 @@ public class ResultAdapter extends BaseAdapter {
         }
         Food food = (Food) getItem(position);
         Picasso.with(context).load(food.getAvatarLink())
-                .placeholder(R.drawable.ic_loading)
+                .placeholder(R.drawable.loading)
                 .error(R.drawable.ic_error)
                 .into(viewHolder.ivThumb);
         viewHolder.tvName.setText(food.getFoodName());

@@ -7,24 +7,31 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.hibernate.mapping.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.cathl.icook.entity.Food;
 import com.cathl.icook.entity.TblCategory;
 import com.cathl.icook.entity.TblFood;
+import com.cathl.icook.entity.TblFoodDetail;
+import com.cathl.icook.entity.TblUser;
 import com.cathl.icook.service.CategoryService;
 import com.cathl.icook.service.CategoryServiceImpl;
+import com.cathl.icook.service.FoodDetailSevices;
 import com.cathl.icook.service.FoodService;
-
+import com.cathl.icook.service.UserService;
 
 /**
  * Handles requests for the application home page.
@@ -39,56 +46,91 @@ public class HomeController {
 	private CategoryService cstegoryService;
 	@Autowired
 	private FoodService foodService;
-	
+	@Autowired
+	private FoodDetailSevices foodDetailService;
+	@Autowired
+	private UserService userService;
+	private Integer foodID;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public ModelAndView userPage() {
+		return new ModelAndView("index");
+	}
 
-		model.addAttribute("pageheader", "Admin");
-		model.addAttribute("activeTab", "Dashboard");
-		return "dashboard";
+	@RequestMapping(value = "/Admin", method = RequestMethod.GET)
+	public ModelAndView login(Model model, HttpSession session) {
+		if (session.getAttribute("username") != null) {
+			model.addAttribute("pageheader", "Admin");
+			model.addAttribute("activeTab", "Dashboard");
+			return new ModelAndView("dashboard");
+		}
+		return new ModelAndView("login", "user", new TblUser());
+	}
+
+	@RequestMapping(value = "/Admin", method = RequestMethod.POST)
+	public String home(@ModelAttribute("user") TblUser user, Locale locale, Model model, HttpSession session) {
+		TblUser checkUser = userService.checkLogin(user);
+		if (checkUser != null) {
+			session.setAttribute("username", checkUser.getUserName());
+			model.addAttribute("pageheader", "Admin");
+			model.addAttribute("activeTab", "Dashboard");
+			return "dashboard";
+		}
+		return "login";
 	}
 
 	@RequestMapping(value = "/CreatePost", method = RequestMethod.GET)
-	public String createPost(Model model) {
-
-		model.addAttribute("pageheader", "Create New Post");
-		model.addAttribute("activeTab", "CreatePost");
-		return "createpost";
+	public String createPost(Model model, HttpSession session) {
+		if (session.getAttribute("username") != null) {
+			model.addAttribute("pageheader", "Create New Post");
+			model.addAttribute("activeTab", "CreatePost");
+			return "createpost";
+		}
+		return "login";
 	}
 
 	@RequestMapping(value = "/ManagePost", method = RequestMethod.GET)
-	public String managePost(Model model) {
-		List<Food> result = new ArrayList<Food>();
-		result = foodService.getFood();
-		model.addAttribute("foodPost", result);
-		model.addAttribute("pageheader", "Quản lý bài đăng");
-		model.addAttribute("activeTab", "ManagePost");
-		return "managepost";
+	public String managePost(Model model, HttpSession session) {
+		if (session.getAttribute("username") != null) {
+			List<TblFood> result = new ArrayList<TblFood>();
+			result = foodService.getFood();
+			model.addAttribute("foodPost", result);
+			model.addAttribute("pageheader", "Quản lý bài đăng");
+			model.addAttribute("activeTab", "ManagePost");
+			return "managepost";
+		}
+		return "login";
 	}
 
 	@RequestMapping(value = "/getCategory", method = RequestMethod.GET)
 	@ResponseBody
-	public List<TblCategory> getCategory(Model m) {
+	public List<TblCategory> getCategory(Model m, HttpSession session) {
+		if (session.getAttribute("username") != null) {
 		List<TblCategory> result = new ArrayList<TblCategory>();
 		result = cstegoryService.getCategory();
 		for (TblCategory tblCategory : result) {
 			System.out.println(tblCategory.getCategoryName());
 		}
 		return result;
+		}
+		return null;
 	}
 
 	@RequestMapping(value = "/getFood", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Food> getFood() {
-		List<Food> result = new ArrayList<Food>();
+	public List<TblFood> getFood(HttpSession session) {
+		if (session.getAttribute("username") != null) {
+		List<TblFood> result = new ArrayList<TblFood>();
 		result = foodService.getFood();
 		return result;
+		}
+		return null;
 	}
 
 	@RequestMapping(value = "/getFoodID", method = RequestMethod.GET)
 	@ResponseBody
-	public TblFood getFoodID(@RequestParam("txtFoodID") String foodID) {
+	public TblFood getFoodID(@RequestParam("txtFoodID") String foodID, HttpSession session) {
+		if (session.getAttribute("username") != null) {
 		Integer foodIDInt = null;
 		System.out.println(foodID);
 		try {
@@ -99,31 +141,36 @@ public class HomeController {
 		}
 		TblFood result = foodService.getFoodID(foodIDInt);
 		return result;
+		}
+		return null;
 	}
 
 	@RequestMapping(value = "/updateFood", method = RequestMethod.POST)
-	public @ResponseBody TblFood updateFood(@RequestBody TblFood food) {
+	public @ResponseBody TblFood updateFood(@RequestBody TblFood food, HttpSession session) {
 		TblFood newFood = foodService.updateFood(food);
 		return newFood;
 	}
+
 	@RequestMapping(value = "/createCaltalogue", method = RequestMethod.POST)
-	public @ResponseBody TblCategory updateFood(@RequestBody TblCategory catalog) {
-		int count=0;
+	public @ResponseBody TblCategory updateFood(@RequestBody TblCategory catalog, HttpSession session) {
+		int count = 0;
 		List<TblCategory> allCatalog = cstegoryService.getCategory();
 		for (TblCategory tblCategory : allCatalog) {
 			if (tblCategory.getCategoryName().toUpperCase().equals(catalog.getCategoryName().toUpperCase())) {
 				count++;
 			}
 		}
-		if (count==0) {
+		if (count == 0) {
 			TblCategory newCalte = new TblCategory(catalog.getCategoryName());
-			Serializable result= cstegoryService.createNewCatelog(newCalte);
+			Serializable result = cstegoryService.createNewCatelog(newCalte);
 			return newCalte;
 		}
 		return null;
 	}
-	@RequestMapping(value="deleteFood",method = RequestMethod.GET)
-	public int deleteFood(@RequestParam("txtFoodID") String foodID) {
+
+	@RequestMapping(value = "deleteFood", method = RequestMethod.GET)
+	public void deleteFood(@RequestParam("txtFoodID") String foodID, HttpSession session) {
+		if (session.getAttribute("username") != null) {
 		Integer foodIDInt = null;
 		System.out.println(foodID);
 		try {
@@ -132,8 +179,53 @@ public class HomeController {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		
+		foodDetailService.deleteFoodDetail(foodIDInt);
 		foodService.deleteFood(foodIDInt);
-		return 200;
+		}
+
+	}
+
+	@RequestMapping(value = "/getFoodDetail", method = RequestMethod.GET)
+	@ResponseBody
+	public TblFoodDetail getFoodDetailID(@RequestParam("txtFoodID") String foodID, HttpSession session) {
+		if (session.getAttribute("username") != null) {
+		Integer foodIDInt = null;
+		System.out.println(foodID);
+		try {
+			foodIDInt = Integer.parseInt(foodID);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		TblFoodDetail foodDetail = foodDetailService.getFoodDetailID(foodIDInt);
+		return foodDetail;
+		}
+		return null;
+	}
+
+	@RequestMapping(value = "/createFoodDetail", method = RequestMethod.POST)
+	@ResponseBody
+	public TblFoodDetail createFoodDetail(@RequestBody TblFoodDetail newFoodDetail, HttpSession session) {
+		Serializable result;
+		TblFoodDetail foodDetail = new TblFoodDetail(foodID, newFoodDetail.getMaterialDetail(),
+				newFoodDetail.getTutorial(), newFoodDetail.getSource(), newFoodDetail.getUser());
+		foodDetail.setFoodID(foodID);
+		result = foodDetailService.createFoodDetail(foodDetail);
+
+		System.out.println(result);
+		return foodDetail;
+	}
+
+	@RequestMapping(value = "/createFood", method = RequestMethod.POST)
+	@ResponseBody
+	public TblFood createFood(@RequestBody TblFood newFood, HttpSession session) {
+		Serializable result;
+		TblFood food = new TblFood(newFood.getCategoryId(), newFood.getFoodName(), newFood.getDescription(),
+				newFood.getLinkImage(), newFood.getListMaterial(), 0);
+
+		result = foodService.createFood(food);
+		foodID = food.getFoodId();
+		System.out.println(foodID);
+		return food;
 	}
 }
