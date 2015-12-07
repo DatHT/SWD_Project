@@ -7,5 +7,4 @@
 	<decorator name="login" page="/WEB-INF/pages/login.jsp"></decorator>
 	<decorator name="no" page="/WEB-INF/pages/index.jsp"></decorator>
 	<decorator name="detail" page="/WEB-INF/pages/detail.jsp"></decorator>
-	<decorator name="user" page="/WEB-INF/pages/dashboard_user.jsp"></decorator>
 </decorators>

@@ -353,6 +353,7 @@
 
         <!--- Sidebar navigation -->
         <!-- If the main navigation has sub navigation, then add the class "has_sub" to "li" of main navigation. -->
+        <c:if test="${sessionScope.role eq 'admin' }">
         <ul id="nav">
           <!-- Main menu with font awesome icon -->
           <li <c:if test="${activeTab eq 'Dashboard'}">class="open"</c:if> ><a href="/iCook"><i class="fa fa-home"></i> Dashboard</a>
@@ -395,6 +396,14 @@
 <!--           <li><a href="forms.html"><i class="fa fa-tasks"></i> Forms</a></li> -->
 <!--           <li><a href="ui.html"><i class="fa fa-magic"></i> User Interface</a></li> -->
         </ul>
+        </c:if>
+        <c:if test="${sessionScope.role eq 'admin' }">
+        	<ul id="nav">
+		          <!-- Main menu with font awesome icon -->
+		          <li <c:if test="${activeTab eq 'Dashboard'}">class="open"</c:if> ><a href="/iCook"><i class="fa fa-home"></i> Dashboard</a>
+		          </li>
+       		 </ul>
+        </c:if>
     </div>
 
     <!-- Sidebar ends -->
