@@ -121,6 +121,21 @@ public class HomeController {
 		}
 		return "login";
 	}
+	@RequestMapping(value = "/getUserPost", method = RequestMethod.GET)
+	public String managePostUser(Model model, HttpSession session) {
+		if (session.getAttribute("username") != null) {
+			List<Integer> listID = foodDetailService.getFoodDetailuser((String)session.getAttribute("username"));
+			List<TblFood> result = foodService.getFoodUser(listID);
+			for (Integer tblFoodID : listID) {
+				System.out.println("fod ID" +tblFoodID);
+			}
+			model.addAttribute("foodPost", result);
+			model.addAttribute("pageheader", "Quản lý bài đăng");
+			model.addAttribute("activeTab", "ManagePost");
+			return "manageuserpost";
+		}
+		return "login";
+	}
 	@RequestMapping(value = "/signOut",method= RequestMethod.GET)
 	public String signOut(HttpSession session) {
 		session.removeAttribute("username");

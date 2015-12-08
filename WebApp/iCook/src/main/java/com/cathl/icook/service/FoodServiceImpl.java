@@ -1,6 +1,7 @@
 package com.cathl.icook.service;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -50,6 +51,22 @@ public class FoodServiceImpl implements FoodService {
 	public Serializable createFood(TblFood newFood) {
 		// TODO Auto-generated method stub
 		return foodDAO.createFood(newFood);
+	}
+
+	@Override
+	public List<TblFood> getFoodUser(List<Integer> listID) {
+		// TODO Auto-generated method stub
+		List<TblFood> allFood =getFood();
+		List<TblFood> foodUser = new ArrayList<TblFood>();
+		for (TblFood tblFood : allFood) {
+			for (Integer foodID : listID) {
+				if (tblFood.getFoodId().equals(foodID)) {
+					foodUser.add(tblFood);
+				}
+			}
+			
+		}
+		return foodUser;
 	}
 
 }

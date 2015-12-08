@@ -356,7 +356,7 @@
         <c:if test="${sessionScope.role eq 'admin' }">
         <ul id="nav">
           <!-- Main menu with font awesome icon -->
-          <li <c:if test="${activeTab eq 'Dashboard'}">class="open"</c:if> ><a href="/iCook"><i class="fa fa-home"></i> Dashboard</a>
+          <li <c:if test="${activeTab eq 'Dashboard'}">class="open"</c:if> ><a href="/iCook/Admin"><i class="fa fa-home"></i> Dashboard</a>
             <!-- Sub menu markup 
             <ul>
               <li><a href="#">Submenu #1</a></li>
@@ -367,40 +367,15 @@
           <li <c:if test="${activeTab eq 'CreatePost'}">class="open"</c:if>><a href="/iCook/CreatePost" id="postCreate"><i class="fa fa-list-alt"></i>Tạo bài viết <span class="pull-right"><i class="fa fa-chevron-right"></i></span></a>
           </li>  
           <li <c:if test="${activeTab eq 'ManagePost'}">class="open"</c:if>><a href="/iCook/ManagePost" id="postManage"><i class="fa fa-file-o"></i>Quản lý bài viết <span class="pull-right"><i class="fa fa-chevron-right"></i></span></a>
-<!--             <ul>
-              <li><a href="post.html">Post</a></li>
-              <li><a href="login.html">Login</a></li>
-              <li><a href="register.html">Register</a></li>
-              <li><a href="support.html">Support</a></li>
-              <li><a href="invoice.html">Invoice</a></li>
-              <li><a href="gallery.html">Gallery</a></li>
-            </ul> -->
           </li> 
-<!--           <li class="has_sub"><a href="#"><i class="fa fa-file-o"></i> Pages #2  <span class="pull-right"><i class="fa fa-chevron-right"></i></span></a> -->
-<!--             <ul> -->
-<!--               <li><a href="media.html">Media</a></li> -->
-<!--               <li><a href="statement.html">Statement</a></li> -->
-<!--               <li><a href="error.html">Error</a></li> -->
-<!--               <li><a href="error-log.html">Error Log</a></li> -->
-<!--               <li><a href="calendar.html">Calendar</a></li> -->
-<!--               <li><a href="grid.html">Grid</a></li> -->
-<!--             </ul> -->
-<!--           </li>       -->
-<!-- 		  <li class="has_sub"><a href="#"><i class="fa fa-table"></i> Tables  <span class="pull-right"><i class="fa fa-chevron-right"></i></span></a> -->
-<!--             <ul> -->
-<!--               <li><a href="tables.html">Tables</a></li> -->
-<!--               <li><a href="dynamic-tables.html">Dynamic Tables</a></li> -->
-<!--             </ul> -->
-<!--           </li>  -->
-<!--           <li><a href="charts.html"><i class="fa fa-bar-chart-o"></i> Charts</a></li>  -->
-<!--           <li><a href="forms.html"><i class="fa fa-tasks"></i> Forms</a></li> -->
-<!--           <li><a href="ui.html"><i class="fa fa-magic"></i> User Interface</a></li> -->
         </ul>
         </c:if>
-        <c:if test="${sessionScope.role eq 'admin' }">
+        <c:if test="${sessionScope.role eq 'user' }">
         	<ul id="nav">
 		          <!-- Main menu with font awesome icon -->
-		          <li <c:if test="${activeTab eq 'Dashboard'}">class="open"</c:if> ><a href="/iCook"><i class="fa fa-home"></i> Dashboard</a>
+		          <li <c:if test="${activeTab eq 'Dashboard'}">class="open"</c:if> ><a href="/iCook/Admin"><i class="fa fa-home"></i> Dashboard</a>
+		          </li>
+		          <li <c:if test="${activeTab eq 'ManagePost'}">class="open"</c:if> ><a href="/iCook/getUserPost"><i class="fa fa-home"></i> Quản lý bài viết</a>
 		          </li>
        		 </ul>
         </c:if>
@@ -456,7 +431,7 @@
     <div class="row">
       <div class="col-md-12">
             <!-- Copyright info -->
-            <p class="copy">Copyright &copy; 2012 | <a href="#">Your Site</a> </p>
+            <p class="copy">Copyright &copy; 2012 | <a href="/iCook">iCook</a> </p>
       </div>
     </div>
   </div>
@@ -485,14 +460,14 @@
 <script src="<c:url value="/resources/js/jquery.flot.pie.js" ></c:url>"></script>
 <script src="<c:url value="/resources/js/jquery.flot.stack.js" ></c:url>"></script>
 
-<!-- jQuery Notification - Noty -->
+<%-- <!-- jQuery Notification - Noty -->
 <script src="<c:url value="/resources/js/jquery.noty.js" ></c:url>"></script> <!-- jQuery Notify -->
 <script src="<c:url value="/resources/js/themes/default.js" ></c:url>"></script> <!-- jQuery Notify -->
 <script src="<c:url value="/resources/js/layouts/bottom.js" ></c:url>"></script> <!-- jQuery Notify -->
 <script src="<c:url value="/resources/js/layouts/topRight.js" ></c:url>"></script> <!-- jQuery Notify -->
 <script src="<c:url value="/resources/js/layouts/top.js" ></c:url>"></script> <!-- jQuery Notify -->
 <!-- jQuery Notification ends -->
-
+ --%>
 <script src="<c:url value="/resources/js/sparklines.js" ></c:url>"></script> <!-- Sparklines -->
 <script src="<c:url value="/resources/js/jquery.cleditor.min.js" ></c:url>"></script> <!-- CLEditor -->
 <script src="<c:url value="/resources/js/bootstrap-datetimepicker.min.js" ></c:url>"></script> <!-- Date picker -->

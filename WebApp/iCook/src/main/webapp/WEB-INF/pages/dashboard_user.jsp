@@ -96,7 +96,7 @@
                         <div class="form-group">
                               <label class="col-lg-2 control-label">Mô tả:</label>
                               <div class="col-lg-6">
-                                <textarea  id="txtDescription" cols="100" rows="25" style="resize:none"></textarea>
+                                <textarea  id="txtDescription" cols="100" rows="8" style="resize:none"></textarea>
                             </div>
                         </div>
                         <div class="form-group">

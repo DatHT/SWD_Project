@@ -72,12 +72,14 @@ $(document).ready(function() {
 	$('.imagelink').focusout(function(){
 		$('#imageFood').attr("src",$('#txtImage').val());
 		$('#imageFood').attr("src",$('#txtImageLink').val());
+		$("#imageZoom").attr("href", $('#txtImage').val());
 	});
 	$('.imagelink').keyup(function(e){
 	    if(e.keyCode == 13)
 	    {
 	    	$('#imageFood').attr("src",$('#txtImage').val());
 	    	$('#imageFood').attr("src",$('#txtImageLink').val());
+	    	$("#imageZoom").attr("href", $('#txtImage').val());
 	    }
 	});
 	$('.imagelink').focus(function() {
