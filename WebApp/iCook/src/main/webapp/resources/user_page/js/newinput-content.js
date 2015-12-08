@@ -27,6 +27,7 @@ function ajax_loading(item){
     $.ajax({
         type: "GET",
         url: "search",
+        async: false,
         //data: "{}",
         //contentType: "application/json; charset=utf-8",
         dataType:"json", 
@@ -62,7 +63,7 @@ function ajax_loading(item){
                   	html +=  '</div><!-- /.food-item -->';
                 html +=  '</div><!-- /.col-md-3 -->';
             });
-            $('#search-result').html(html);
+            $('#search-result').append(html);
         },
         error: function(jqXHR, textStatus, ex) {
             alert(textStatus + "," + ex + "," + jqXHR.responseText);
@@ -75,7 +76,9 @@ function ajax_loading(item){
 //---------Ajax load result when click---------
 $("#search-button").click(function(){
         item=0;
+        $('#search-result').html("");
         ajax_loading(item);
+        
 });
 //-----------End Ajax load result--------------
 

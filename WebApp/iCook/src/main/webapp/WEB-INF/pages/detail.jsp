@@ -64,14 +64,14 @@
 		          	</a>
 	        	</div>
 	        </div>
-	       <div class="col-md-7 col-md-offset-1 tutorial line-shadow">
+	       <div class="col-md-7 col-md-offset-1 material style-box line-shadow">
 	          <h3>Nguyên liệu:</h3>
 	          <p>
 	            ${foodDetail.materialDetail }
 	          </p>
 	        </div>
 	        
-	        <div class="col-md-7 col-md-offset-1 tutorial line-shadow">
+	        <div class="col-md-7 col-md-offset-1 tutorial style-box line-shadow">
 	          <h3>Cách làm</h3>
 	          <p>
 	            ${foodDetail.tutorial }
