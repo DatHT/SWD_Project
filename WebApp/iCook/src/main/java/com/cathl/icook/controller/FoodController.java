@@ -136,6 +136,7 @@ public class FoodController {
 	}
 
 	@RequestMapping(value = "deleteFood", method = RequestMethod.GET)
+	@ResponseBody
 	public void deleteFood(@RequestParam("txtFoodID") String foodID, HttpSession session) {
 		if (session.getAttribute("username") != null) {
 			Integer foodIDInt = null;

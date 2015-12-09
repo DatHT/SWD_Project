@@ -107,7 +107,7 @@ public class HomeController {
 			model.addAttribute("activeTab", "CreatePost");
 			return "createpost";
 		}
-		return "login";
+		return "redirect:/Admin";
 	}
 
 	@RequestMapping(value = "/ManagePost", method = RequestMethod.GET)

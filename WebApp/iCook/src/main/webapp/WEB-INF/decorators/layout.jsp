@@ -460,14 +460,14 @@
 <script src="<c:url value="/resources/js/jquery.flot.pie.js" ></c:url>"></script>
 <script src="<c:url value="/resources/js/jquery.flot.stack.js" ></c:url>"></script>
 
-<%-- <!-- jQuery Notification - Noty -->
+ <!-- jQuery Notification - Noty -->
 <script src="<c:url value="/resources/js/jquery.noty.js" ></c:url>"></script> <!-- jQuery Notify -->
 <script src="<c:url value="/resources/js/themes/default.js" ></c:url>"></script> <!-- jQuery Notify -->
 <script src="<c:url value="/resources/js/layouts/bottom.js" ></c:url>"></script> <!-- jQuery Notify -->
 <script src="<c:url value="/resources/js/layouts/topRight.js" ></c:url>"></script> <!-- jQuery Notify -->
 <script src="<c:url value="/resources/js/layouts/top.js" ></c:url>"></script> <!-- jQuery Notify -->
 <!-- jQuery Notification ends -->
- --%>
+ 
 <script src="<c:url value="/resources/js/sparklines.js" ></c:url>"></script> <!-- Sparklines -->
 <script src="<c:url value="/resources/js/jquery.cleditor.min.js" ></c:url>"></script> <!-- CLEditor -->
 <script src="<c:url value="/resources/js/bootstrap-datetimepicker.min.js" ></c:url>"></script> <!-- Date picker -->
