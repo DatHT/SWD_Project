@@ -36,8 +36,7 @@ public class FoodDAOImpl implements FoodDAO {
 		// String query = String.format(" WHERE listMaterial LIKE '%s'",
 		// searchStr);
 		// System.out.println(query);
-		materials = materials.replace("+", ";");
-		String[] searchs = materials.split(";");
+		String[] searchs = materials.split("-");
 		if (searchs.length > 0) {
 			String query = String.format(" WHERE listMaterial LIKE '%s'", ("%" + searchs[0] + "%"));
 			for (int i = 1; i < searchs.length; i++) {
