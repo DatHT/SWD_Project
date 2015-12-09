@@ -76,6 +76,10 @@
 	          <p>
 	            ${foodDetail.tutorial }
 	          </p>
+	          
+		      <div class="col-md-4 col-md-offset-8">
+		      	<p style="font-weight: 700;">Nguồn: http://sotaynauan.com/</p>
+		      </div>
 	        </div>
 	      </div>
 	    </div>

@@ -62,7 +62,7 @@
         <div class="item active" style="background-image: url('<c:url value="/resources/user_page/images/backgroud.png"></c:url>')">
           <div class="caption">
             <h1 class="animated fadeInLeftBig">Chào mừng đến với <span style="color: #e95748;">ICook</span></h1>
-            <a data-scroll class="btn-start animated fadeInUpBig" href="#home-slider" data-slide="next">Bắt Đầu</a>
+            <a id="btnStart" data-scroll class="btn-start animated fadeInUpBig" href="#home-slider" data-slide="next">Bắt Đầu</a>
           </div>
         </div>
         <div class="item" style="background:#fff url('<c:url value="/resources/user_page/images/bg_main_background.jpg"></c:url>') bottom no-repeat;">

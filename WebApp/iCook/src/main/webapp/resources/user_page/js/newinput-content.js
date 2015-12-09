@@ -2,23 +2,23 @@ var count = 1;
 var item = 0;
 var isLoad = true;
 var searchStr = "";
+var checkEnter=true;
 // -----------Add new input search-------------
-$(document)
-		.ready(
-				function() {
-					$('#btn-plus-search')
-							.click(
-									function() {
-										var input = '<input type="search" name="" id="input-search'
-												+ count
-												+ '"class="form-control input-lg" value="" title="" placeholder="Nguyên liệu">';
-										$('#btn-plus-search').before(input);
-										count++;
-										if (count >= 5) {
-											$('#btn-plus-search').hide();
-										}
-									});
-				});
+$(document).ready(function() {
+	$('#btn-plus-search').click(function() {
+		var input = '<input type="search" name="" id="input-search'
+			+ count
+			+ '"class="form-control input-lg" value="" title="" placeholder="Nguyên liệu">';
+		$('#btn-plus-search').before(input);
+		count++;
+		if (count >= 5) {
+			$('#btn-plus-search').hide();
+		}
+	});
+	$('#btnStart').click(function(){
+		checkEnter=false;
+	});
+});
 // ---------End Add new input search------------
 
 // --------------Ajax load result---------------
@@ -107,10 +107,27 @@ $("#search-button").click(function() {
 	} else {
 		isLoad = true;
 		ajax_loading(searchStr, item);
+		if ($("#check-search").val() == "on"){
+            $("#search-result-container").slideToggle();
+            $("#check-search").val("off");
+        }
+        $('html, body').animate({scrollTop: $(this.hash).offset().top - 5}, 1000);
+        return false;
 	}
 });
-// -----------End Ajax load result--------------
-
+//-----------End Ajax load result--------------
+//---------Ajax load result when Enter---------
+$(document).keypress(function(event){
+	  var keycode = (event.keyCode ? event.keyCode : event.which);
+	  if (keycode == '13') {
+		  if(!checkEnter){
+			  $("#search-button").click();
+			  return false;
+		  }
+		  $("#btnStart").click();
+	  }
+});
+//-----------End Ajax load result--------------
 // ---------Ajax load result when scroll--------
 $(document).scroll(
 	function() {
