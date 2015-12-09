@@ -128,7 +128,12 @@ public class FoodController {
 		Serializable result;
 		TblFood food = new TblFood(newFood.getCategoryId(), newFood.getFoodName(), newFood.getDescription(),
 				newFood.getLinkImage(), newFood.getListMaterial(), 0);
-
+		if (session.getAttribute("role").equals("ADMIN")) {
+			food.setStatus(0);
+		}else{
+			food.setStatus(1);
+		}
+		food.setUserID((String) (session.getAttribute("username")));
 		result = foodService.createFood(food);
 		foodID = food.getFoodId();
 		System.out.println(foodID);

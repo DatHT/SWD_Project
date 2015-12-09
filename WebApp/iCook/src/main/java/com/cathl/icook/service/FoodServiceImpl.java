@@ -54,16 +54,14 @@ public class FoodServiceImpl implements FoodService {
 	}
 
 	@Override
-	public List<TblFood> getFoodUser(List<Integer> listID) {
+	public List<TblFood> getFoodUser(String username) {
 		// TODO Auto-generated method stub
 		List<TblFood> allFood =getFood();
 		List<TblFood> foodUser = new ArrayList<TblFood>();
 		for (TblFood tblFood : allFood) {
-			for (Integer foodID : listID) {
-				if (tblFood.getFoodId().equals(foodID)) {
+				if (tblFood.getUserID().equals(username)) {
 					foodUser.add(tblFood);
 				}
-			}
 			
 		}
 		return foodUser;

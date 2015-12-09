@@ -32,6 +32,15 @@ public class TblFood implements java.io.Serializable {
 	private String description;
 	private String linkImage;
 	private String listMaterial;
+	private String userID;
+	public String getUserID() {
+		return userID;
+	}
+
+	public void setUserID(String userID) {
+		this.userID = userID;
+	}
+
 	public int getCategoryId() {
 		return categoryId;
 	}
@@ -42,7 +51,17 @@ public class TblFood implements java.io.Serializable {
 
 	
 	private Integer visitNum;
+	@Column(name = "Status")
+	private Integer status;
 	
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 
 	public TblFood() {
 	}

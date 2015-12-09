@@ -1,6 +1,31 @@
 
 $(document).ready(function() {
 
+	$('#data-table-1').on('click', '.btn-check',function(e){ 
+		var foodID=$(this).attr('value');
+		$.ajax({
+			url: "/iCook/getFoodID?txtFoodID="+foodID,
+			type: "GET",
+			success: function(food) {
+				food.status = 0;
+				$.ajax({
+					 url: "/iCook/updateFood", 
+					 type: 'POST', 
+					 dataType: 'json',
+					 data: JSON.stringify(food), 
+					 beforeSend: function(xhr) {
+				            xhr.setRequestHeader("Accept", "application/json");
+				            xhr.setRequestHeader("Content-Type", "application/json");
+				        }, 
+					 success: function(newfood) {
+						 
+					 }
+				});
+			}
+		});
+		var td = $(this).closest('tr').find('td.statustd');
+		 td.html("Đã Duyệt");
+	});
 	$("#btnDelete").click(function(){
 		$('input:checkBox[type=checkbox]:checked').each(function () {
 			   var sThisVal = $(this).val() ;
@@ -226,10 +251,12 @@ $(document).ready(function() {
 	        var valueSelected = this.value;
 	    	var oTable = $('#data-table-1').DataTable();
 	    	if (valueSelected == 0) {
-	    		oTable.search( 'bò' ).draw();
+	    		oTable.search( 'Đã duyệt' ).draw();
+	    		oTable.search( '', true );
 			}
 	    	if (valueSelected == 1) {
-	    		oTable.search( 'gà' ).draw();
+	    		oTable.search( 'Đang xử lý' ).draw();
+	    		oTable.search( '', true );
 			}
 	    	
 	    });

@@ -43,12 +43,20 @@
 											<td>${counter.count }</td>
 											<td><a href="#">${item.foodName }</a></td>
 											<td><a href="${item.linkImage }">${item.linkImage }</a></td>
-											<td>${item.visitNum }</td>
+											<td class="statustd">
+												<c:if test="${item.status eq 0}">
+													Đã Duyệt
+												</c:if>
+												<c:if test="${item.status eq 1}">
+													Đang xử lý
+												</c:if>
+											</td>
 											<td width="80px">
 												<div class="btn-group1">
+													<button class="btn btn-xs btn-success btn-check" value="${item.foodId}"><i class="fa fa-check"></i> </button>
 													<button class="btn btn-xs btn-warning"
 														value="${item.foodId}">
-														<i class="fa fa-check"></i>
+														<i class="fa fa-pencil"></i>
 													</button>
 													<button class="btn btn-xs btn-danger" value="${item.foodId}">
 														<i class="fa fa-times" ></i>
@@ -67,8 +75,8 @@
 										<th>Ảnh đại diện</th>
 										<th><select class="form-control" id="cbbfilterStatus">
 												<option value="">----Trạng thái-----</option>
-												<option value="0">Đã duyệt</option>
-												<option value="1">Đợi duyệt</option>
+												<option value="0">Đã Duyệt</option>
+												<option value="1">Đang xử lý</option>
                                     		</select>
                                     	</th>
 										<th>Action</th>
