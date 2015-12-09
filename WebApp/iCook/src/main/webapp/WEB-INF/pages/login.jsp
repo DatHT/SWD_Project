@@ -76,6 +76,11 @@
 						</div>
 					</div>
 					</div>
+					<c:if test="${error eq 'wrong'}">
+					<div class="alert alert-warning">
+                      Bạn đã nhập sai tài khoản hoặc mật khẩu.
+                    </div>
+                    </c:if>
                         <div class="col-lg-9 col-lg-offset-3">
 							<button type="submit" class="btn btn-info btn-sm">Sign in</button>
 							<button type="reset" class="btn btn-default btn-sm">Reset</button>
