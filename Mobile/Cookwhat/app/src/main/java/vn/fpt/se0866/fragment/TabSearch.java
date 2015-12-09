@@ -12,9 +12,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-
 import vn.fpt.se0866.activity.R;
 import vn.fpt.se0866.activity.SearchResultActivity;
 
@@ -77,8 +74,10 @@ public class TabSearch extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View v) {
                 String textSearch = "";
+
                 String temp = etSearch1.getText().toString().trim();
                 if (!temp.equals("")) {
+
                     textSearch += temp;
                 }
                 temp = etSearch2.getText().toString().trim();

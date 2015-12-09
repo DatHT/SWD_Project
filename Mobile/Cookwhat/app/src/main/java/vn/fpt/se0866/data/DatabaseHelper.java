@@ -19,7 +19,7 @@ import vn.fpt.se0866.model.Food;
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private final String TAG = getClass().getSimpleName();
     private static final String DATABASE_NAME = "Food.sqlite";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
 
     public DatabaseHelper(Context context) {

@@ -4,6 +4,7 @@ package vn.fpt.se0866.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,7 +17,7 @@ import java.util.Collection;
 import java.util.List;
 
 import vn.fpt.se0866.adapter.ResultAdapter;
-import vn.fpt.se0866.common.dataloader.AsyncLoader;
+import vn.fpt.se0866.dataloader.FoodsAsyncLoader;
 import vn.fpt.se0866.common.core.IOnTaskCompleted;
 import vn.fpt.se0866.fragment.TabSearch;
 import vn.fpt.se0866.model.Food;
@@ -37,7 +38,7 @@ public class SearchResultActivity extends AppCompatActivity{
         pageCount = 0;
         complete = new IOnTaskCompleted() {
             @Override
-            public void onTaskCompleted(List<?> list) {
+            public void onTaskCompleted(Object list) {
                 if (adapter == null) {
                     if (list != null)
                         foods = (List<Food>) list;
@@ -57,8 +58,7 @@ public class SearchResultActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.activity_toolbar);
-        //setSupportActionBar(toolbar);
+        checkSupportAndroidVersion();
         setTitle("");
         Intent intent = getIntent();
         textSearch = intent.getStringExtra(TabSearch.TEXT_SEARCH_EXTRA);
@@ -90,7 +90,6 @@ public class SearchResultActivity extends AppCompatActivity{
             default:
                 return super.onOptionsItemSelected(item);
         }
-
     }
 
     @Override
@@ -102,7 +101,7 @@ public class SearchResultActivity extends AppCompatActivity{
 
     private void executeData(String key, String start) {
         String[] params = {key, start, "10"};
-        AsyncLoader asy = new AsyncLoader(this, complete);
+        FoodsAsyncLoader asy = new FoodsAsyncLoader(this, complete);
         asy.execute(params);
         pageCount++;
     }
@@ -134,6 +133,14 @@ public class SearchResultActivity extends AppCompatActivity{
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
+    }
+
+    private void checkSupportAndroidVersion() {
+        int currentApiVersion = android.os.Build.VERSION.SDK_INT;
+        if (currentApiVersion >= android.os.Build.VERSION_CODES.LOLLIPOP){
+            Toolbar toolbar = (Toolbar) findViewById(R.id.activity_toolbar);
+            setSupportActionBar(toolbar);
+        }
     }
 
 }

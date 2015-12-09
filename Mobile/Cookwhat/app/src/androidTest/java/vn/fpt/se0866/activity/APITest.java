@@ -22,13 +22,13 @@ public class APITest extends AndroidTestCase {
     }
 
 
-    public void getAPI() {
-        try {
-            Food food = factory.getFoodById(String.valueOf(3411));
-            assertNotNull(food);
-            assertEquals(3411, food.getFoodId());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    public void getAPI() {
+//        try {
+//            Food food = factory.getFoodById(String.valueOf(3411));
+//            assertNotNull(food);
+//            assertEquals(3411, food.getFoodId());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

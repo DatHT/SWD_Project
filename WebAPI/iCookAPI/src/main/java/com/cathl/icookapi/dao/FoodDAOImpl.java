@@ -40,12 +40,9 @@ public class FoodDAOImpl implements FoodDAO {
 		String[] searchs = materials.split(";");
 		if (searchs.length > 0) {
 			String query = String.format(" WHERE listMaterial LIKE '%s'", ("%" + searchs[0] + "%"));
-			System.out.println(query);
 			for (int i = 1; i < searchs.length; i++) {
 				String tmp = String.format(" AND listMaterial LIKE '%s'", ("%" + searchs[i] + "%"));
-				System.out.println(tmp);
 				query += tmp;
-				System.out.println(query);
 			}
 			System.out.println(query);
 			return hibernateUtil.fetchAllByQuery(query, start, limit, Food.class);

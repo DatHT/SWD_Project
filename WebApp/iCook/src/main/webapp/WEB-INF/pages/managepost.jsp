@@ -123,13 +123,15 @@
 						</tr>
 						<tr>
 							<td width="70px"><b>Avatar: </b></td>
-							<td><img id="imageFood" src="" alt="Smiley face"
-								height="240" width="480"></td>
+							<td><!-- <img id="imageFood" src="" alt="Smiley face"
+								height="240" width="480"> -->
+								<a id ="imageZoom"  class="prettyPhoto[pp_gal]"><img id="imageFood" alt="" height="160" width="160"></a>
+								</td>
 						</tr>
 
 						<tr>
 							<td width="70px"><b>Mô tả: </b></td>
-							<td><textarea id="txtDescription" cols="105" rows="24"></textarea></td><br/>
+							<td><textarea id="txtDescription" cols="105" rows="5"></textarea></td><br/>
 						</tr>
 
 						<tr>
@@ -148,6 +150,10 @@
 						<tr>
 							<td><b>Lượt xem:</b></td>
 							<td><input type="text"  id='txtView' disabled="true"></td>
+						</tr>
+						<tr>
+							<td><b>Nguồn:</b></td>
+							<td><input type="text"  id='txtSource' disabled="true"></td>
 						</tr>
 					</table>
 

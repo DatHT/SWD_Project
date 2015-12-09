@@ -1,16 +1,20 @@
 package vn.fpt.se0866.fragment;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import vn.fpt.se0866.activity.BookmarkFoodDetailActivity;
+import vn.fpt.se0866.activity.FoodDetailActivity;
 import vn.fpt.se0866.activity.R;
 import vn.fpt.se0866.adapter.BookmarkAdapter;
 import vn.fpt.se0866.adapter.ResultAdapter;
@@ -20,7 +24,8 @@ import vn.fpt.se0866.model.Food;
 /**
  * Created by DatHT on 11/23/2015.
  */
-public class TabBookmark extends android.support.v4.app.Fragment {
+public class TabBookmark extends android.support.v4.app.Fragment implements AdapterView.OnItemClickListener {
+    public static final String DATA_EXCHANGE_OBJECT = "DATADETAIL";
     private ListView listView;
     private BookmarkAdapter adapter;
     private List<Food> foods;
@@ -46,6 +51,7 @@ public class TabBookmark extends android.support.v4.app.Fragment {
         adapter = new BookmarkAdapter(view.getContext(), foods);
         adapter.notifyDataSetChanged();
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(this);
     }
 
     @Override
@@ -63,4 +69,11 @@ public class TabBookmark extends android.support.v4.app.Fragment {
     }
 
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(getActivity(), BookmarkFoodDetailActivity.class);
+        intent.putExtra(DATA_EXCHANGE_OBJECT, foods.get(position));
+        startActivity(intent);
+        getActivity().overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
+    }
 }

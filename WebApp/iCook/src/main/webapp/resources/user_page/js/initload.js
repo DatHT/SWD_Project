@@ -11,9 +11,10 @@ $(window).resize(function(){'use strict',
 	$('#home-slider .item').css('height',slideHeight);
 });
 //Page Detail
-$('#backgroud').css('height',slideHeight);
+var slideHeightDetail = $(document).height();
+$('#backgroud').css('height',slideHeightDetail);
 
 $(window).resize(function(){'use strict',
     slideHeight = $(window).height();
-	$('#backgroud').css('height',slideHeight);
+	$('#backgroud').css('height',slideHeightDetail);
 });

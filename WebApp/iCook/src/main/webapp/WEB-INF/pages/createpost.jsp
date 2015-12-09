@@ -52,7 +52,7 @@
                         <div class="form-group">
                               <label class="col-lg-2 control-label">Mô tả:</label>
                               <div class="col-lg-6">
-                                <textarea  id="txtDescription" cols="100" rows="25" style="resize:none"></textarea>
+                                <textarea  id="txtDescription" cols="100" rows="8" style="resize:none"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
@@ -76,7 +76,7 @@
                           <div class="form-group">
                                   <label class="col-lg-2 control-label">Nguồn:</label>
                                   <div class="col-lg-5">
-                                    <input type="text" class="form-control imagelink" placeholder="Image Link" id="txtSource">
+                                    <input type="text" class="form-control imagelink" placeholder="Nguồn" id="txtSource">
                                   </div>
                           </div>
                         <div class="form-group">

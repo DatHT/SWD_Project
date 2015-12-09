@@ -26,36 +26,36 @@ function ajax_loading(item){
         
     $.ajax({
         type: "GET",
-        url: "/iCook/search/"+searchStr+"/"+item+"/12",
-        data: "{}",
-        contentType: "application/json; charset=utf-8",
-        dataType:"jsonp", 
+        url: "search",
+        async: false,
+        //data: "{}",
+        //contentType: "application/json; charset=utf-8",
+        dataType:"json", 
         success: function(result) {
-        	alert("Success!");
-            var json = $.parseJSON(result);
-        	/*alert(result);
-        	var resultObj = JSON.parse(result);
-        	alert(resultObj.length);
+        	//alert("Success!");
+//        	alert(result);
+        	var resultObj = result;
+//        	alert(result.length);
             $('#loading').fadeOut('fast');
             var html="";
             $.each (resultObj, function (key, item){
                 html +=  '<div class="col-sm-4 col-md-3">';
               		html +=  '<div class="food-item">';
                     	html +=  '<figure>';
-                      		html +=  '<img src="images/23.jpg">';
+                      		html +=  '<img src="'+item.avatarLink+'">';
                       		html +=  '<figcaption>';
-                        		html +=  '<h4 class="food-name">Cách làm sữa lắc với máy xay sinh tố thơm ngon bổ dưỡng</h4>';
+                        		html +=  '<h4 class="food-name">'+item.foodName+'</h4>';
                         		html +=  '<p class="material">';
-                          			html +=  'Giò heo, cà chua';
+//                          			html +=  'Giò heo, cà chua';
                         		html +=  '</p><!-- /.material -->';
                       		html +=  '</figcaption>';
                     	html +=  '</figure>';
                     	html +=  '<div class="search-detail-container">';
                       		html +=  '<div class="search-detail-btn">';
                         		html +=  '<span class="search-detail-box description-container">';
-                          			html +=  '<a href="#" class="">';
-                            			html +=  '<h3>Cách làm sữa lắc với máy xay sinh tố thơm ngon bổ dưỡng</h3>';
-                            			html +=  '<p><span>12312412412312 31241241231231 241241231212 3213123 123123123</span></p>';
+                          			html +=  '<a href="/iCook/getFoodDetailUser?txtFoodID='+item.foodId+'" class="">';
+                            			html +=  '<h3>'+item.foodName+'</h3>';
+                            			html +=  '<p><span>'+item.description+'</span></p>';
                           			html +=  '</a><!-- /.facebook-btn -->';
                         		html +=  '</span><!-- /.search-detail-box -->';
                       		html +=  '</div><!-- /.search-detail-btn -->';
@@ -63,7 +63,7 @@ function ajax_loading(item){
                   	html +=  '</div><!-- /.food-item -->';
                 html +=  '</div><!-- /.col-md-3 -->';
             });
-            $('#search-result').html(html);*/
+            $('#search-result').append(html);
         },
         error: function(jqXHR, textStatus, ex) {
             alert(textStatus + "," + ex + "," + jqXHR.responseText);
@@ -76,7 +76,9 @@ function ajax_loading(item){
 //---------Ajax load result when click---------
 $("#search-button").click(function(){
         item=0;
+        $('#search-result').html("");
         ajax_loading(item);
+        
 });
 //-----------End Ajax load result--------------
 

@@ -32,6 +32,7 @@ import com.cathl.icook.service.CategoryServiceImpl;
 import com.cathl.icook.service.FoodDetailSevices;
 import com.cathl.icook.service.FoodService;
 import com.cathl.icook.service.UserService;
+import com.cathl.icook.controller.*;
 
 /**
  * Handles requests for the application home page.
@@ -42,15 +43,16 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@Autowired
-	private CategoryService cstegoryService;
+
 	@Autowired
 	private FoodService foodService;
+	@Autowired
+	private CategoryService cstegoryService;
 	@Autowired
 	private FoodDetailSevices foodDetailService;
 	@Autowired
 	private UserService userService;
-	private Integer foodID;
+	
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView userPage() {
@@ -60,21 +62,39 @@ public class HomeController {
 	@RequestMapping(value = "/Admin", method = RequestMethod.GET)
 	public ModelAndView login(Model model, HttpSession session) {
 		if (session.getAttribute("username") != null) {
-			model.addAttribute("pageheader", "Admin");
-			model.addAttribute("activeTab", "Dashboard");
-			return new ModelAndView("dashboard");
+
+			if (session.getAttribute("role").equals("admin")) {
+				model.addAttribute("pageheader", "Admin");
+				model.addAttribute("activeTab", "Dashboard");
+				return new ModelAndView("dashboard");
+			}
+			if (session.getAttribute("role").equals("user")) {
+				model.addAttribute("pageheader", "Dashboard");
+				model.addAttribute("activeTab", "Dashboard");
+				return new ModelAndView("dashboard_user");
+			}
+		} else {
+			return new ModelAndView("login", "user", new TblUser());
 		}
-		return new ModelAndView("login", "user", new TblUser());
+		return null;
 	}
 
 	@RequestMapping(value = "/Admin", method = RequestMethod.POST)
 	public String home(@ModelAttribute("user") TblUser user, Locale locale, Model model, HttpSession session) {
 		TblUser checkUser = userService.checkLogin(user);
-		if (checkUser != null) {
+		if (checkUser != null && checkUser.getRole().equals("admin")) {
+			session.setAttribute("role", checkUser.getRole());
 			session.setAttribute("username", checkUser.getUserName());
 			model.addAttribute("pageheader", "Admin");
 			model.addAttribute("activeTab", "Dashboard");
 			return "dashboard";
+		}
+		if (checkUser != null && checkUser.getRole().equals("user")) {
+			session.setAttribute("username", checkUser.getUserName());
+			session.setAttribute("role", checkUser.getRole());
+			model.addAttribute("pageheader", "Dashboard");
+			model.addAttribute("activeTab", "Dashboard");
+			return "dashboard_user";
 		}
 		return "login";
 	}
@@ -101,149 +121,26 @@ public class HomeController {
 		}
 		return "login";
 	}
-
-	@RequestMapping(value = "/getCategory", method = RequestMethod.GET)
-	@ResponseBody
-	public List<TblCategory> getCategory(Model m, HttpSession session) {
+	@RequestMapping(value = "/getUserPost", method = RequestMethod.GET)
+	public String managePostUser(Model model, HttpSession session) {
 		if (session.getAttribute("username") != null) {
-		List<TblCategory> result = new ArrayList<TblCategory>();
-		result = cstegoryService.getCategory();
-		for (TblCategory tblCategory : result) {
-			System.out.println(tblCategory.getCategoryName());
-		}
-		return result;
-		}
-		return null;
-	}
-
-	@RequestMapping(value = "/getFood", method = RequestMethod.GET)
-	@ResponseBody
-	public List<TblFood> getFood(HttpSession session) {
-		if (session.getAttribute("username") != null) {
-		List<TblFood> result = new ArrayList<TblFood>();
-		result = foodService.getFood();
-		return result;
-		}
-		return null;
-	}
-
-	@RequestMapping(value = "/getFoodID", method = RequestMethod.GET)
-	@ResponseBody
-	public TblFood getFoodID(@RequestParam("txtFoodID") String foodID, HttpSession session) {
-		if (session.getAttribute("username") != null) {
-		Integer foodIDInt = null;
-		System.out.println(foodID);
-		try {
-			foodIDInt = Integer.parseInt(foodID);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		TblFood result = foodService.getFoodID(foodIDInt);
-		return result;
-		}
-		return null;
-	}
-
-	@RequestMapping(value = "/updateFood", method = RequestMethod.POST)
-	public @ResponseBody TblFood updateFood(@RequestBody TblFood food, HttpSession session) {
-		TblFood newFood = foodService.updateFood(food);
-		return newFood;
-	}
-
-	@RequestMapping(value = "/createCaltalogue", method = RequestMethod.POST)
-	public @ResponseBody TblCategory updateFood(@RequestBody TblCategory catalog, HttpSession session) {
-		int count = 0;
-		List<TblCategory> allCatalog = cstegoryService.getCategory();
-		for (TblCategory tblCategory : allCatalog) {
-			if (tblCategory.getCategoryName().toUpperCase().equals(catalog.getCategoryName().toUpperCase())) {
-				count++;
+			List<Integer> listID = foodDetailService.getFoodDetailuser((String)session.getAttribute("username"));
+			List<TblFood> result = foodService.getFoodUser(listID);
+			for (Integer tblFoodID : listID) {
+				System.out.println("fod ID" +tblFoodID);
 			}
+			model.addAttribute("foodPost", result);
+			model.addAttribute("pageheader", "Quản lý bài đăng");
+			model.addAttribute("activeTab", "ManagePost");
+			return "manageuserpost";
 		}
-		if (count == 0) {
-			TblCategory newCalte = new TblCategory(catalog.getCategoryName());
-			Serializable result = cstegoryService.createNewCatelog(newCalte);
-			return newCalte;
-		}
-		return null;
+		return "login";
+	}
+	@RequestMapping(value = "/signOut",method= RequestMethod.GET)
+	public String signOut(HttpSession session) {
+		session.removeAttribute("username");
+		session.removeAttribute("role");
+		return "redirect:/";
 	}
 
-	@RequestMapping(value = "deleteFood", method = RequestMethod.GET)
-	public void deleteFood(@RequestParam("txtFoodID") String foodID, HttpSession session) {
-		if (session.getAttribute("username") != null) {
-		Integer foodIDInt = null;
-		System.out.println(foodID);
-		try {
-			foodIDInt = Integer.parseInt(foodID);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		foodDetailService.deleteFoodDetail(foodIDInt);
-		foodService.deleteFood(foodIDInt);
-		}
-
-	}
-
-	@RequestMapping(value = "/getFoodDetail", method = RequestMethod.GET)
-	@ResponseBody
-	public TblFoodDetail getFoodDetailIDJson(@RequestParam("txtFoodID") String foodID, HttpSession session) {
-		if (session.getAttribute("username") != null) {
-		Integer foodIDInt = null;
-		System.out.println(foodID);
-		try {
-			foodIDInt = Integer.parseInt(foodID);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		TblFoodDetail foodDetail = foodDetailService.getFoodDetailID(foodIDInt);
-		return foodDetail;
-		}
-		return null;
-	}
-	@RequestMapping(value = "/getFoodDetailUser", method = RequestMethod.GET)
-	public String getFoodDetailID(@RequestParam("txtFoodID") String foodID, Model model) {
-	
-		Integer foodIDInt = null;
-		System.out.println(foodID);
-		try {
-			foodIDInt = Integer.parseInt(foodID);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		TblFoodDetail foodDetail = foodDetailService.getFoodDetailID(foodIDInt);
-		TblFood food =foodService.getFoodID(foodIDInt);
-		model.addAttribute("foodDetail", foodDetail);
-		model.addAttribute("food", food);
-		return "detail";
-		
-	}
-
-	@RequestMapping(value = "/createFoodDetail", method = RequestMethod.POST)
-	@ResponseBody
-	public TblFoodDetail createFoodDetail(@RequestBody TblFoodDetail newFoodDetail, HttpSession session) {
-		Serializable result;
-		TblFoodDetail foodDetail = new TblFoodDetail(foodID, newFoodDetail.getMaterialDetail(),
-				newFoodDetail.getTutorial(), newFoodDetail.getSource(), newFoodDetail.getUser());
-		foodDetail.setFoodID(foodID);
-		result = foodDetailService.createFoodDetail(foodDetail);
-
-		System.out.println(result);
-		return foodDetail;
-	}
-
-	@RequestMapping(value = "/createFood", method = RequestMethod.POST)
-	@ResponseBody
-	public TblFood createFood(@RequestBody TblFood newFood, HttpSession session) {
-		Serializable result;
-		TblFood food = new TblFood(newFood.getCategoryId(), newFood.getFoodName(), newFood.getDescription(),
-				newFood.getLinkImage(), newFood.getListMaterial(), 0);
-
-		result = foodService.createFood(food);
-		foodID = food.getFoodId();
-		System.out.println(foodID);
-		return food;
-	}
 }
