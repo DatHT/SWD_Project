@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         android:src="@drawable/logo"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:id="@+id/imageView" />
 
     <TextView
         android:id="@+id/introduce_tv"
@@ -26,14 +27,27 @@
 
 
 
+    <com.balysv.materialripple.MaterialRippleLayout
+        android:id="@+id/more"
+        android:layout_width="95dp"
+        android:layout_height="62dp"
+        rv_centered="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_below="@+id/introduce_tv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="88dp">
+
+
+
     <Button
         android:id="@+id/introduce_start_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start"
         android:background="@color/colorPrimary"
-        android:layout_marginTop="87dp"
         android:onClick="goToMain"
-        android:layout_below="@+id/introduce_tv"
+        android:text="Start"
+        android:layout_alignTop="@+id/more"
         android:layout_centerHorizontal="true" />
+    </com.balysv.materialripple.MaterialRippleLayout>
 </RelativeLayout>

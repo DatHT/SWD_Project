@@ -115,8 +115,10 @@ public class SearchResultActivity extends AppCompatActivity{
 
                 if (scrollState == SCROLL_STATE_IDLE) {
                     if (listView.getLastVisiblePosition() >= count -threshold && pageCount < pageCount + 2) {
-                        executeData(textSearch, String.valueOf(count + 1));
-                        adapter.notifyDataSetChanged();
+                        if (foods.size() >= 10) {
+                            executeData(textSearch, String.valueOf(count + 1));
+                            adapter.notifyDataSetChanged();
+                        }
 
                     }
                 }

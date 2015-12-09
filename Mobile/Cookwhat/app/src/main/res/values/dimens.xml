@@ -8,7 +8,7 @@
     <dimen name="nav_header_text_subtitle_size">16dp</dimen>
 
     <!-- Global dimen -->
-    <dimen name="title_text_size">18sp</dimen>
+    <dimen name="title_text_size">32sp</dimen>
     <dimen name="action_button_size">48dp</dimen>
     <dimen name="action_button_radius">24dp</dimen>
     <dimen name="action_button_padding">7dp</dimen>
@@ -17,7 +17,7 @@
     <dimen name="activity_margin">12dp</dimen>
     <dimen name="activity_margin_thin">8dp</dimen>
     <dimen name="activity_margin_lose">4dp</dimen>
-    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="app_bar_height">280dp</dimen>
 
     <!-- Avatar size -->
     <dimen name="avatar_border_size">20dp</dimen>
@@ -41,6 +41,6 @@
     <dimen name="item_store_action_btn_size">48dp</dimen>
     <dimen name="item_store_text_size">22sp</dimen>
 
-    <dimen name="text_size_large">21dp</dimen>
+    <dimen name="text_size_large">22dp</dimen>
     <dimen name="text_margin">16dp</dimen>
 </resources>

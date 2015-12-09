@@ -7,20 +7,7 @@
     android:background="@drawable/bg_main"
 
     >
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
-        android:theme="@style/AppTheme.Transparent">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/activity_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:popupTheme="@style/AppTheme.Transparent" />
-
-    </android.support.design.widget.AppBarLayout>
     <ListView
         android:id="@+id/search_result_lv"
         android:layout_width="match_parent"

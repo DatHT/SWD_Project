@@ -4,14 +4,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,13 +39,15 @@ public class FoodDetailActivity extends AppCompatActivity implements IOnTaskComp
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_detail);
+        checkSupportAndroidVersion();
+
         manager = new FoodManager(this);
         //get data
         Intent intent = getIntent();
         food = (Food) intent.getSerializableExtra(SearchResultActivity.DATA_EXCHANGE_OBJECT);
         FoodDetailAsyncLoader loader = new FoodDetailAsyncLoader(this, FoodDetailActivity.this);
         loader.execute(String.valueOf(food.getFoodId()));
-        checkSupportAndroidVersion();
+
         setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -50,7 +56,9 @@ public class FoodDetailActivity extends AppCompatActivity implements IOnTaskComp
 
         //load view
         CollapsingToolbarLayout toolBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
-        toolBarLayout.setTitle(food.getFoodName());
+        TextView tvtitle = (TextView) findViewById(R.id.food_detail_title_tv);
+        //loadAnimation(tvtitle);
+        tvtitle.setText(food.getFoodName());
         ImageView cover = (ImageView) findViewById(R.id.food_detail_cover_iv);
         Picasso.with(this).load(food.getAvatarLink()).placeholder(R.drawable.ic_loading)
                 .error(R.drawable.ic_error)
@@ -71,10 +79,13 @@ public class FoodDetailActivity extends AppCompatActivity implements IOnTaskComp
                     fab.setImageResource(R.drawable.ic_star_yellow);
                     fab.setTag(R.drawable.ic_star_yellow);
                     manager.insert(food);
+                    Snackbar.make(view, "Bạn đã lưu vào yêu thích", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
                 } else {
                     fab.setImageResource(R.drawable.ic_star);
                     fab.setTag(R.drawable.ic_star);
                     manager.deleteById(food.getFoodId());
+                    Snackbar.make(view, "Bạn đã dừng lưu vào yêu thích", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 }
 
 
@@ -117,7 +128,7 @@ public class FoodDetailActivity extends AppCompatActivity implements IOnTaskComp
     private void checkSupportAndroidVersion() {
         int currentApiVersion = android.os.Build.VERSION.SDK_INT;
         if (currentApiVersion >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            Toolbar toolbar = (Toolbar) findViewById(R.id.activity_toolbar);
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
         }
     }
@@ -140,4 +151,5 @@ public class FoodDetailActivity extends AppCompatActivity implements IOnTaskComp
         food.setSource(foodDetail.getSource());
 
     }
+
 }

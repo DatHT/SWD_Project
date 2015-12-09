@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +34,7 @@ public class TabSearch extends android.support.v4.app.Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         etSearch1 = (EditText) view.findViewById(R.id.search_1_et);
         etSearch2 = (EditText) view.findViewById(R.id.search_2_et);
@@ -96,10 +97,14 @@ public class TabSearch extends android.support.v4.app.Fragment {
                 if (!temp.equals("")) {
                     textSearch = textSearch + "+" + temp;
                 }
-                Intent intent = new Intent(getActivity(), SearchResultActivity.class);
-                intent.putExtra(TEXT_SEARCH_EXTRA, textSearch);
-                startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
+                if (!textSearch.equals("")) {
+                    Intent intent = new Intent(getActivity(), SearchResultActivity.class);
+                    intent.putExtra(TEXT_SEARCH_EXTRA, textSearch);
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
+                }else {
+                    Snackbar.make(view, "Vui nhập từ khóa tìm kiếm", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                }
             }
         });
     }
