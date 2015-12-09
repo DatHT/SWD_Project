@@ -27,6 +27,25 @@
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
                 />
+                <HorizontalScrollView
+                    android:id="@+id/food_detail_sroll_title_hs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:background="@android:color/holo_red_light"
+                    >
+                    <TextView
+                        android:id="@+id/food_detail_title_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:textSize="@dimen/title_text_size"
+                        />
+
+                </HorizontalScrollView>
+
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"

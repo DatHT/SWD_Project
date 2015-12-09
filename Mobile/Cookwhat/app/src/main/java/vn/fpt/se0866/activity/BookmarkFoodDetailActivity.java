@@ -3,6 +3,7 @@ package vn.fpt.se0866.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -10,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -44,7 +46,8 @@ public class BookmarkFoodDetailActivity extends AppCompatActivity {
 
         //load view
         CollapsingToolbarLayout toolBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
-        toolBarLayout.setTitle(food.getFoodName());
+        TextView tvtitle = (TextView) findViewById(R.id.food_detail_title_tv);
+        tvtitle.setText(food.getFoodName());
         ImageView cover = (ImageView) findViewById(R.id.food_detail_cover_iv);
         Picasso.with(this).load(food.getAvatarLink()).placeholder(R.drawable.ic_loading)
                 .error(R.drawable.ic_error)
@@ -64,13 +67,16 @@ public class BookmarkFoodDetailActivity extends AppCompatActivity {
 
         //disable foating button
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        CoordinatorLayout.LayoutParams p = (CoordinatorLayout.LayoutParams) fab.getLayoutParams();
+        p.setAnchorId(View.NO_ID);
+        fab.setLayoutParams(p);
         fab.setVisibility(View.GONE);
     }
 
     private void checkSupportAndroidVersion() {
         int currentApiVersion = android.os.Build.VERSION.SDK_INT;
-        if (currentApiVersion >= android.os.Build.VERSION_CODES.LOLLIPOP){
-            Toolbar toolbar = (Toolbar) findViewById(R.id.activity_toolbar);
+        if (currentApiVersion >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
         }
     }
