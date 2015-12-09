@@ -15,6 +15,6 @@ var slideHeightDetail = $(document).height();
 $('#backgroud').css('height',slideHeightDetail);
 
 $(window).resize(function(){'use strict',
-    slideHeight = $(window).height();
+    slideHeightDetail = $(window).height();
 	$('#backgroud').css('height',slideHeightDetail);
 });
