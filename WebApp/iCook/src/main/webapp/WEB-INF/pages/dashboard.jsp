@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -67,27 +68,27 @@
                         <th>Number search</th>
                       </tr>
                       <tr>
-                        <td><img src="img/icons/Dairy_Cow-icon.png" alt="" />
+                        <td><img src='<c:url value="/resources/img/icons/Dairy_Cow-icon.png"></c:url>' alt="" />
                         <td>Thị bò</td>
                         <td>3,005</td>
                       </tr> 
                       <tr>
-                        <td><img src="img/icons/tomato-icon.gif" alt="" />
+                        <td><img src="<c:url value="/resources/img/icons/tomato-icon.gif"></c:url>" alt="" />
                         <td> Cà chua </td>
                         <td>2,505</td>
                       </tr> 
                       <tr>
-                        <td><img src="img/icons/egg.png" alt="" />
+                        <td><img src="<c:url value="/resources/img/icons/egg.png"></c:url>" alt="" />
                         <td>Trứng </td>
                         <td>1,405</td>
                       </tr> 
                       <tr>
-                        <td><img src="img/icons/pig_icon.png" alt="" />
+                        <td><img src="<c:url value="/resources/img/icons/pig_icon.png"></c:url>" alt="" />
                         <td>Thịt heo </td>
                         <td>4,005</td>
                       </tr> 
                       <tr>
-                        <td><img src="img/icons/dog.png" alt="" />
+                        <td><img src="<c:url value="/resources/img/icons/dog.png"></c:url>" alt="" />
                         <td>Thị chó </td>
                         <td>505</td>
                       </tr>                                                                    

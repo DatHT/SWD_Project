@@ -120,7 +120,8 @@ public class HomeController {
 			model.addAttribute("activeTab", "ManagePost");
 			return "managepost";
 		}
-		return "login";
+		/*model.addAttribute("user", null);*/
+		return "redirect:/Admin";
 	}
 	@RequestMapping(value = "/getUserPost", method = RequestMethod.GET)
 	public String managePostUser(Model model, HttpSession session) {
@@ -135,7 +136,7 @@ public class HomeController {
 			model.addAttribute("activeTab", "ManagePost");
 			return "manageuserpost";
 		}
-		return "login";
+		return "redirect:/Admin";
 	}
 	@RequestMapping(value = "/signOut",method= RequestMethod.GET)
 	public String signOut(HttpSession session) {
