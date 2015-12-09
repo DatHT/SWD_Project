@@ -104,10 +104,11 @@ public class RestClient {
                 HttpGet request = new HttpGet(url + combinedParams);
 
                 //add header
+                request.setHeader("Content-Type", "application/json; charset=UTF-8");
                 for (NameValuePair p : headers) {
                     request.addHeader(p.getName(), p.getValue());
                 }
-                executeRequest(request, url);
+                executeRequest(request, url + combinedParams);
             }
             case POST:
             {

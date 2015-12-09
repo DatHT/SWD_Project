@@ -40,8 +40,8 @@ public class FoodFactory extends AbstractFactory {
 
     public FoodDetail getFoodById(String id, String token) throws Exception {
         restClient.addRoute("search")
-                .addRoute(id)
-                .addParam("access_token", token);
+                .addHeader("Authorization", AuthorizationFactory.AUTH_TYPE + " " + token)
+                .addRoute(id);
         restClient.execute(RequestMethod.GET);
         return response(restClient, FoodDetail.class);
     }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,25 +78,30 @@ public class TabSearch extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View v) {
                 String textSearch = "";
-                String temp = etSearch1.getText().toString().trim();
-                if (!temp.equals("")) {
-                    textSearch += temp;
-                }
-                temp = etSearch2.getText().toString().trim();
-                if (!temp.equals("")) {
-                    textSearch = textSearch + "+" + temp;
-                }
-                temp = etSearch3.getText().toString().trim();
-                if (!temp.equals("")) {
-                    textSearch = textSearch + "+" + temp;
-                }
-                temp = etSearch4.getText().toString().trim();
-                if (!temp.equals("")) {
-                    textSearch = textSearch + "+" + temp;
-                }
-                temp = etSearch5.getText().toString().trim();
-                if (!temp.equals("")) {
-                    textSearch = textSearch + "+" + temp;
+                try {
+                    String temp = etSearch1.getText().toString().trim();
+                    if (!temp.equals("")) {
+
+                        textSearch += Base64.encode(temp.getBytes("UTF-8"), Base64.DEFAULT);
+                    }
+                    temp = etSearch2.getText().toString().trim();
+                    if (!temp.equals("")) {
+                        textSearch = textSearch + "-" + Base64.encode(temp.getBytes("UTF-8"), Base64.DEFAULT);
+                    }
+                    temp = etSearch3.getText().toString().trim();
+                    if (!temp.equals("")) {
+                        textSearch = textSearch + "-" + Base64.encode(temp.getBytes("UTF-8"), Base64.DEFAULT);
+                    }
+                    temp = etSearch4.getText().toString().trim();
+                    if (!temp.equals("")) {
+                        textSearch = textSearch + "-" + Base64.encode(temp.getBytes("UTF-8"), Base64.DEFAULT);
+                    }
+                    temp = etSearch5.getText().toString().trim();
+                    if (!temp.equals("")) {
+                        textSearch = textSearch + "-" + Base64.encode(temp.getBytes("UTF-8"), Base64.DEFAULT);
+                    }
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
                 }
                 Intent intent = new Intent(getActivity(), SearchResultActivity.class);
                 intent.putExtra(TEXT_SEARCH_EXTRA, textSearch);

@@ -4,6 +4,7 @@ package vn.fpt.se0866.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,7 +38,7 @@ public class SearchResultActivity extends AppCompatActivity{
         pageCount = 0;
         complete = new IOnTaskCompleted() {
             @Override
-            public void onTaskCompleted(List<?> list) {
+            public void onTaskCompleted(Object list) {
                 if (adapter == null) {
                     if (list != null)
                         foods = (List<Food>) list;
@@ -57,8 +58,7 @@ public class SearchResultActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.activity_toolbar);
-        //setSupportActionBar(toolbar);
+        checkSupportAndroidVersion();
         setTitle("");
         Intent intent = getIntent();
         textSearch = intent.getStringExtra(TabSearch.TEXT_SEARCH_EXTRA);
@@ -134,6 +134,14 @@ public class SearchResultActivity extends AppCompatActivity{
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
+    }
+
+    private void checkSupportAndroidVersion() {
+        int currentApiVersion = android.os.Build.VERSION.SDK_INT;
+        if (currentApiVersion >= android.os.Build.VERSION_CODES.LOLLIPOP){
+            Toolbar toolbar = (Toolbar) findViewById(R.id.activity_toolbar);
+            setSupportActionBar(toolbar);
+        }
     }
 
 }
