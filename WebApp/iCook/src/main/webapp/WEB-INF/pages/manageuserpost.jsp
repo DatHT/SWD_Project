@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    pageEncoding="UTF-8"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Manage post</title>
+<title>Insert title here</title>
 </head>
-<body onload="getFood()">
+<body>
 <div class="row">
 	<div class="col-md-12">
 
@@ -125,13 +125,13 @@
 							<td width="70px"><b>Avatar: </b></td>
 							<td><!-- <img id="imageFood" src="" alt="Smiley face"
 								height="240" width="480"> -->
-								<a id ="imageZoom"  class="prettyPhoto[pp_gal]"><img id="imageFood" alt="" height="160" width="160"></a>
+								<a id ="imageZoom"  class="prettyPhoto[pp_gal]"><img id="imageFood" alt="" height="240" width="480"></a>
 								</td>
 						</tr>
 
 						<tr>
 							<td width="70px"><b>Mô tả: </b></td>
-							<td><textarea id="txtDescription" cols="105" rows="5"></textarea></td><br/>
+							<td><textarea id="txtDescription" cols="105" rows="24"></textarea></td><br/>
 						</tr>
 
 						<tr>

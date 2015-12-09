@@ -9,7 +9,9 @@ import com.cathl.icook.entity.TblFood;
 public interface FoodService {
 	public Serializable createFood(TblFood newFood);
 	public List<TblFood> getFood();
+	public List<TblFood> getFoodUser(List<Integer> listID);
 	public TblFood getFoodID(int ID);
 	public TblFood updateFood(TblFood newfood);
 	public void deleteFood(int ID);
+	
 }
