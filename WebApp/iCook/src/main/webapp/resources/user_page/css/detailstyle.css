@@ -3,12 +3,20 @@
 	border-radius: 45px;
 	background-color: #F7CC97;
 	padding-top: 15px;
+	padding-bottom: 15px;
     margin-bottom: 50px;
     text-align: center;
+	color: rgba(241, 0, 0, 0.9);
+	margin-right: 10px;
 }
 .style-thumbnail a img{
-	height: 270px;
+	height: 250px;
 	width: auto;
+}
+
+.style-thumbnail a{
+	margin-left: 15px;
+	margin-right: 15px;
 }
  .line-shadow{
  	box-shadow: 1px 4px 10px #888;
@@ -18,35 +26,61 @@
     -ms-box-shadow: 1px 4px 10px #888;
  }
     
-.style-thumbnail h2{
-	color: rgba(241, 0, 0, 0.9);
+.style-thumbnail h2, .material h3, .tutorial h3{
     font-weight: 700;
 }
-
 .pattrn{
 	padding-top: 50px;
 	padding-bottom: 50px;
 }
 
 .tutorial {
+	margin-top:30px;
 	background-color: #f4f4f4;
+	padding-bottom: 50px;
 }
 
 .material {
+	margin-top:50px;
 	background-color: #FDFF99;
+	padding-bottom: 10px;
 }
 
 .style-box{
 	border-radius: 45px;
-	margin-top:50px;
-	padding-bottom: 50px;
 	box-sizing: border-box;    
 	font-size: 14px;
     line-height: 1.42857143;
     color: #333;
     text-align: -webkit-match-parent;
 }
-
-.tutorial img{
-	max-width: 635px;
+@media (min-width: 768px) {
+  .tutorial img {
+	max-width: 550px;
+  }
+}
+@media (min-width: 992px) {
+  .tutorial img{
+	max-width: 550px;
+  }
+}
+@media (min-width: 1200px) {
+ .tutorial img {
+	max-width: 700px;
+  }
+}
+@media (min-width: 1330px) {
+ .tutorial img{
+	max-width: 790px;
+}
+.container-detail{
+	padding-left: 15px; 
+	padding-right: 15px;
+	margin-left: 2%;
+	margin-right: 2%;
+}
+@media (min-width: 1330px) {
+  .container-detail {
+    width: 1300px;
+  }
 }
