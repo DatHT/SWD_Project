@@ -8,5 +8,6 @@ public interface FoodDAO {
 	
 	public Food getFood(int id);
 	public List<Food> searchByMaterial(String materials, int start, int limit);
+	public Food incrVisitNum(int id);
 	
 }

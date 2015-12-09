@@ -26,16 +26,6 @@ public class FoodDAOImpl implements FoodDAO {
 
 	@Override
 	public List<Food> searchByMaterial(String materials, int start, int limit) {
-		// String searchStr = "%";
-		// searchStr +=
-		// materials.replace(ConstantDataManager.DELIMITER_MATERIAL, "%");
-		// if (!searchStr.endsWith("%")) {
-		// searchStr += "%";
-		// }
-		// System.out.println(searchStr);
-		// String query = String.format(" WHERE listMaterial LIKE '%s'",
-		// searchStr);
-		// System.out.println(query);
 		String[] searchs = materials.split("-");
 		if (searchs.length > 0) {
 			String query = String.format(" WHERE listMaterial LIKE '%s'", ("%" + searchs[0] + "%"));
@@ -47,6 +37,13 @@ public class FoodDAOImpl implements FoodDAO {
 			return hibernateUtil.fetchAllByQuery(query, start, limit, Food.class);
 		}
 		return null;		
+	}
+
+	@Override
+	public Food incrVisitNum(int id) {
+		Food food = hibernateUtil.fetchById(id, Food.class);
+		food.setVisitNum(food.getVisitNum() + 1);
+		return hibernateUtil.update(food);
 	}
 
 }

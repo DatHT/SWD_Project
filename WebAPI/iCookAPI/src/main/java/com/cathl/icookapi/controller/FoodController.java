@@ -34,12 +34,13 @@ public class FoodController {
 	@Autowired
 	private FoodDetailService foodDetailService;
 
+	/*//Function use for debugging
 	@RequestMapping("/food/{id}")
 	public Food getFood(@PathVariable("id") int foodId) {
 		Food food = foodService.getFood(foodId);
 		// FoodDTO foodDTO = new FoodDTO(food);
 		return food;
-	}
+	}*/
 
 	@RequestMapping(value = "search", method = RequestMethod.POST)
 	public List<FoodDTO> searchByMaterial(@RequestBody SearchObj searchObj) {

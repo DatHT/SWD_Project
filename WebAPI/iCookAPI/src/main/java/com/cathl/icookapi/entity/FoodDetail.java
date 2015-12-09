@@ -25,9 +25,6 @@ public class FoodDetail implements Serializable {
 	
 	@Column(name = "Source")
 	private String source;
-	
-	@Column(name = "UserID")
-	private String userId;
 
 	public int getFoodId() {
 		return foodId;
@@ -60,13 +57,4 @@ public class FoodDetail implements Serializable {
 	public void setSource(String source) {
 		this.source = source;
 	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
 }

@@ -37,6 +37,9 @@ public class Food implements Serializable {
 	
 	@Column(name = "VisitNum")
 	private int visitNum;
+	
+	@Column(name = "UserID")
+	private String userId;
 
 	public int getFoodId() {
 		return foodId;
@@ -94,5 +97,11 @@ public class Food implements Serializable {
 		this.visitNum = visitNum;
 	}
 	
-	
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 }
