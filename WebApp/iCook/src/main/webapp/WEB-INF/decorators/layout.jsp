@@ -353,7 +353,7 @@
 
         <!--- Sidebar navigation -->
         <!-- If the main navigation has sub navigation, then add the class "has_sub" to "li" of main navigation. -->
-        <c:if test="${sessionScope.role eq 'ADMIN' }">
+        <c:if test="${sessionScope.role == 0 }">
         <ul id="nav">
           <!-- Main menu with font awesome icon -->
           <li <c:if test="${activeTab eq 'Dashboard'}">class="open"</c:if> ><a href="/iCook/Admin"><i class="fa fa-home"></i> Dashboard</a>
@@ -370,7 +370,7 @@
           </li> 
         </ul>
         </c:if>
-        <c:if test="${sessionScope.role eq 'user' }">
+        <c:if test="${sessionScope.role == 1 }">
         	<ul id="nav">
 		          <!-- Main menu with font awesome icon -->
 		          <li <c:if test="${activeTab eq 'Dashboard'}">class="open"</c:if> ><a href="/iCook/Admin"><i class="fa fa-home"></i> Dashboard</a>
