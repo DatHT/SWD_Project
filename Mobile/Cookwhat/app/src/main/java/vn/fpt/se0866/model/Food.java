@@ -1,5 +1,6 @@
 package vn.fpt.se0866.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.j256.ormlite.field.DatabaseField;
 
 import java.io.Serializable;
@@ -8,6 +9,7 @@ import java.io.Serializable;
  * Created by DatHT on 11/15/2015.
  */
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Food implements Serializable {
     @DatabaseField(id = true)
     private int foodId;

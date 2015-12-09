@@ -1,5 +1,5 @@
 <resources>
-    <string name="api_url">http://192.168.43.105:8080</string>
+    <string name="api_url">http://54.169.133.254:8080</string>
     <string name="title_activity_fool_detail">FoolDetailActivity</string>
     <string name="app_name">CookWhat</string>
     <string name="action_settings">Settings</string>

@@ -90,7 +90,6 @@ public class SearchResultActivity extends AppCompatActivity{
             default:
                 return super.onOptionsItemSelected(item);
         }
-
     }
 
     @Override
