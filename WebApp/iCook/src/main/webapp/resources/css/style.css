@@ -1946,3 +1946,6 @@ footer .copy{
 	z-index: 9999;
 	background: url(../img/Preloader_41.gif) center no-repeat #fff;
 }
+textarea {
+	resize:none;
+}

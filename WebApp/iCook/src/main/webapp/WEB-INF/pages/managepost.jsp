@@ -32,7 +32,7 @@
 										<th>ID</th>
 										<th>Mòn ăn</th>
 										<th>Ảnh đại diện</th>
-										<th>Lượt xem</th>
+										<th>Trạng thái</th>
 										<th>Action</th>
 										<th>Select</th>
 									</tr>
@@ -63,12 +63,17 @@
 								<tfoot>
 									<tr>
 										<th>ID</th>
-										<th>Tiêu đề</th>
-										<th>Người đăng</th>
-										<th>Ngày đăng</th>
+										<th>Mòn ăn</th>
+										<th>Ảnh đại diện</th>
+										<th><select class="form-control" id="cbbfilterStatus">
+												<option value="">----Trạng thái-----</option>
+												<option value="0">Đã duyệt</option>
+												<option value="1">Đợi duyệt</option>
+                                    		</select>
+                                    	</th>
 										<th>Action</th>
 										<th>
-											<button type="button" class="btn btn-sm btn-success" id="btnDelete">Delete</button>
+											<button type="button" class="btn btn-sm btn-success" id="btnDelete" title="data-table-1">Delete</button>
 										</th>
 									</tr>
 								</tfoot>

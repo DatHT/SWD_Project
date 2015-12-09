@@ -51,7 +51,7 @@
 
 		<div class="col-md-12">
 			<div class="alert alert-success">
-							Welcome ${sessionScope.username}. Let start!
+							Chào mừng trở lại ${sessionScope.username}. Hãy bắt đầu chia sẻ!
 			</div>
 					
 			<div class="widget">

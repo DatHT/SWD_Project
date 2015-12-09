@@ -8,13 +8,7 @@ $(document).ready(function() {
 					url: "/iCook/deleteFood?txtFoodID="+sThisVal,
 					type: "GET",
 					success: function(food) {
-						$("#data-table-1").closest("table").find("tbody > tr")
-						.each(function(){
-							var id_tr = this.id;
-							if(id_tr == sThisVal){
-								$(this).remove();
-							}
-						});
+						$('#'+sThisVal).remove();
 					}
 				});
 			 });
@@ -80,6 +74,7 @@ $(document).ready(function() {
 	    	$('#imageFood').attr("src",$('#txtImage').val());
 	    	$('#imageFood').attr("src",$('#txtImageLink').val());
 	    	$("#imageZoom").attr("href", $('#txtImage').val());
+	    	$('#imageZoom').attr("href",$('#txtImageLink').val());
 	    }
 	});
 	$('.imagelink').focus(function() {
@@ -226,5 +221,16 @@ $(document).ready(function() {
 		});
  	});
 	    loadCatalog();
-
+	    $('select').on('change', function (e) {
+	        var optionSelected = $("option:selected", this);
+	        var valueSelected = this.value;
+	    	var oTable = $('#data-table-1').DataTable();
+	    	if (valueSelected == 0) {
+	    		oTable.search( 'bò' ).draw();
+			}
+	    	if (valueSelected == 1) {
+	    		oTable.search( 'gà' ).draw();
+			}
+	    	
+	    });
 	});

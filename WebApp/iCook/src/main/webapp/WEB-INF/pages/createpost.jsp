@@ -46,7 +46,7 @@
                           <div class="form-group">
                                   <label class="col-lg-2 control-label">Xem trước:</label>
                                   <div class="col-lg-5">
-                                    <img id="imageFood" src="" alt="Smiley face" height="240" width="480" >
+                                    <a id ="imageZoom"  class="prettyPhoto[pp_gal]"><img id="imageFood" alt="" height="160" width="160"></a>
                                   </div>
                           </div>   
                         <div class="form-group">

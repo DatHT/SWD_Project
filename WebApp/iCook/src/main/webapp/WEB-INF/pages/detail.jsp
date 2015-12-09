@@ -27,7 +27,7 @@
     <![endif]-->
   </head>
   <body>
-    <div class="preloader"> <i class="fa fa-circle-o-notch fa-spin"></i></div>
+    
     <header id="home">
     <nav class="navbar navbar-inverse navbar-fixed-top nav-pattern" role="navigation">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -55,24 +55,24 @@
     </nav>  
     <div class="background" style="background:url('<c:url value="/resources/user_page/images/searchbg.jpg"></c:url>');">
 	    <div class="pattrn" >
-	      <div class="container">
-	       <div class="col-md-4 scroll style-thumbnail line-shadow">
-	        	<div class ="">
+	      <div class="container container-detail">
+	       <div class="col-md-4 scroll">
+	        	<div class =" style-thumbnail line-shadow">
 	        	  	<h2>${food.foodName }</h2>
 		          	<a href="#" class="thumbnail">
 		            	<img src="${food.linkImage}" alt="">
 		          	</a>
 	        	</div>
 	        </div>
-	       <div class="col-md-7 col-md-offset-1 material style-box line-shadow">
-	          <h3>Nguyên liệu:</h3>
+	       <div class="col-md-7  style-box material line-shadow">
+	          <h3>Nguyên liệu</h3>
 	          <p>
 	            ${foodDetail.materialDetail }
 	          </p>
 	        </div>
 	        
-	        <div class="col-md-7 col-md-offset-1 tutorial style-box line-shadow">
-	          <h3>Cách làm</h3>
+	        <div class="col-md-8 style-box tutorial line-shadow">
+	          <h3>Hướng dẫn làm</h3>
 	          <p>
 	            ${foodDetail.tutorial }
 	          </p>
