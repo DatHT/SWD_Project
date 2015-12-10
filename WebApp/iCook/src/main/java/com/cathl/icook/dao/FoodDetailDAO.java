@@ -2,8 +2,6 @@ package com.cathl.icook.dao;
 
 import java.io.Serializable;
 import java.util.List;
-
-import com.cathl.icook.entity.TblFood;
 import com.cathl.icook.entity.TblFoodDetail;
 
 public interface FoodDetailDAO {

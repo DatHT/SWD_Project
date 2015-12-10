@@ -14,7 +14,7 @@
     <dimen name="action_button_padding">7dp</dimen>
 
     <!-- Default screen margins. -->
-    <dimen name="activity_margin">12dp</dimen>
+    <dimen name="activity_margin">15dp</dimen>
     <dimen name="activity_margin_thin">8dp</dimen>
     <dimen name="activity_margin_lose">4dp</dimen>
     <dimen name="app_bar_height">280dp</dimen>
@@ -41,6 +41,6 @@
     <dimen name="item_store_action_btn_size">48dp</dimen>
     <dimen name="item_store_text_size">22sp</dimen>
 
-    <dimen name="text_size_large">22dp</dimen>
-    <dimen name="text_margin">16dp</dimen>
+    <dimen name="text_size_large">24sp</dimen>
+    <dimen name="text_margin">18dp</dimen>
 </resources>

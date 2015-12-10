@@ -1,16 +1,12 @@
 package vn.fpt.se0866.dataloader;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
-import android.os.AsyncTask;
 import android.util.Log;
 
 import java.util.List;
 
 import vn.fpt.se0866.common.core.BaseAsyncLoader;
 import vn.fpt.se0866.common.core.IOnTaskCompleted;
-import vn.fpt.se0866.factory.AuthorizationFactory;
-import vn.fpt.se0866.factory.FoodFactory;
 import vn.fpt.se0866.model.Food;
 
 /**

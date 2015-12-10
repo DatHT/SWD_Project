@@ -353,3 +353,17 @@
   width: 30px;
   height: 30px;
 }
+figure a{
+	color: #000000;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 1000;
+}
+figure a:hover{
+	color: #000000;
+    text-decoration: none;
+}
+figure a:focus{
+	color: #000000;
+    text-decoration: none;
+}

@@ -46,32 +46,26 @@ function ajax_loading(searchStr, item) {
 			var html = "";
 			$.each(resultObj, function(key, item) {
 				html += '<div class="col-sm-4 col-md-3">';
-				html += '<div class="food-item">';
-				html += '<figure>';
-				html += '<img src="' + item.avatarLink
-						+ '">';
-				html += '<figcaption>';
-				html += '<h4 class="food-name">'
-						+ item.foodName + '</h4>';
-				html += '<p class="material">';
-				// html += 'Giò heo, cà chua';
-				html += '</p><!-- /.material -->';
-				html += '</figcaption>';
-				html += '</figure>';
-				html += '<div class="search-detail-container">';
-				html += '<div class="search-detail-btn">';
-				html += '<span class="search-detail-box description-container">';
-				html += '<a href="/iCook/getFoodDetailUser?txtFoodID='
-						+ item.foodId + '" class="">';
-				html += '<h3>' + item.foodName
-						+ '</h3>';
-				html += '<p><span>' + item.description
-						+ '</span></p>';
-				html += '</a><!-- /.facebook-btn -->';
-				html += '</span><!-- /.search-detail-box -->';
-				html += '</div><!-- /.search-detail-btn -->';
-				html += '</div><!-- /.search-detail-container -->';
-				html += '</div><!-- /.food-item -->';
+					html += '<div class="food-item">';
+						html += '<figure>';
+							html += '<img src="' + item.avatarLink + '">';
+							html += '<a href="/iCook/food/'+ item.foodId + '">';
+								html += '<figcaption>';
+									html += '<h4 class="food-name">'+ item.foodName + '</h4>';
+								html += '</figcaption>';
+							html += '</a>';
+						html += '</figure>';
+						html += '<div class="search-detail-container">';
+							html += '<div class="search-detail-btn">';
+								html += '<span class="search-detail-box description-container">';
+									html += '<a href="/iCook/food/'+ item.foodId + '" class="">';
+										html += '<h3>' + item.foodName + '</h3>';
+										html += '<p><span>' + item.description + '</span></p>';
+									html += '</a>';
+								html += '</span><!-- /.search-detail-box -->';
+							html += '</div><!-- /.search-detail-btn -->';
+						html += '</div><!-- /.search-detail-container -->';
+					html += '</div><!-- /.food-item -->';
 				html += '</div><!-- /.col-md-3 -->';
 			});
 			$('#search-result').append(html);
@@ -112,8 +106,8 @@ $("#search-button").click(function() {
             $("#check-search").val("off");
         }
         $('html, body').animate({scrollTop: $(this.hash).offset().top - 5}, 1000);
-        return false;
 	}
+	return false;
 });
 //-----------End Ajax load result--------------
 //---------Ajax load result when Enter---------
@@ -125,14 +119,14 @@ $(document).keypress(function(event){
 			  return false;
 		  }
 		  $("#btnStart").click();
+		  return false;
 	  }
 });
 //-----------End Ajax load result--------------
 // ---------Ajax load result when scroll--------
 $(document).scroll(
 	function() {
-		if (($(window).scrollTop() == $(document).height()
-			- $(window).height())
+		if (($(window).scrollTop() == $(document).height()- $(window).height())
 	/* && $("#check-search").val() == "off" */) {
 
 		if (!isLoad) {

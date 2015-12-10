@@ -19,7 +19,6 @@ import com.cathl.icook.entity.TblFood;
 import com.cathl.icook.entity.TblFoodDetail;
 import com.cathl.icook.service.FoodDetailSevices;
 import com.cathl.icook.service.FoodService;
-import com.cathl.icook.service.UserService;
 
 @Controller
 public class FoodController {
@@ -27,8 +26,6 @@ public class FoodController {
 	private FoodService foodService;
 	@Autowired
 	private FoodDetailSevices foodDetailService;
-	@Autowired
-	private UserService userService;
 	private Integer foodID;
 	@RequestMapping(value = "/getFood", method = RequestMethod.GET)
 	@ResponseBody

@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 
-import vn.fpt.se0866.factory.AbstractFactory;
 import vn.fpt.se0866.factory.AuthorizationFactory;
 import vn.fpt.se0866.factory.FoodFactory;
 

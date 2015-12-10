@@ -1,6 +1,5 @@
 package com.cathl.icook.dao;
 
-import java.awt.List;
 import java.io.Serializable;
 
 import com.cathl.icook.entity.*;
