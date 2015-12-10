@@ -89,7 +89,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="<c:url value="/resources/user_page/js/bootstrap.js"></c:url>"></script>
     <script src="<c:url value="/resources/user_page/js/newinput-content.js"></c:url>"></script>
-    <script src="<c:url value="/resources/user_page/js/detailscroll.js"></c:url>"></script>
+    <script src="<c:url value="/resources/user_page/js/scroll.js"></c:url>"></script>
     <script src="<c:url value="/resources/user_page/js/initload.js"></c:url>"></script>
   </body>
 </html>
