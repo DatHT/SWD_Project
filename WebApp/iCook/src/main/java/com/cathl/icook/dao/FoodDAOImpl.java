@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.cathl.icook.entity.Food;
 import com.cathl.icook.entity.TblFood;
 import com.cathl.icook.util.HibernateUtil;
 

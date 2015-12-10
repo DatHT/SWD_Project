@@ -1,5 +1,6 @@
 package com.cathl.icook.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.cathl.icook.entity.TblUser;
@@ -7,4 +8,5 @@ import com.cathl.icook.entity.TblUser;
 public interface UserDAO {
 	public List<TblUser> getAllUser();
 	public TblUser checkLogin(TblUser inputUser);
+	public Serializable createUser(TblUser newUSer);
 }

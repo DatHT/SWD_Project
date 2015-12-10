@@ -1,5 +1,8 @@
 package com.cathl.icook.service;
 
+import java.io.Serializable;
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,22 @@ public class UserServiceImpl implements UserService{
 	public TblUser checkLogin(TblUser inputUser) {
 		// TODO Auto-generated method stub
 		return userDao.checkLogin(inputUser);
+	}
+	@Override
+	public Serializable createUser(TblUser newUSer) {
+		// TODO Auto-generated method stub
+		return userDao.createUser(newUSer);
+	}
+	@Override
+	public TblUser checkDubplicate(String username) {
+		// TODO Auto-generated method stub
+		List<TblUser> listUser = userDao.getAllUser();
+		for (TblUser tblUser : listUser) {
+			if(tblUser.getUserName().equals(username)){
+				return tblUser;
+			}
+		}
+		return null;
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.cathl.icook.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,12 @@ public class UserDAOImpl implements UserDAO{
 	public List<TblUser> getAllUser() {
 		// TODO Auto-generated method stub
 		return hibernateUltil.fetchAll(TblUser.class);
+	}
+
+	@Override
+	public Serializable createUser(TblUser newUSer) {
+		// TODO Auto-generated method stub
+		return hibernateUltil.create(newUSer);
 	}
 
 }
