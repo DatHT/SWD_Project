@@ -18,15 +18,15 @@ import com.cathl.icook.util.TokenObj;
 @Service
 @Transactional
 public class SearchServiceImpl implements SearchService {
-
+	public final static String AUTHEN_URL = ConstantDataManager.SERVER_URL + ConstantDataManager.API_AUTHEN_URL;
+	public final static String SEARCH_URL = ConstantDataManager.SERVER_URL + "search";
+	RestTemplate restTemplate;
 	@Override
 	public List<FoodDTO> searchByMaterials(String materials, int start, int limit) {
-		String authenURL = ConstantDataManager.SERVER_URL + ConstantDataManager.API_AUTHEN_URL;
-		String searchURL = ConstantDataManager.SERVER_URL + "search";
-		RestTemplate restTemplate = new RestTemplate();
+		restTemplate = new RestTemplate();
 		
 		//get token_access
-		TokenObj tokenObj = restTemplate.getForObject(authenURL, TokenObj.class);
+		TokenObj tokenObj = restTemplate.getForObject(AUTHEN_URL, TokenObj.class);
 		//init json object to send request 
 		SearchObj searchObj = new SearchObj(materials, start, limit);
 		//init header
