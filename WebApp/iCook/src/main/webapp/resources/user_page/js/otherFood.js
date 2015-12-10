@@ -1,4 +1,4 @@
-var item = 0;
+var item = Math.floor($(document).height()/350)-1;
 var isLoad = true;
 var searchStr = "";
 //---------Ajax load result when load---------
@@ -11,8 +11,8 @@ $(window).load(function(){
 //		async : false,
 //		data : {
 //			"materials" : searchStr,
-//			"start" : item,
-//			"limit" : 12
+//			"start" : 0,
+//			"limit" : item
 //		},
 //		// contentType: "application/json; charset=utf-8",
 //		dataType : "json",
@@ -48,7 +48,7 @@ $(window).load(function(){
 //						html += '</div><!-- /.search-detail-container -->';
 //					html += '</div><!-- /.food-item -->';
 //			});
-//			$('#search-result').append(html);
+//			$('#otherFood').append(html);
 //		},
 //		error : function(jqXHR, textStatus, ex) {
 //			alert("Mất kết nối tới server!");
