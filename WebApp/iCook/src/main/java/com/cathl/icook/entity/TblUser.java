@@ -20,15 +20,24 @@ public class TblUser implements java.io.Serializable {
 
 	private String userName;
 	private String password;
-	private String role;
+	@Column(name="Role")
+	private Integer role;
 
 	public TblUser() {
 	}
 
-	public TblUser(String userName, String password, String role) {
+	public TblUser(String userName, String password, Integer role) {
 
 		this.userName = userName;
 		this.password = password;
+		this.role = role;
+	}
+
+	public Integer getRole() {
+		return role;
+	}
+
+	public void setRole(Integer role) {
 		this.role = role;
 	}
 
@@ -51,13 +60,6 @@ public class TblUser implements java.io.Serializable {
 		this.password = password;
 	}
 
-	@Column(name = "Role", nullable = false)
-	public String getRole() {
-		return this.role;
-	}
 
-	public void setRole(String role) {
-		this.role = role;
-	}
 
 }

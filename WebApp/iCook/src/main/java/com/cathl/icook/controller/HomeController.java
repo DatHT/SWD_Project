@@ -52,7 +52,6 @@ public class HomeController {
 	private FoodDetailSevices foodDetailService;
 	@Autowired
 	private UserService userService;
-	
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView userPage() {
@@ -63,12 +62,12 @@ public class HomeController {
 	public ModelAndView login(Model model, HttpSession session) {
 		if (session.getAttribute("username") != null) {
 
-			if (session.getAttribute("role").equals("ADMIN")) {
+			if ((Integer) session.getAttribute("role") == 0) {
 				model.addAttribute("pageheader", "Admin");
 				model.addAttribute("activeTab", "Dashboard");
 				return new ModelAndView("dashboard");
 			}
-			if (session.getAttribute("role").equals("user")) {
+			if ((Integer) session.getAttribute("role") == 1) {
 				model.addAttribute("pageheader", "Dashboard");
 				model.addAttribute("activeTab", "Dashboard");
 				return new ModelAndView("dashboard_user");
@@ -82,14 +81,14 @@ public class HomeController {
 	@RequestMapping(value = "/Admin", method = RequestMethod.POST)
 	public String home(@ModelAttribute("user") TblUser user, Locale locale, Model model, HttpSession session) {
 		TblUser checkUser = userService.checkLogin(user);
-		if (checkUser != null && checkUser.getRole().equals("ADMIN")) {
+		if (checkUser != null && checkUser.getRole() == 0) {
 			session.setAttribute("role", checkUser.getRole());
 			session.setAttribute("username", checkUser.getUserName());
 			model.addAttribute("pageheader", "Admin");
 			model.addAttribute("activeTab", "Dashboard");
 			return "dashboard";
 		}
-		if (checkUser != null && checkUser.getRole().equals("user")) {
+		if (checkUser != null && checkUser.getRole() == 1) {
 			session.setAttribute("username", checkUser.getUserName());
 			session.setAttribute("role", checkUser.getRole());
 			model.addAttribute("pageheader", "Dashboard");
@@ -102,7 +101,7 @@ public class HomeController {
 
 	@RequestMapping(value = "/CreatePost", method = RequestMethod.GET)
 	public String createPost(Model model, HttpSession session) {
-		if (session.getAttribute("username") != null) {
+		if (session.getAttribute("username") != null && (Integer)session.getAttribute("role") == 0) {
 			model.addAttribute("pageheader", "Create New Post");
 			model.addAttribute("activeTab", "CreatePost");
 			return "createpost";
@@ -112,7 +111,7 @@ public class HomeController {
 
 	@RequestMapping(value = "/ManagePost", method = RequestMethod.GET)
 	public String managePost(Model model, HttpSession session) {
-		if (session.getAttribute("username") != null) {
+		if (session.getAttribute("username") != null && (Integer)session.getAttribute("role") == 0) {
 			List<TblFood> result = new ArrayList<TblFood>();
 			result = foodService.getFood();
 			model.addAttribute("foodPost", result);
@@ -120,13 +119,14 @@ public class HomeController {
 			model.addAttribute("activeTab", "ManagePost");
 			return "managepost";
 		}
-		/*model.addAttribute("user", null);*/
+		/* model.addAttribute("user", null); */
 		return "redirect:/Admin";
 	}
+
 	@RequestMapping(value = "/getUserPost", method = RequestMethod.GET)
 	public String managePostUser(Model model, HttpSession session) {
 		if (session.getAttribute("username") != null) {
-			List<TblFood> result = foodService.getFoodUser((String)session.getAttribute("username"));
+			List<TblFood> result = foodService.getFoodUser((String) session.getAttribute("username"));
 			model.addAttribute("foodPost", result);
 			model.addAttribute("pageheader", "Quản lý bài đăng");
 			model.addAttribute("activeTab", "ManagePost");
@@ -134,7 +134,8 @@ public class HomeController {
 		}
 		return "redirect:/Admin";
 	}
-	@RequestMapping(value = "/signOut",method= RequestMethod.GET)
+
+	@RequestMapping(value = "/signOut", method = RequestMethod.GET)
 	public String signOut(HttpSession session) {
 		session.removeAttribute("username");
 		session.removeAttribute("role");
