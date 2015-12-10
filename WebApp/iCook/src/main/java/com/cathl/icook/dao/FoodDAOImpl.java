@@ -48,4 +48,12 @@ public class FoodDAOImpl implements FoodDAO {
 		return hibernateUtil.create(newFood);
 	}
 
+	@Override
+	public TblFood incrVisitNum(int id) {
+		TblFood food = hibernateUtil.fetchById(id, TblFood.class);
+		food.setVisitNum(food.getVisitNum() + 1);
+		return hibernateUtil.update(food);
+	}
+
+
 }

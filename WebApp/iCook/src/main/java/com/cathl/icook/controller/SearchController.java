@@ -38,7 +38,7 @@ public class SearchController {
 	@RequestMapping(value = "/food/{id}")
 	public String searchByMaterial(@PathVariable("id") int foodID, Model model) {
 		TblFoodDetail foodDetail = foodDetailService.getFoodDetailID(foodID);
-		TblFood food = foodService.getFoodID(foodID);
+		TblFood food = foodService.incrVisitNum(foodID);
 		model.addAttribute("foodDetail", foodDetail);
 		model.addAttribute("food", food);
 		return "detail";
