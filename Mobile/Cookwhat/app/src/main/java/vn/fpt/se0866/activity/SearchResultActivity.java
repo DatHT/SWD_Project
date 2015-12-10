@@ -94,7 +94,7 @@ public class SearchResultActivity extends AppCompatActivity implements IOnTaskCo
 
                 if (scrollState == SCROLL_STATE_IDLE) {
                     if (listView.getLastVisiblePosition() >= count -threshold && pageCount < pageCount + 2) {
-                        if (foods.size() >= 10) {
+                        if (foods.size() >= 10*pageCount) {
                             executeData(textSearch, String.valueOf(count + 1));
                             adapter.notifyDataSetChanged();
                         }
