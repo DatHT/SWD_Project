@@ -54,9 +54,9 @@
 
                     <!-- Email -->
                     <div class="form-group">
-                      <label class="control-label col-lg-3" for="inputEmail">Email</label>
+                      <label class="control-label col-lg-3" for="inputEmail">Username:</label>
                       <div class="col-lg-9">
-                        <spring:input path="userName" cssClass="form-control" placeholder="Email"/>
+                        <spring:input path="userName" cssClass="form-control" placeholder="Username" value="${requestScope.username}"/>
                       </div>
                     </div>
                     <!-- Password -->
@@ -92,7 +92,7 @@
                 </div>
               
                 <div class="widget-foot">
-                  Not Registred? <a href="#">Register here</a>
+                  Not Registred? <a href="/iCook/register">Register here</a>
                 </div>
             </div>  
       </div>

@@ -37,7 +37,7 @@
     <style name="ItemTextSearch">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/bg_text</item>
+        <item name="android:background">@drawable/shadow_box</item>
         <item name="android:hint">Nhập nguyên liệu</item>
         <item name="android:textSize">@dimen/text_size_large</item>
         <item name="android:textColor">@android:color/black</item>

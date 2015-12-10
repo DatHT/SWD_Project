@@ -1,6 +1,7 @@
 var count = 1;
 var item = 0;
 var isLoad = true;
+var checkEmpty = true;
 var searchStr = "";
 var checkEnter=true;
 // -----------Add new input search-------------
@@ -23,6 +24,7 @@ $(document).ready(function() {
 
 // --------------Ajax load result---------------
 function ajax_loading(searchStr, item) {
+	checkEmpty = true;
 	$.ajax({
 		type : "POST",
 		url : "search",
@@ -35,6 +37,9 @@ function ajax_loading(searchStr, item) {
 		// contentType: "application/json; charset=utf-8",
 		dataType : "json",
 		success : function(result) {
+			if (result.length == 0){
+				checkEmpty = false;
+			}
 			if (result.length < 12) {
 				isLoad = false;
 			}
@@ -101,11 +106,15 @@ $("#search-button").click(function() {
 	} else {
 		isLoad = true;
 		ajax_loading(searchStr, item);
-		if ($("#check-search").val() == "on"){
-            $("#search-result-container").slideToggle();
-            $("#check-search").val("off");
-        }
-        $('html, body').animate({scrollTop: $(this.hash).offset().top - 5}, 1000);
+		if(checkEmpty){
+			if ($("#check-search").val() == "on"){
+	            $("#search-result-container").slideToggle();
+	            $("#check-search").val("off");
+	        }
+	        $('html, body').animate({scrollTop: $(this.hash).offset().top - 5}, 1000);
+		}else{
+			alert("Không có kết quả");
+		}
 	}
 	return false;
 });

@@ -2,8 +2,6 @@ package com.cathl.icook.dao;
 
 import java.io.Serializable;
 import java.util.List;
-
-import com.cathl.icook.entity.Food;
 import com.cathl.icook.entity.TblFood;
 
 public interface FoodDAO {
@@ -12,4 +10,6 @@ public interface FoodDAO {
 	public TblFood getFoodID(int ID);
 	public TblFood updateFood(TblFood newfood);
 	public void deleteFood(int ID);
+	public TblFood incrVisitNum(int id);
+	List<TblFood> searchByMaterial(String materials, int start, int limit);
 }

@@ -67,4 +67,9 @@ public class FoodServiceImpl implements FoodService {
 		return foodUser;
 	}
 
+	@Override
+	public TblFood incrVisitNum(int id) {
+		return foodDAO.incrVisitNum(id);
+	}
+
 }

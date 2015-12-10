@@ -53,25 +53,35 @@
         </div><!-- /.navbar-collapse -->
       </div>
     </nav>  
-    <div class="background" style="background:url('<c:url value="/resources/user_page/images/searchbg.jpg"></c:url>');">
+    <div class="background" style="background:url('<c:url value="/resources/user_page/images/searchbg4.jpg"></c:url>');">
 	    <div class="pattrn" >
 	      <div class="container container-detail">
+	      <div class="row">
 	       <div class="col-md-4 scroll">
 	        	<div class =" style-thumbnail line-shadow">
-	        	  	<h2>${food.foodName }</h2>
 		          	<a href="#" class="thumbnail">
 		            	<img src="${food.linkImage}" alt="">
 		          	</a>
 	        	</div>
 	        </div>
-	       <div class="col-md-7  style-box material line-shadow">
+	       <div class="col-md-7  style-box description ">
+	          <h2>${food.foodName }</h2>
+	          <p>
+	            ${food.description }
+	          </p>
+	        </div>
+	        <div class="col-md-7  style-box material ">
 	          <h3>Nguyên liệu</h3>
 	          <p>
 	            ${foodDetail.materialDetail }
 	          </p>
 	        </div>
-	        
-	        <div class="col-md-8 style-box tutorial line-shadow">
+	        </div>
+	        <div class="row">
+	        <div id="otherFood" class="col-md-3 style-box">
+	        <h3>Món ăn khác</h3>
+	        </div>
+	        <div class="col-md-8 col-md-offset-1 style-box tutorial ">
 	          <h3>Hướng dẫn làm</h3>
 	          <p>
 	            ${foodDetail.tutorial }
@@ -81,6 +91,7 @@
 		      	<p style="font-weight: 700;">Nguồn: http://sotaynauan.com/</p>
 		      </div>
 	        </div>
+	        </div>
 	      </div>
 	    </div>
     </div>
@@ -88,7 +99,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="<c:url value="/resources/user_page/js/bootstrap.js"></c:url>"></script>
-    <script src="<c:url value="/resources/user_page/js/newinput-content.js"></c:url>"></script>
+    <script src="<c:url value="/resources/user_page/js/otherFood.js"></c:url>"></script>
     <script src="<c:url value="/resources/user_page/js/scroll.js"></c:url>"></script>
     <script src="<c:url value="/resources/user_page/js/initload.js"></c:url>"></script>
   </body>

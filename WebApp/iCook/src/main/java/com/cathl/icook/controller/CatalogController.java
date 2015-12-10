@@ -1,6 +1,5 @@
 package com.cathl.icook.controller;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +47,6 @@ public class CatalogController {
 		}
 		if (count == 0) {
 			TblCategory newCalte = new TblCategory(catalog.getCategoryName());
-			Serializable result = cstegoryService.createNewCatelog(newCalte);
 			return newCalte;
 		}
 		return null;
