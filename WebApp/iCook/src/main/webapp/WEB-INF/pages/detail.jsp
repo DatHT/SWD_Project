@@ -80,46 +80,6 @@
 	        <div class="row">
 	        <div id="otherFood" class="col-md-3 style-box">
 	        <h3>Món ăn khác</h3>
-                  <div class="food-item">
-                    <figure>
-                      <img src="<c:url value="/resources/user_page/images/23.jpg"></c:url>">
-                      <a href="/iCook/food/1">
-	                      <figcaption>
-	                        <h4 class="food-name">Cách làm sữa lắc với máy xay sinh tố thơm ngon bổ dưỡng</h4>
-	                      </figcaption>
-                      </a>
-                    </figure>
-                    <div class="search-detail-container">
-                      <div class="search-detail-btn">
-                        <span class="search-detail-box description-container">
-                          <a href="/iCook/food/1" class="">
-                            <h3>Cách làm sữa lắc với máy xay sinh tố thơm ngon bổ dưỡng</h3>
-                            <p><span>12312412412312 31241241231231 241241231212 3213123 123123123</span></p>
-                          </a>
-                        </span><!-- /.search-detail-box -->
-                      </div><!-- /.search-detail-btn -->
-                    </div><!-- /.search-detail-container -->
-                  </div><!-- /.food-item -->
-                  <div class="food-item">
-                    <figure>
-                      <img src="<c:url value="/resources/user_page/images/23.jpg"></c:url>">
-                      <a href="/iCook/food/1">
-	                      <figcaption>
-	                        <h4 class="food-name">Cách làm sữa lắc với máy xay sinh tố thơm ngon bổ dưỡng</h4>
-	                      </figcaption>
-                      </a>
-                    </figure>
-                    <div class="search-detail-container">
-                      <div class="search-detail-btn">
-                        <span class="search-detail-box description-container">
-                          <a href="/iCook/food/1" class="">
-                            <h3>Cách làm sữa lắc với máy xay sinh tố thơm ngon bổ dưỡng</h3>
-                            <p><span>12312412412312 31241241231231 241241231212 3213123 123123123</span></p>
-                          </a>
-                        </span><!-- /.search-detail-box -->
-                      </div><!-- /.search-detail-btn -->
-                    </div><!-- /.search-detail-container -->
-                  </div><!-- /.food-item -->
 	        </div>
 	        <div class="col-md-8 col-md-offset-1 style-box tutorial ">
 	          <h3>Hướng dẫn làm</h3>
