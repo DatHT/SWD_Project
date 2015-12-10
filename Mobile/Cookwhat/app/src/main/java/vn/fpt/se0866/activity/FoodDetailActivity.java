@@ -7,21 +7,14 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-
-import java.util.concurrent.ExecutionException;
 
 import vn.fpt.se0866.common.core.IOnTaskCompleted;
 import vn.fpt.se0866.dataloader.FoodDetailAsyncLoader;
@@ -79,13 +72,13 @@ public class FoodDetailActivity extends AppCompatActivity implements IOnTaskComp
                     fab.setImageResource(R.drawable.ic_star_yellow);
                     fab.setTag(R.drawable.ic_star_yellow);
                     manager.insert(food);
-                    Snackbar.make(view, "Bạn đã lưu vào yêu thích", Snackbar.LENGTH_LONG)
+                    Snackbar.make(view, "Đã lưu vào yêu thích", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 } else {
                     fab.setImageResource(R.drawable.ic_star);
                     fab.setTag(R.drawable.ic_star);
                     manager.deleteById(food.getFoodId());
-                    Snackbar.make(view, "Bạn đã dừng lưu vào yêu thích", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                    Snackbar.make(view, "Đã bỏ yêu thích", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 }
 
 

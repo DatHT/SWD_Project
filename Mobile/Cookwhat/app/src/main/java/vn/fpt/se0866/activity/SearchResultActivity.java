@@ -17,42 +17,21 @@ import java.util.Collection;
 import java.util.List;
 
 import vn.fpt.se0866.adapter.ResultAdapter;
-import vn.fpt.se0866.dataloader.FoodsAsyncLoader;
 import vn.fpt.se0866.common.core.IOnTaskCompleted;
+import vn.fpt.se0866.dataloader.FoodsAsyncLoader;
 import vn.fpt.se0866.fragment.TabSearch;
 import vn.fpt.se0866.model.Food;
 
 /**
  * Created by DatHT on 11/15/2015.
  */
-public class SearchResultActivity extends AppCompatActivity{
+public class SearchResultActivity extends AppCompatActivity implements IOnTaskCompleted{
     public static final String DATA_EXCHANGE_OBJECT = "food";
     ListView listView;
     ResultAdapter adapter;
     private List<Food> foods;
     private String textSearch;
-    private int pageCount;
-    private IOnTaskCompleted complete;
-
-    public SearchResultActivity() {
-        pageCount = 0;
-        complete = new IOnTaskCompleted() {
-            @Override
-            public void onTaskCompleted(Object list) {
-                if (adapter == null) {
-                    if (list != null)
-                        foods = (List<Food>) list;
-                    else foods = new ArrayList<>();
-                    adapter = new ResultAdapter(getBaseContext(), foods);
-                    adapter.notifyDataSetChanged();
-                    listView.setAdapter(adapter);
-                }else {
-                    foods.addAll((Collection<? extends Food>) list);
-                    adapter.notifyDataSetChanged();
-                }
-            }
-        };
-    }
+    private int pageCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +80,7 @@ public class SearchResultActivity extends AppCompatActivity{
 
     private void executeData(String key, String start) {
         String[] params = {key, start, "10"};
-        FoodsAsyncLoader asy = new FoodsAsyncLoader(this, complete);
+        FoodsAsyncLoader asy = new FoodsAsyncLoader(this, SearchResultActivity.this);
         asy.execute(params);
         pageCount++;
     }
@@ -144,5 +123,20 @@ public class SearchResultActivity extends AppCompatActivity{
             setSupportActionBar(toolbar);
         }
     }
+
+    @Override
+    public void onTaskCompleted(Object list) {
+            if (adapter == null) {
+                if (list != null)
+                    foods = (List<Food>) list;
+                else foods = new ArrayList<>();
+                adapter = new ResultAdapter(getBaseContext(), foods);
+                adapter.notifyDataSetChanged();
+                listView.setAdapter(adapter);
+            } else {
+                foods.addAll((Collection<? extends Food>) list);
+                adapter.notifyDataSetChanged();
+            }
+        }
 
 }

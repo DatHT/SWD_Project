@@ -1,17 +1,8 @@
 package vn.fpt.se0866.activity;
 
-import android.app.ActivityOptions;
-import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.ImageView;
 
 import vn.fpt.se0866.adapter.ViewPageAdapter;
 import vn.fpt.se0866.slidingtab.SlidingTabLayout;

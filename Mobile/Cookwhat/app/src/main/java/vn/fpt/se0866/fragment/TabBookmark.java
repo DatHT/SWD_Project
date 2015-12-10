@@ -1,6 +1,5 @@
 package vn.fpt.se0866.fragment;
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,10 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vn.fpt.se0866.activity.BookmarkFoodDetailActivity;
-import vn.fpt.se0866.activity.FoodDetailActivity;
 import vn.fpt.se0866.activity.R;
 import vn.fpt.se0866.adapter.BookmarkAdapter;
-import vn.fpt.se0866.adapter.ResultAdapter;
 import vn.fpt.se0866.manager.FoodManager;
 import vn.fpt.se0866.model.Food;
 
