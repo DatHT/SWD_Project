@@ -39,7 +39,7 @@ public class SearchServiceImpl implements SearchService {
 		//set header + body to request
 		HttpEntity<SearchObj> request = new HttpEntity<SearchObj>(searchObj, headers);
 		//get result
-		List<FoodDTO> result = (List<FoodDTO>) restTemplate.postForObject(searchURL, request, List.class);
+		List<FoodDTO> result = (List<FoodDTO>) restTemplate.postForObject(SEARCH_URL, request, List.class);
 		return result;
 	}
 
