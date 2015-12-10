@@ -83,19 +83,19 @@ public class TabSearch extends android.support.v4.app.Fragment {
                 }
                 temp = etSearch2.getText().toString().trim();
                 if (!temp.equals("")) {
-                    textSearch = textSearch + "+" + temp;
+                    textSearch = textSearch + "-" + temp;
                 }
                 temp = etSearch3.getText().toString().trim();
                 if (!temp.equals("")) {
-                    textSearch = textSearch + "+" + temp;
+                    textSearch = textSearch + "-" + temp;
                 }
                 temp = etSearch4.getText().toString().trim();
                 if (!temp.equals("")) {
-                    textSearch = textSearch + "+" + temp;
+                    textSearch = textSearch + "-" + temp;
                 }
                 temp = etSearch5.getText().toString().trim();
                 if (!temp.equals("")) {
-                    textSearch = textSearch + "+" + temp;
+                    textSearch = textSearch + "-" + temp;
                 }
                 if (!textSearch.equals("")) {
                     Intent intent = new Intent(getActivity(), SearchResultActivity.class);

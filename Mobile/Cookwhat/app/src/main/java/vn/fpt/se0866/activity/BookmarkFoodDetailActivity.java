@@ -48,6 +48,7 @@ public class BookmarkFoodDetailActivity extends AppCompatActivity {
         CollapsingToolbarLayout toolBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         TextView tvtitle = (TextView) findViewById(R.id.food_detail_title_tv);
         tvtitle.setText(food.getFoodName());
+        tvtitle.setSelected(true);
         ImageView cover = (ImageView) findViewById(R.id.food_detail_cover_iv);
         Picasso.with(this).load(food.getAvatarLink()).placeholder(R.drawable.ic_loading)
                 .error(R.drawable.ic_error)
