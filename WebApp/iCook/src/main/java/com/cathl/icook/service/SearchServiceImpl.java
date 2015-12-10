@@ -1,16 +1,20 @@
 package com.cathl.icook.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.cathl.icook.dao.FoodDAO;
 import com.cathl.icook.dto.FoodDTO;
+import com.cathl.icook.entity.TblFood;
 import com.cathl.icook.util.ConstantDataManager;
 import com.cathl.icook.util.SearchObj;
 import com.cathl.icook.util.TokenObj;
@@ -21,8 +25,11 @@ public class SearchServiceImpl implements SearchService {
 	public final static String AUTHEN_URL = ConstantDataManager.SERVER_URL + ConstantDataManager.API_AUTHEN_URL;
 	public final static String SEARCH_URL = ConstantDataManager.SERVER_URL + "search";
 	RestTemplate restTemplate;
+	@Autowired
+	private FoodDAO foodDAO;
+	
 	@Override
-	public List<FoodDTO> searchByMaterials(String materials, int start, int limit) {
+	public List<FoodDTO> searchByAPI(String materials, int start, int limit) {
 		restTemplate = new RestTemplate();
 		
 		//get token_access
@@ -43,4 +50,12 @@ public class SearchServiceImpl implements SearchService {
 		return result;
 	}
 
+	public List<FoodDTO> searchByMaterials(String materials, int start, int limit) {
+		List<TblFood> listTblFood = foodDAO.searchByMaterial(materials, start, limit);
+		List<FoodDTO> listFoodDTO = new ArrayList<FoodDTO>();
+		for (TblFood food : listTblFood) {
+			listFoodDTO.add(new FoodDTO(food));
+		}
+		return listFoodDTO;
+	}
 }
