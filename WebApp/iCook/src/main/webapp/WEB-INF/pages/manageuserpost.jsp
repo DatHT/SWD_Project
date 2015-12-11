@@ -41,8 +41,8 @@
 									<c:forEach items="${foodPost }" var="item" varStatus="counter">
 										<tr id="${item.foodId}" class="thisrow">
 											<td>${counter.count }</td>
-											<td><a href="#">${item.foodName }</a></td>
-											<td><a href="${item.linkImage }">${item.linkImage }</a></td>
+											<td><a href="/iCook/food/${item.foodId}" class="linkView">${item.foodName }</a></td>
+											<td><a href="${item.linkImage }" class="linkView">${item.linkImage }</a></td>
 											<td>${item.visitNum }</td>
 											<td width="80px">
 												<div class="btn-group1">
@@ -125,7 +125,7 @@
 							<td width="70px"><b>Avatar: </b></td>
 							<td><!-- <img id="imageFood" src="" alt="Smiley face"
 								height="240" width="480"> -->
-								<a id ="imageZoom"  class="prettyPhoto[pp_gal]"><img id="imageFood" alt="" height="240" width="480"></a>
+								<a id ="imageZoom"  class="prettyPhoto[pp_gal]"><img id="imageFood" alt="" height="160" width="160"></a>
 								</td>
 						</tr>
 

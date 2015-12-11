@@ -1,6 +1,9 @@
 
 $(document).ready(function() {
-
+	$('.linkView').click(function(){
+		window.open($(this).attr('href'));
+		return false;
+	});
 	$('#data-table-1').on('click', '.btn-check',function(e){ 
 		var foodID=$(this).attr('value');
 		$.ajax({

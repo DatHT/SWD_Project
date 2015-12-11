@@ -43,8 +43,8 @@
 									<c:forEach items="${foodPost }" var="item" varStatus="counter">
 										<tr id="${item.foodId}" class="thisrow">
 											<td>${counter.count }</td>
-											<td><a href="#">${item.foodName }</a></td>
-											<td><a href="${item.linkImage }">${item.linkImage }</a></td>
+											<td><a href="/iCook/food/${item.foodId}" class="linkView">${item.foodName }</a></td>
+											<td><a href="${item.linkImage }" class="linkView">${item.linkImage }</a></td>
 											<td>${item.userID }</td>
 											<td class="statustd">
 												<c:if test="${item.status eq 0}">
