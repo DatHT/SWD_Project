@@ -65,7 +65,7 @@
 	        	</div>
 	        </div>
 	       <div class="col-md-7  style-box description ">
-	          <h2>${food.foodName }</h2>
+	          <h1>${food.foodName }</h1>
 	          <p>
 	            ${food.description }
 	          </p>
@@ -79,7 +79,7 @@
 	        </div>
 	        <div class="row">
 	        <div id="otherFood" class="col-md-3 style-box">
-	        <h3>Món ăn khác</h3>
+	        <h2>Món ăn khác</h2>
 	        </div>
 	        <div class="col-md-8 col-md-offset-1 style-box tutorial ">
 	          <h3>Hướng dẫn làm</h3>

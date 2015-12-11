@@ -17,13 +17,30 @@
 	margin-left: 15px;
 	margin-right: 15px;
 }
-    
-.description h2, .material h3, .tutorial h3, #otherFood h3{
+.description a, .material a, .tutorial a{
+	color: coral;
+    text-decoration: none;
+} 
+.description a:hover, .material a:hover, .tutorial a:hover{
+	color: #fff;
+    text-decoration: none;
+}  
+.description h1, .material h3, .tutorial h3, #otherFood h2{
     font-weight: 700;
+}
+.material h3, .tutorial h3{
+	color: skyblue;
+}
+.description h1{
+    color: springgreen;
+}
+#otherFood h2{
+    color: #FED454;
 }
 .pattrn{
 	padding-top: 50px;
 	padding-bottom: 50px;
+	background: rgba(0,0,0,.2);
 }
 
 .tutorial {
@@ -216,7 +233,7 @@ figcaption p{
   color:#fff;
 }
 figure a{
-	color: #000000;
+	color: springgreen;
     text-decoration: none;
     font-size: 16px;
     font-weight: 1000;
