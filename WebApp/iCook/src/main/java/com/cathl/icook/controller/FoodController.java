@@ -130,6 +130,7 @@ public class FoodController {
 		}else{
 			food.setStatus(1);
 		}
+		food.setVisitNum(0);
 		food.setUserID((String) (session.getAttribute("username")));
 		result = foodService.createFood(food);
 		foodID = food.getFoodId();
