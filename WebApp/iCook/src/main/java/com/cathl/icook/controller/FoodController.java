@@ -125,7 +125,7 @@ public class FoodController {
 		Serializable result;
 		TblFood food = new TblFood(newFood.getCategoryId(), newFood.getFoodName(), newFood.getDescription(),
 				newFood.getLinkImage(), newFood.getListMaterial(), 0);
-		if (session.getAttribute("role").equals("ADMIN")) {
+		if ((Integer)session.getAttribute("role")==0) {
 			food.setStatus(0);
 		}else{
 			food.setStatus(1);

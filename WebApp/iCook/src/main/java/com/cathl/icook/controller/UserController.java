@@ -24,7 +24,7 @@ public class UserController {
 	private UserDetailService userDetailService;
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String createUser(@ModelAttribute("newUser") TblUser newUser, HttpServletRequest request,
+	public String createUser(@ModelAttribute("newUser") TblUser newUser, 
 			@RequestParam(value = "txtfullName", required = false) String fullName,
 			@RequestParam(value = "txtEmail", required = false) String email,
 			@RequestParam(value = "txtRepassword", required = false) String rePassword,
@@ -38,7 +38,7 @@ public class UserController {
 			if(userService.checkDubplicate(newUser.getUserName())==null){
 			newUser.setRole(1);
 			userService.createUser(newUser);
-			request.setAttribute("username", newUser.getUserName());
+			model.addAttribute("user", newUser);
 			UserDetail userDetail = new UserDetail(newUser.getUserName(), fullName, phoneNum, email);
 			userDetailService.createUserDetail(userDetail);
 			return "redirect:/Admin";

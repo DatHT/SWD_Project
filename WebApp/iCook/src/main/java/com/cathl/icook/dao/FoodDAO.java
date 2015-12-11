@@ -10,4 +10,6 @@ public interface FoodDAO {
 	public TblFood getFoodID(int ID);
 	public TblFood updateFood(TblFood newfood);
 	public void deleteFood(int ID);
+	public TblFood incrVisitNum(int id);
+	List<TblFood> searchByMaterial(String materials, int start, int limit);
 }

@@ -1,6 +1,9 @@
 
 $(document).ready(function() {
-
+	$('.linkView').click(function(){
+		window.open($(this).attr('href'));
+		return false;
+	});
 	$('#data-table-1').on('click', '.btn-check',function(e){ 
 		var foodID=$(this).attr('value');
 		$.ajax({
@@ -91,6 +94,7 @@ $(document).ready(function() {
 	$('.imagelink').focusout(function(){
 		$('#imageFood').attr("src",$('#txtImage').val());
 		$('#imageFood').attr("src",$('#txtImageLink').val());
+		$("#imageZoom").attr("href", $('#txtImageLink').val());
 		$("#imageZoom").attr("href", $('#txtImage').val());
 	});
 	$('.imagelink').keyup(function(e){

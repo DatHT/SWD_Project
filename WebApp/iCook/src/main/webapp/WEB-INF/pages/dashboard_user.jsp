@@ -7,7 +7,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <!-- Title and other stuffs -->
-  <title></title>
+  <title>Dashboard User</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="keywords" content="">
@@ -51,7 +51,7 @@
 
 		<div class="col-md-12">
 			<div class="alert alert-success">
-							Chào mừng trở lại ${sessionScope.username}. Hãy bắt đầu chia sẻ!
+							Chào mừng trở lại <b>${sessionScope.username}</b>. Hãy bắt đầu chia sẻ!
 			</div>
 					
 			<div class="widget">
@@ -90,7 +90,7 @@
                           <div class="form-group">
                                   <label class="col-lg-2 control-label">Xem trước:</label>
                                   <div class="col-lg-5">
-                                    <img id="imageFood" src="" alt="Smiley face" height="240" width="480" >
+                                    <a id ="imageZoom"  class="prettyPhoto[pp_gal]"><img id="imageFood" alt="" height="160" width="160"></a>
                                   </div>
                           </div>   
                         <div class="form-group">

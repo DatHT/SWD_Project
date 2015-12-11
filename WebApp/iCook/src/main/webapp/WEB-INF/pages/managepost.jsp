@@ -32,17 +32,20 @@
 										<th>ID</th>
 										<th>Mòn ăn</th>
 										<th>Ảnh đại diện</th>
+										<th>Người post</th>
 										<th>Trạng thái</th>
 										<th>Action</th>
-										<th>Select</th>
+										<th>Chọn nhiều</th>
+										
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach items="${foodPost }" var="item" varStatus="counter">
 										<tr id="${item.foodId}" class="thisrow">
 											<td>${counter.count }</td>
-											<td><a href="#">${item.foodName }</a></td>
-											<td><a href="${item.linkImage }">${item.linkImage }</a></td>
+											<td><a href="/iCook/food/${item.foodId}" class="linkView">${item.foodName }</a></td>
+											<td><a href="${item.linkImage }" class="linkView">${item.linkImage }</a></td>
+											<td>${item.userID }</td>
 											<td class="statustd">
 												<c:if test="${item.status eq 0}">
 													Đã Duyệt
@@ -73,6 +76,7 @@
 										<th>ID</th>
 										<th>Mòn ăn</th>
 										<th>Ảnh đại diện</th>
+										<th>Người post</th>
 										<th><select class="form-control" id="cbbfilterStatus">
 												<option value="">----Trạng thái-----</option>
 												<option value="0">Đã Duyệt</option>

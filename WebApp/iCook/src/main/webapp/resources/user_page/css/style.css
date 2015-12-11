@@ -24,8 +24,8 @@
   display: inline-block;
 }
 .pattern{
-  /*background:rgba(256,256,256,.5) url(../images/pattern.png);*/
-  background:rgba(230,230,230,.5) url(../images/pattern.png);
+  background:rgba(256,256,256,.1) url(../images/pattern.png);
+  /*background:rgba(230,230,230,.5) url(../images/pattern.png);*/
   padding-top:50px;
   padding-bottom: 50px;
 }
@@ -216,7 +216,7 @@
 ********Search CSS********
 **************************/
 .search-bacground{
-  background-image:url(../images/searchbg1.jpg);
+  background-image:url(../images/searchbg4.jpg);
   /*background:rgba(230,230,180,.5) url(../images/pattern.png);*/
 }
 #search-result-container li{

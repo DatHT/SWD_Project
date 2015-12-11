@@ -33,6 +33,7 @@ public class FoodDAOImpl implements FoodDAO {
 				String tmp = String.format(" AND listMaterial LIKE '%s'", ("%" + searchs[i] + "%"));
 				query += tmp;
 			}
+			query += " ORDER BY visitNum DESC";
 			System.out.println(query);
 			return hibernateUtil.fetchAllByQuery(query, start, limit, Food.class);
 		}

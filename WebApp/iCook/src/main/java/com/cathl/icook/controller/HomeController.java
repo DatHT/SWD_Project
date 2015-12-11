@@ -43,8 +43,8 @@ public class HomeController {
 		if (session.getAttribute("username") != null) {
 
 			if ((Integer) session.getAttribute("role") == 0) {
-				model.addAttribute("pageheader", "Admin");
-				model.addAttribute("activeTab", "Dashboard");
+				model.addAttribute("pageheader", "Admin");//set header  at view
+				model.addAttribute("activeTab", "Dashboard");//set active tab at view
 				return new ModelAndView("dashboard");
 			}
 			if ((Integer) session.getAttribute("role") == 1) {
@@ -64,15 +64,15 @@ public class HomeController {
 		if (checkUser != null && checkUser.getRole() == 0) {
 			session.setAttribute("role", checkUser.getRole());
 			session.setAttribute("username", checkUser.getUserName());
-			model.addAttribute("pageheader", "Admin");
-			model.addAttribute("activeTab", "Dashboard");
+			model.addAttribute("pageheader", "Admin");//set header  at view
+			model.addAttribute("activeTab", "Dashboard");//set active tab at view
 			return "dashboard";
 		}
 		if (checkUser != null && checkUser.getRole() == 1) {
 			session.setAttribute("username", checkUser.getUserName());
 			session.setAttribute("role", checkUser.getRole());
-			model.addAttribute("pageheader", "Dashboard");
-			model.addAttribute("activeTab", "Dashboard");
+			model.addAttribute("pageheader", "Dashboard");//set header  at view
+			model.addAttribute("activeTab", "Dashboard");//set active tab at view
 			return "dashboard_user";
 		}
 		model.addAttribute("error", "wrong");
@@ -82,8 +82,8 @@ public class HomeController {
 	@RequestMapping(value = "/CreatePost", method = RequestMethod.GET)
 	public String createPost(Model model, HttpSession session) {
 		if (session.getAttribute("username") != null && (Integer) session.getAttribute("role") == 0) {
-			model.addAttribute("pageheader", "Create New Post");
-			model.addAttribute("activeTab", "CreatePost");
+			model.addAttribute("pageheader", "Create New Post");//set header  at view
+			model.addAttribute("activeTab", "CreatePost");//set active tab at view
 			return "createpost";
 		}
 		return "redirect:/Admin";
@@ -95,8 +95,8 @@ public class HomeController {
 			List<TblFood> result = new ArrayList<TblFood>();
 			result = foodService.getFood();
 			model.addAttribute("foodPost", result);
-			model.addAttribute("pageheader", "Quản lý bài đăng");
-			model.addAttribute("activeTab", "ManagePost");
+			model.addAttribute("pageheader", "Quản lý bài đăng");//set header  at view
+			model.addAttribute("activeTab", "ManagePost");//set active tab at view
 			return "managepost";
 		}
 		/* model.addAttribute("user", null); */
@@ -108,8 +108,8 @@ public class HomeController {
 		if (session.getAttribute("username") != null) {
 			List<TblFood> result = foodService.getFoodUser((String) session.getAttribute("username"));
 			model.addAttribute("foodPost", result);
-			model.addAttribute("pageheader", "Quản lý bài đăng");
-			model.addAttribute("activeTab", "ManagePost");
+			model.addAttribute("pageheader", "Quản lý bài đăng");//set header  at view
+			model.addAttribute("activeTab", "ManagePost");//set active tab at view
 			return "manageuserpost";
 		}
 		return "redirect:/Admin";
