@@ -91,6 +91,7 @@ $(document).ready(function() {
 	$('.imagelink').focusout(function(){
 		$('#imageFood').attr("src",$('#txtImage').val());
 		$('#imageFood').attr("src",$('#txtImageLink').val());
+		$("#imageZoom").attr("href", $('#txtImageLink').val());
 		$("#imageZoom").attr("href", $('#txtImage').val());
 	});
 	$('.imagelink').keyup(function(e){
