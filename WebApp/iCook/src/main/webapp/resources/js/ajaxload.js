@@ -142,13 +142,14 @@ $(document).ready(function() {
 	        	$("#myModal .modal-body .foodName").val(category.foodName);
 	        	$("#myModal .modal-body #txtDescription").html(category.description);
 	        	$("#myModal .modal-body #txtMaterial").html(category.listMaterial);
+	        	$("#txtUser").val(category.userID);
 	        	$.ajax({
 	    	        url: "/iCook/getFoodDetail?txtFoodID="+foodID,
 	    	        type: "GET",
 	    	        success: function(foodDetail) {
 	    	        	$("#myModal .modal-body #txtContent").html(foodDetail.tutorial);
 	    	        	$("#myModal .modal-body #txtInfo").html(foodDetail.materialDetail);
-	    	        	$("#txtUser").val(foodDetail.user);
+	    	        	
 	    	        	$("#txtSource").val(foodDetail.source);
 	    	        	$("#myModal").modal();
 	    	        }
