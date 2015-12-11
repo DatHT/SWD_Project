@@ -65,6 +65,7 @@
 	        	</div>
 	        </div>
 	       <div class="col-md-7  style-box description ">
+	       		<input id="currentFood" type="hidden" value="${food.foodId}"/>
 	          <h1>${food.foodName }</h1>
 	          <p>
 	            ${food.description }

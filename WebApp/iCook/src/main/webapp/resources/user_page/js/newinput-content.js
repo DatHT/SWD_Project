@@ -105,6 +105,7 @@ $("#search-button").click(function() {
 		isLoad = false;
 	} else {
 		isLoad = true;
+		localStorage.setItem("lastSearch", searchStr);
 		ajax_loading(searchStr, item);
 		if(checkEmpty){
 			if ($("#check-search").val() == "on"){

@@ -1,6 +1,6 @@
 var item = Math.ceil($(".tutorial").height()/350);
 var isLoad = true;
-var searchStr = "Bò";
+var searchStr = localStorage.getItem("lastSearch");
 //---------Ajax load result when load---------
 $(window).load(function(){
 	$.ajax({
@@ -21,6 +21,7 @@ $(window).load(function(){
 			$('#loading').fadeOut('fast');
 			var html = "";
 			$.each(resultObj, function(key, item) {
+				if (item.foodId != $("#currentFood").val()) {
 					html += '<div class="food-item">';
 						html += '<figure>';
 							html += '<img src="' + item.avatarLink + '">';
@@ -41,6 +42,7 @@ $(window).load(function(){
 							html += '</div><!-- /.search-detail-btn -->';
 						html += '</div><!-- /.search-detail-container -->';
 					html += '</div><!-- /.food-item -->';
+				}
 			});
 			$('#otherFood').append(html);
 		},
