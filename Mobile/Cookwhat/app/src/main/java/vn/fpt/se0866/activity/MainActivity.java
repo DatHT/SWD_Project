@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tab_main);
 
         // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        adapter = new ViewPageAdapter(getSupportFragmentManager(), Titles, Numboftabs);
+        adapter = new ViewPageAdapter(getSupportFragmentManager(), Titles, Numboftabs, this);
 
         // Assigning ViewPager View and setting the adapter
         pager = (ViewPager) findViewById(R.id.pager);
@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Assiging the Sliding Tab Layout View
         tabs = (SlidingTabLayout) findViewById(R.id.tabs);
+        tabs.setCustomTabView(R.layout.header_tab, R.id.tabText);
         tabs.setDistributeEvenly(true); // To make the Tabs Fixed set this true, This makes the tabs Space Evenly in Available width
 
         // Setting Custom Color for the Scroll bar indicator of the Tab View
